@@ -11,10 +11,8 @@ const Header = styled.h2`
   color: ${props => props.isEven ? 'green' : 'blue' };
 `;
 
-
-
-
 const api = 'https://api.themoviedb.org/3/discover/movie?api_key=d2788c89c4f55d19e63381c2d04593df&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1'
+// https://image.tmdb.org/t/p/w500/6ihyJWRLEngSnlW8HKeDOH3AfSQ.jpg
 
 class App extends React.Component {
   constructor(props){
@@ -25,24 +23,22 @@ class App extends React.Component {
   }
 
   async componentDidMount(){
-    const response = await axios.get(api)
 
-    this.setState({ movies: response.data.results})
+    const response = await axios.get(api);
+    console.log(response);
+    this.setState({ movies: response.data.results});
+    
   }
 
   render () {
     return (
-      <Container  >
+      <Container>
         {
           this.state.movies.map((movie, index) => (
-          <Header
-            isEven={index % 2 === 0}
-            key={movie.id} 
-            >{movie.title}</Header>))
+            <Header isEven={index % 2 === 0} key={movie.id}>{movie.title}</Header>)
+          )
         }
-        
       </Container>
-
     )
   }
 }
