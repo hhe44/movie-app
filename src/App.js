@@ -14,6 +14,7 @@ const List = styled.div`
   background: #212025;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
 `;
 
@@ -23,7 +24,7 @@ const Header = styled.h1`
   font-weight: 1000;
   align-self: flex-start;
   position: relative;
-  left: 184px;
+  left: 254px;
   padding-top: 26px;
   letter-spacing: -2.5px;
   background: -webkit-linear-gradient(#fd001d, #fc014f);
@@ -35,8 +36,8 @@ const MediaWrap = styled.div`
 `
 
 const Image = styled.img`
-  width: 250px;
-  height: 140px;
+  width: 350px;
+  height: 210px;
   background-image: url(${props => img_path + props.backdropPath});
   background-size: 100%;
   :hover {
