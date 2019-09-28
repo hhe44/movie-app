@@ -51,7 +51,8 @@ const UserProfile = styled.div`
 `
 
 const List = styled.div`
-  width: 80vw;
+  max-width: 1400px;
+  width: 94vw;
   background: #212025;
   padding-bottom: 26px;
   display: flex;
