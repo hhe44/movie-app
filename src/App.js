@@ -1,12 +1,52 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import logo from './images/netflixlogo.png'
 
 const Content = styled.div`
   background: #212025;
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+const Navbar = styled.div`
+`
+const Navlist = styled.ul`
+  height: 128px;
+  width: 90vw;
+  margin-bottom: 72px;
+  position: relative;
+  right: 48px;
+  font-size: 1.3em;
+  font-family: Nunito;
+  color: #92908E;
+  display: flex;
+  align-items: center;
+`
+const NavLogo = styled.img`
+  height: 60px;
+  width: auto;
+  margin-right: 128px;
+`
+const NavSearch = styled.li`
+  margin-right: 64px;
+`
+const NavBrowse = styled.li`
+`
+const NavProfile = styled.li`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: auto;
+`
+
+const UserProfile = styled.li`
+  text-align: center;
+  vertical-align: center;
+  position: relative;
+  top: 10px;
 `
 
 const List = styled.div`
@@ -38,7 +78,7 @@ const MediaWrap = styled.div`
 const Image = styled.img`
   width: 350px;
   height: 210px;
-  background-image: url(${props => img_path + props.backdropPath});
+  
   background-size: 100%;
   :hover {
     opacity: 0.3;
@@ -79,12 +119,24 @@ class App extends React.Component {
   render () {
     return (
       <Content>
+        <Navbar>
+          <Navlist>
+            <NavLogo src={logo}></NavLogo>
+            <NavSearch><i className="fa fa-search"></i></NavSearch>
+            <NavBrowse>BROWSE</NavBrowse>
+            <NavProfile>
+              <UserProfile>
+                <i className="fa fa-user"></i>
+              </UserProfile>
+            </NavProfile>
+          </Navlist>
+        </Navbar>
         <Header>POPULAR</Header>
         <List key="list1">
         {
           this.state.movies.map((movie) => [
             <MediaWrap key={movie.id}>
-              <Image key={movie.id+'image'} backdropPath={movie.backdrop_path}/>
+              <Image key={movie.id+'image'} src={img_path+movie.backdrop_path}/>
               <Caption key={movie.id+'cap'}>{movie.title}</Caption>
             </MediaWrap>
           ])
@@ -95,7 +147,7 @@ class App extends React.Component {
         {
           this.state.trending.map((trend) => [
             <MediaWrap key={trend.id}>
-              <Image key={trend.id+'image'} backdropPath={trend.backdrop_path}/>
+              <Image key={trend.id+'image'} src={img_path+trend.backdrop_path}/>
               <Caption key={trend.id+'cap'}>{trend.title}</Caption>
             </MediaWrap>
           ])
@@ -106,7 +158,7 @@ class App extends React.Component {
         {
           this.state.tvShows.map((tvShow) => [
             <MediaWrap key={tvShow.id}>
-              <Image key={tvShow.id+'image'} backdropPath={tvShow.backdrop_path}/>
+              <Image key={tvShow.id+'image'} src={img_path+tvShow.backdrop_path}/>
               <Caption key={tvShow.id+'cap'}>{tvShow.name}</Caption>
             </MediaWrap>
           ])
