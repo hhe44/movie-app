@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import logo from './images/netflixlogo.png'
+import logo from './images/netflixlogo.png';
+// import profileIcon from './images/noun_profile.png';
 
 const Content = styled.div`
   background: #212025;
@@ -42,7 +43,7 @@ const NavProfile = styled.li`
   margin-left: auto;
 `
 
-const UserProfile = styled.li`
+const UserProfile = styled.div`
   text-align: center;
   vertical-align: center;
   position: relative;
@@ -52,6 +53,7 @@ const UserProfile = styled.li`
 const List = styled.div`
   width: 80vw;
   background: #212025;
+  padding-bottom: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +80,7 @@ const MediaWrap = styled.div`
 const Image = styled.img`
   width: 350px;
   height: 210px;
-  
+  margin-bottom: -3px;
   background-size: 100%;
   :hover {
     opacity: 0.3;
@@ -110,10 +112,9 @@ class App extends React.Component {
     const response = await axios.get(api_movies);
     const response2 = await axios.get(api_trending);
     const response3 = await axios.get(api_tv);
-    this.setState({ movies: response.data.results});
-    this.setState({ trending: response2.data.results});
-    this.setState({ tvShows: response3.data.results});
-    console.log(response2);
+    this.setState({movies: response.data.results});
+    this.setState({trending: response2.data.results});
+    this.setState({tvShows: response3.data.results});
   }
 
   render () {
