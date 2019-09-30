@@ -71,17 +71,17 @@ const baseURL = "https://api.themoviedb.org/3";
 
 export default class MediaList extends React.PureComponent {
   state = {
-    movies: [],
+    medias: [],
     loading: false,
     isVisible: true
   };
 
-  fetchMovies = async () => {
+  fetchMedias = async () => {
     this.setState({ loading: true });
-    const api_movies = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
-    const response = await axios.get(api_movies);
+    const api_medias = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
+    const response = await axios.get(api_medias);
     this.setState({
-      movies: response.data.results,
+        medias: response.data.results,
       loading: false
     });
   };
@@ -90,12 +90,12 @@ export default class MediaList extends React.PureComponent {
     this.setState({
       isVisible
     });
-    if (!this.state.movies.length) this.fetchMovies();
+    if (!this.state.medias.length) this.fetchMedias();
   };
 
   render() {
     const { title } = this.props;
-    const { movies } = this.state;
+    const { medias } = this.state;
     return (
       <VisibilitySensor onChange={this.handleVisibility}>
         <Container>
@@ -103,14 +103,14 @@ export default class MediaList extends React.PureComponent {
           {this.state.loading && <Header small>Loading</Header>}
           <div>
             <List key="list1">
-              {movies.map(movie => [
-                <MediaWrap key={movie.id}>
+              {medias.map(media => [
+                <MediaWrap key={media.id}>
                   <Image
-                    key={movie.id + "image"}
-                    src={img_path + movie.backdrop_path}
-                    alt={`${movie.title} backdrop`}
+                    key={media.id + "image"}
+                    src={img_path + media.backdrop_path}
+                    alt={`${media.title} backdrop`}
                   />
-                  <Caption key={movie.id + "cap"}>{movie.title}</Caption>
+                  <Caption key={media.id + "cap"}>{media.title}</Caption>
                 </MediaWrap>
               ])}
             </List>
