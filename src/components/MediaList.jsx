@@ -21,7 +21,7 @@ const List = styled.div`
 
 const Header = styled.h1`
   font-family: Arial;
-  font-size: ${props => (props.small ? "3rem" : "5em")};
+  font-size: ${props => (props.small ? "3em" : "5em")};
   font-weight: 1000;
   align-self: flex-start;
   position: relative;
@@ -34,13 +34,14 @@ const Header = styled.h1`
 `;
 
 const Caption = styled.h2`
-  color: white;
-  opacity: 0;
-  transition: 0.2s;
   position: absolute;
   bottom: 0;
   left: 0;
   padding-left: 32px;
+  font-family: Arial;
+  font-size: 1rem;
+  color: white;
+  opacity: 0;
   transition: 0.2s ease-in-out;
 `;
 
@@ -58,7 +59,7 @@ const MediaWrap = styled.div`
   position: relative;
   overflow: hidden;
   &:hover ${Image} {
-    transform: scale(1.2);
+    transform: scale(1.05);
   }
   &:hover ${Caption} {
     opacity: 1;
@@ -96,6 +97,7 @@ export default class MediaList extends React.PureComponent {
   render() {
     const { title } = this.props;
     const { medias } = this.state;
+    console.log( medias );
     return (
       <VisibilitySensor onChange={this.handleVisibility}>
         <Container>
@@ -108,9 +110,9 @@ export default class MediaList extends React.PureComponent {
                   <Image
                     key={media.id + "image"}
                     src={img_path + media.backdrop_path}
-                    alt={`${media.title} backdrop`}
+                    alt={`${media.title || media.name} backdrop`}
                   />
-                  <Caption key={media.id + "cap"}>{media.title}</Caption>
+                  <Caption key={media.id + "cap"}>{media.title || media.name}</Caption>
                 </MediaWrap>
               ])}
             </List>

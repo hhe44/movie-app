@@ -14,8 +14,8 @@ const Content = styled.div`
 
 const Landing = () => (
   <>
-    <MediaList title={"Popular"} mediaType={"discover/movie"} />
-    <MediaList title={"Trending"} mediaType={"trending/all/day"} />
+    <MediaList title={"POPULAR"} mediaType={"discover/movie"} />
+    <MediaList title={"TRENDING"} mediaType={"trending/all/day"} />
     <MediaList title={"TV SHOWS"} mediaType={"tv/popular"} />
   </>
 );
