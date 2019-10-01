@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import MediaList from "./components/MediaList";
+import mediaPage from "./components/mediaPage"
 
 const Content = styled.div`
   background: #212025;
@@ -27,7 +28,8 @@ class App extends React.Component {
         <Router>
           <Navbar />
           <Switch>
-            <Route path="/" component={Landing} />
+            <Route path="/"exact component={Landing} />
+            <Route path="/media/:id" component={mediaPage}></Route>
           </Switch>
         </Router>
       </Content>
