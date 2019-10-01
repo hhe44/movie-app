@@ -90,19 +90,12 @@ export default class MediaList extends React.PureComponent {
       loading: false
     });
   };
-
-  handleVisibility = isVisible => {
-    this.setState({
-      isVisible: true
-    });
-    if (!this.state.medias.length) this.fetchMedias();
-  };
-
+  
   render() {
     const { title } = this.props;
     const { medias } = this.state;
     return (
-      <VisibilitySensor onChange={this.handleVisibility}>
+      <VisibilitySensor onChange={this.fetchMedias}>
         <Container>
           <Header>{title}</Header>
           {this.state.loading && <Header small>Loading</Header>}
