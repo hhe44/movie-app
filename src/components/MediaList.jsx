@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import VisibilitySensor from "react-visibility-sensor";
+
 
 const Container = styled.div`
   max-width: 1400px;
@@ -26,7 +28,6 @@ const Header = styled.h1`
   align-self: flex-start;
   position: relative;
   padding-top: 32px;
-  padding-bottom: 16px;
   letter-spacing: -2.5px;
   background: -webkit-linear-gradient(#fd001d, #fc014f);
   -webkit-background-clip: text;
@@ -40,6 +41,7 @@ const Caption = styled.h2`
   padding-left: 32px;
   font-family: Arial;
   font-size: 1rem;
+  font-weight: 700;
   color: white;
   opacity: 0;
   transition: 0.2s ease-in-out;
@@ -51,6 +53,7 @@ const Image = styled.img`
   :hover {
     opacity: 0.3;
   }
+  cursor: pointer;
 `;
 
 const MediaWrap = styled.div`
@@ -67,20 +70,21 @@ const MediaWrap = styled.div`
   }
 `;
 
-const img_path = "https://image.tmdb.org/t/p/w500/";
+const imagePath = "https://image.tmdb.org/t/p/w500/";
 const baseURL = "https://api.themoviedb.org/3";
+const movieDetail = "https://api.themoviedb.org/3/movie/343611?api_key={api_key}";
 
 export default class MediaList extends React.PureComponent {
   state = {
     medias: [],
     loading: false,
-    isVisible: true
+    isVisible: false
   };
 
   fetchMedias = async () => {
     this.setState({ loading: true });
-    const api_medias = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
-    const response = await axios.get(api_medias);
+    const getMediaList = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
+    const response = await axios.get(getMediaList);
     this.setState({
         medias: response.data.results,
       loading: false
@@ -89,7 +93,7 @@ export default class MediaList extends React.PureComponent {
 
   handleVisibility = isVisible => {
     this.setState({
-      isVisible
+      isVisible: true
     });
     if (!this.state.medias.length) this.fetchMedias();
   };
@@ -97,7 +101,6 @@ export default class MediaList extends React.PureComponent {
   render() {
     const { title } = this.props;
     const { medias } = this.state;
-    console.log( medias );
     return (
       <VisibilitySensor onChange={this.handleVisibility}>
         <Container>
@@ -109,7 +112,7 @@ export default class MediaList extends React.PureComponent {
                 <MediaWrap key={media.id}>
                   <Image
                     key={media.id + "image"}
-                    src={img_path + media.backdrop_path}
+                    src={imagePath + media.backdrop_path}
                     alt={`${media.title || media.name} backdrop`}
                   />
                   <Caption key={media.id + "cap"}>{media.title || media.name}</Caption>

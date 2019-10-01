@@ -30,17 +30,22 @@ const NavLogo = styled.img`
   height: 60px;
   width: auto;
   margin-right: 128px;
+  cursor: pointer;
 `;
 const NavSearch = styled.div`
   margin-right: 64px;
+  cursor: pointer;
 `;
-const NavBrowse = styled.div``;
+const NavBrowse = styled.div`
+  cursor: pointer;
+`;
 const NavProfile = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: white;
   margin-left: auto;
+  cursor: pointer;
 `;
 
 const UserProfile = styled.div`
@@ -48,6 +53,7 @@ const UserProfile = styled.div`
   vertical-align: center;
   position: relative;
   top: 10px;
+  cursor: pointer;
 `;
 
 export default () => (
