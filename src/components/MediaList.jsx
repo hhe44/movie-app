@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import VisibilitySensor from "react-visibility-sensor";
 
 
@@ -102,14 +102,16 @@ export default class MediaList extends React.PureComponent {
           <div>
             <List key="list1">
               {medias.map(media => [
-                <MediaWrap key={media.id}>
-                  <Image
-                    key={media.id + "image"}
-                    src={imagePath + media.backdrop_path}
-                    alt={`${media.title || media.name} backdrop`}
-                  />
-                  <Caption key={media.id + "cap"}>{media.title || media.name}</Caption>
-                </MediaWrap>
+                  <MediaWrap key={media.id}>
+                    <Link to={`/media/${media.id}`}>
+                    <Image
+                      key={media.id + "image"}
+                      src={imagePath + media.backdrop_path}
+                      alt={`${media.title || media.name} backdrop`}
+                    />
+                    </Link>
+                    <Caption key={media.id + "cap"}>{media.title || media.name}</Caption>
+                  </MediaWrap>
               ])}
             </List>
           </div>

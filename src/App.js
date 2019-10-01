@@ -24,8 +24,8 @@ class App extends React.Component {
   render() {
     return (
       <Content>
-        <Navbar />
         <Router>
+          <Navbar />
           <Switch>
             <Route path="/" component={Landing} />
           </Switch>

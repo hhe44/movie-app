@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../images/netflixlogo.png";
+import { Link } from "react-router-dom";
 
 const Navbar = styled.div`
   position: fixed;
@@ -59,7 +60,9 @@ const UserProfile = styled.div`
 export default () => (
   <Navbar>
     <Navlist>
-      <NavLogo src={logo}></NavLogo>
+      <Link to="/">
+        <NavLogo src={logo}></NavLogo>
+      </Link>
       <NavSearch>
         <i className="fa fa-search"></i>
       </NavSearch>
