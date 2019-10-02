@@ -85,6 +85,7 @@ export default class MediaList extends React.PureComponent {
     this.setState({ loading: true });
     const getMediaList = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
     const response = await axios.get(getMediaList);
+    console.log(response);
     this.setState({
         medias: response.data.results,
       loading: false
