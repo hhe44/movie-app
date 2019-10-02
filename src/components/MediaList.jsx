@@ -72,7 +72,7 @@ const MediaWrap = styled.div`
 
 const imagePath = "https://image.tmdb.org/t/p/w500/";
 const baseURL = "https://api.themoviedb.org/3";
-const movieDetail = "https://api.themoviedb.org/3/movie/343611?api_key={api_key}";
+
 
 export default class MediaList extends React.PureComponent {
   state = {
@@ -85,9 +85,8 @@ export default class MediaList extends React.PureComponent {
     this.setState({ loading: true });
     const getMediaList = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
     const response = await axios.get(getMediaList);
-    console.log(response);
     this.setState({
-        medias: response.data.results,
+      medias: response.data.results,
       loading: false
     });
   };
