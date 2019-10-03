@@ -8,20 +8,29 @@ export default class MediaPage extends React.PureComponent {
     media: []
   };
 
-  fetchMedia = async () => {
-    const getMediaDetail = `https://api.themoviedb.org/3/movie/343611?api_key=${process.env.REACT_APP_API_KEY}`;
+  
+  async componentDidMount(){
+    const param = this.props.match.url.split('/');
+    const getMediaDetail = `https://api.themoviedb.org/3/${param[1]}/${param[2]}?api_key=${process.env.REACT_APP_API_KEY}`;
     const response = await axios.get(getMediaDetail);
-    this.setState({ media: response.data.results });
-    console.log(this.state.media)
-  };
+    this.setState({media: response.data});
+    console.log(response);
+  }
+  
+  // fetchMedia = async () => {
+  //   const param = this.props.match.url.split('/');
+  //   const getMediaDetail = `https://api.themoviedb.org/3/${param[1]}/${param[2]}?api_key=${process.env.REACT_APP_API_KEY}`;
+  //   const response = await axios.get(getMediaDetail);
+  //   this.setState({ media: response.data });
+  //   console.log(this.state);
+  // };
 
   // Little debugger function here for help...!
   print = () => { console.log(this.state); console.log(this.props.match.url); }
 
   render() {
     return (
-      <div>
-        {this.print()}
+      <div> 
         <h1>I AM RENDEEEERED</h1>
       </div>
     );

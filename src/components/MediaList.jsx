@@ -103,7 +103,7 @@ export default class MediaList extends React.PureComponent {
             <List key="list1">
               {medias.map(media => [
                   <MediaWrap key={media.id}>
-                    <Link to={`/${media.title !== undefined ? 'movie' : 'tvshow'}/${media.id}`}>
+                    <Link to={`/${media.title !== undefined ? 'movie' : 'tv'}/${media.id}`}>
                     <Image
                       key={media.id + "image"}
                       src={imagePath + media.backdrop_path}
