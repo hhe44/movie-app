@@ -29,7 +29,8 @@ class App extends React.Component {
           <Navbar />
           <Switch>
             <Route path="/"exact component={Landing} />
-            <Route path="/media/:id" exact component={MediaPage} />
+            <Route path="/movie/:id" exact component={MediaPage} />
+            <Route path="/tvshow/:id" exact component={MediaPage} />
           </Switch>
         </Router>
       </Content>
