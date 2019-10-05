@@ -3,17 +3,24 @@ import styled from "styled-components";
 import axios from "axios";
 
 const Container = styled.div`
-  box-sizing: border-box;
   width: 100vw;
+  height: 100vh;
   display: flex;
-  align-content: center;
-  justify-content: center;
 `;
 
 const Poster = styled.img`
-  width: 94vw;
-  height: auto;
-`;
+  height: 90vh;
+  max-height: 750px;
+  width: auto;
+`
+const Blurb = styled.div`
+`
+const Title = styled.h1`
+`
+const Tagline = styled.h3`
+`
+const Summary = styled.p`
+`
 
 export default class MediaPage extends React.PureComponent {
   state = {
@@ -44,7 +51,12 @@ export default class MediaPage extends React.PureComponent {
     const imagePath = "https://image.tmdb.org/t/p/w500";
     return (
       <Container>
-        <Poster src={imagePath+media.backdrop_path}></Poster>
+        <Poster src={imagePath+media.poster_path}></Poster>
+        <Blurb>
+          <Title></Title>
+          <Tagline></Tagline>
+          <Summary></Summary>
+        </Blurb>
       </Container>
     );
   }
