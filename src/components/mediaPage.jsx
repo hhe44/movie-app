@@ -64,7 +64,7 @@ const Rating = styled.h3`
   margin: 0;
 `
 const Overview = styled.p`
-  font-size: 1.8em;
+  font-size: 1.9em;
 `
 const Buttons = styled.div`
   padding-top: 42px;
