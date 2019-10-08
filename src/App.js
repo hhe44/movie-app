@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import MediaList from "./components/MediaList";
-import MediaPage from "./components/MediaPage"
+import MediaPage from "./components/MediaPage";
+import SearchPage from './pages/SearchPage';
 
 const Content = styled.div`
   background: #212025;
@@ -31,6 +32,7 @@ class App extends React.Component {
             <Route path="/"exact component={Landing} />
             <Route path="/movie/:id" exact component={MediaPage} />
             <Route path="/tv/:id" exact component={MediaPage} />
+            <Route path='/search' component={SearchPage} />
           </Switch>
         </Router>
       </Content>

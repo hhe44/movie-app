@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {withRouter} from 'react-router-dom'
 import logo from "../images/netflixlogo.png";
 import { Link } from "react-router-dom";
 
@@ -57,21 +58,46 @@ const UserProfile = styled.div`
   cursor: pointer;
 `;
 
-export default () => (
-  <Navbar>
-    <Navlist>
-      <Link to="/">
-        <NavLogo src={logo}></NavLogo>
-      </Link>
-      <NavSearch>
-        <i className="fa fa-search"></i>
-      </NavSearch>
-      <NavBrowse>BROWSE</NavBrowse>
-      <NavProfile>
-        <UserProfile>
-          <i className="fa fa-user"></i>
-        </UserProfile>
-      </NavProfile>
-    </Navlist>
-  </Navbar>
-);
+class Navigation extends React.Component{
+  state = {
+    searchTerm: ''
+  }
+
+  handleChange = (e) => {
+    this.setState({searchTerm: e.target.value})
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.props)
+    this.props.history.push(`/search?searchTerm=${this.state.searchTerm}`)
+  }
+
+
+  render (){
+    return (
+      <Navbar>
+        <Navlist>
+          <Link to="/">
+            <NavLogo src={logo}></NavLogo>
+          </Link>
+          <NavSearch>
+            <form onSubmit={this.handleSubmit} >
+              <input value={this.state.searchTerm} onChange={this.handleChange} />
+            </form>
+            
+            <i className="fa fa-search"></i>
+          </NavSearch>
+          <NavBrowse>BROWSE</NavBrowse>
+          <NavProfile>
+            <UserProfile>
+              <i className="fa fa-user"></i>
+            </UserProfile>
+          </NavProfile>
+        </Navlist>
+      </Navbar>
+    );
+  }
+}
+
+export default withRouter(Navigation)
