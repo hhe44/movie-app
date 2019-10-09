@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 import logo from "../images/netflixlogo.png";
 import { Link } from "react-router-dom";
 
@@ -58,23 +58,22 @@ const UserProfile = styled.div`
   cursor: pointer;
 `;
 
-class Navigation extends React.Component{
+class Navigation extends React.Component {
   state = {
-    searchTerm: ''
-  }
+    searchTerm: ""
+  };
 
-  handleChange = (e) => {
-    this.setState({searchTerm: e.target.value})
-  }
+  handleChange = e => {
+    this.setState({ searchTerm: e.target.value });
+  };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
-    console.log(this.props)
-    this.props.history.push(`/search?searchTerm=${this.state.searchTerm}`)
-  }
+    console.log(this.props);
+    this.props.history.push(`/search?searchTerm=${this.state.searchTerm}`);
+  };
 
-
-  render (){
+  render() {
     return (
       <Navbar>
         <Navlist>
@@ -82,10 +81,13 @@ class Navigation extends React.Component{
             <NavLogo src={logo}></NavLogo>
           </Link>
           <NavSearch>
-            <form onSubmit={this.handleSubmit} >
-              <input value={this.state.searchTerm} onChange={this.handleChange} />
+            <form onSubmit={this.handleSubmit}>
+              <input
+                value={this.state.searchTerm}
+                onChange={this.handleChange}
+              />
             </form>
-            
+
             <i className="fa fa-search"></i>
           </NavSearch>
           <NavBrowse>BROWSE</NavBrowse>
@@ -100,4 +102,5 @@ class Navigation extends React.Component{
   }
 }
 
-export default withRouter(Navigation)
+// withRouter gives us access to the history
+export default withRouter(Navigation);
