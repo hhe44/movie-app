@@ -14,7 +14,7 @@ const Navbar = styled.div`
   box-shadow: 0px 5px 25px rgba(253, 0, 29, 0.1);
   z-index: 9;
 `;
-const Navlist = styled.div`
+const NavItems = styled.div`
   height: 100%;
   width: 100%;
   max-width: 1400px;
@@ -31,13 +31,36 @@ const Navlist = styled.div`
 const NavLogo = styled.img`
   height: 60px;
   width: auto;
-  margin-right: 128px;
   cursor: pointer;
 `;
 const NavSearch = styled.div`
+  margin-left: 128px;
   margin-right: 64px;
-  cursor: pointer;
+  display: flex;
 `;
+const SearchBar = styled.form`
+`
+const SearchButton = styled.button`
+  border: none;
+  outline: none;
+  font-size: 1em;
+  margin-right: 4px;
+  background-color: #212025;
+  color: #92908e;
+  cursor: pointer;
+`
+const SearchText = styled.input`
+  border: none;
+  outline: none;
+  height: 20px;
+  position: relative;
+  bottom: 2px;
+  font-family: Arial;
+  font-weight: 700;
+  background-color: #D6D6D7;
+  text-indent: 10px;
+  border-radius: 10px;
+`
 const NavBrowse = styled.div`
   cursor: pointer;
 `;
@@ -68,6 +91,7 @@ class Navigation extends React.Component {
   };
 
   handleSubmit = e => {
+    // preventDefault to avoid reloading entire page, which would be its default behavior
     e.preventDefault();
     console.log(this.props);
     this.props.history.push(`/search?searchTerm=${this.state.searchTerm}`);
@@ -76,19 +100,15 @@ class Navigation extends React.Component {
   render() {
     return (
       <Navbar>
-        <Navlist>
+        <NavItems>
           <Link to="/">
             <NavLogo src={logo}></NavLogo>
           </Link>
           <NavSearch>
-            <form onSubmit={this.handleSubmit}>
-              <input
-                value={this.state.searchTerm}
-                onChange={this.handleChange}
-              />
-            </form>
-
-            <i className="fa fa-search"></i>
+            <SearchBar onSubmit={this.handleSubmit}>
+              <SearchButton type="submit"><i className="fa fa-search"></i></SearchButton>
+              <SearchText value={this.state.searchTerm} onChange={this.handleChange}/>
+            </SearchBar>
           </NavSearch>
           <NavBrowse>BROWSE</NavBrowse>
           <NavProfile>
@@ -96,7 +116,7 @@ class Navigation extends React.Component {
               <i className="fa fa-user"></i>
             </UserProfile>
           </NavProfile>
-        </Navlist>
+        </NavItems>
       </Navbar>
     );
   }

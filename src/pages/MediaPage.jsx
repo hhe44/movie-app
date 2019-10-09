@@ -40,10 +40,6 @@ const Title = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
-
-  @media (height > 180px) {
-    font-size: 3em;
-  }
 `;
 const Tagline = styled.h3`
   font-family: Impact;
@@ -90,16 +86,9 @@ export default class MediaPage extends React.PureComponent {
     }?api_key=${process.env.REACT_APP_API_KEY}`;
     const response = await axios.get(getMediaDetail);
     this.setState({ media: response.data });
-    console.log(response.data);
+    // Uncomment line 94 to see response data in console
+    // console.log(response.data);
   }
-
-  // fetchMedia = async () => {
-  //   const param = this.props.match.url.split('/');
-  //   const getMediaDetail = `https://api.themoviedb.org/3/${param[1]}/${param[2]}?api_key=${process.env.REACT_APP_API_KEY}`;
-  //   const response = await axios.get(getMediaDetail);
-  //   this.setState({ media: response.data });
-  //   console.log(this.state);
-  // };
 
   // Little debugger function here for help...!
   print = () => {
