@@ -17,9 +17,20 @@ const ResultWrap = styled.div`
   justify-content: center;
 `;
 const ImageWrap = styled.div`
+  width: 30vw;
+  max-width: 500px;
   margin-right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const Image = styled.img`
+  width: auto;
+  transition: 0.2s ease-in-out;
+  :hover {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
   max-height: 281px;
 `;
 const Blurb = styled.div`

@@ -98,7 +98,7 @@ export default class MediaPage extends React.PureComponent {
 
   render() {
     const { media } = this.state;
-    const imagePath = "https://image.tmdb.org/t/p/w500";
+    const imagePath = "https://image.tmdb.org/t/p/original";
     return (
       <Container>
         <ColumnOne>
