@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -67,21 +68,22 @@ const Overview = styled.p`
 
 const imagePath = "https://image.tmdb.org/t/p/w500";
 
-export default class SearchPage extends React.Component {
+class SearchPage extends React.Component {
   state = {
-    results: []
+    results: [],
+    searchMedia: "multi"
   };
 
   getMovies = async (page = 1) => {
     const query = this.props.location.search.split("=")[1];
-    const link = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`;
+    const link = `https://api.themoviedb.org/3/search/${this.state.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`;
     const response = await axios.get(link);
     this.setState({
       results: response.data.results,
       page: response.data.page,
       totalPages: response.data.total_pages
     });
-    console.log(response);
+    // console.log(response);
   };
 
   componentDidMount() {
@@ -93,6 +95,13 @@ export default class SearchPage extends React.Component {
     if (page + 1 > totalPages) return;
     this.getMovies(page + 1);
   };
+
+  handleSelection = (e) => {
+    this.setState({searchMedia: e.target.value});
+    console.log(this.props.history);
+    this.getMovies();
+    // this.props.history.push(`/filter?mediatype=${this.state.searchMedia}`);
+  }
 
   render() {
     const { results } = this.state;
@@ -125,19 +134,22 @@ export default class SearchPage extends React.Component {
             </Blurb>
           </ResultWrap>
         ])}
+        <select value={this.state.searchMedia} onChange={this.handleSelection}>
+          <option defaultValue value="multi">ALL</option>
+          <option value="movie">MOVIES</option>
+          <option value="person">PEOPLE</option>
+          <option value="tv">TV SHOWS</option>
+       </select>
+        <div style={{ color: "white" }}>
+          <button onClick={this.handleNextPage}>
+            {this.state.page === this.state.totalPages
+              ? "No more movies to load"
+              : "Load more"}
+          </button>
+        </div>
       </Container>
     );
   }
-
-  //   render() {
-  //     return (
-  //       <div style={{ color: "white" }}>
-  //         <button onClick={this.handleNextPage}>
-  //           {this.state.page === this.state.totalPages
-  //             ? "No more movies to load"
-  //             : "Load more"}
-  //         </button>
-  //       </div>
-  //     );
-  //   }
 }
+
+export default withRouter(SearchPage);
