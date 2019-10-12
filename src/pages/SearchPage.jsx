@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import queryString from 'query-string'
 import { Link } from "react-router-dom";
+import { Button } from '../components/Button'
 
 const Container = styled.div`
   max-width: 1400px;
@@ -12,42 +14,21 @@ const Container = styled.div`
 `;
 const SearchParams = styled.div``;
 const MediaSelection = styled.select``;
-const PageNext = styled.button`
-  font-family: impact;
-  font-size: 2em;
-  border: 0;
-  border-radius: 4px;
-  margin-right: 52px;
-  background: -webkit-linear-gradient(#fd001d, #fc014f);
-  color: white;
-`;
-const PageBack = styled.button`
-  font-family: impact;
-  font-size: 2em;
-  border: 0;
-  border-radius: 4px;
-  margin-right: 52px;
-  background: -webkit-linear-gradient(#fd001d, #fc014f);
-  color: white;
-`;
 
 const ResultWrap = styled.div`
-  height: 360px;
-  border-bottom: solid 1px #92908e;
+  border-bottom: solid 1px ${props => props.theme.colors.muted};
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: ${(props) => `${props.theme.sizes.veryLarge} ${props.theme.sizes.veryLarge}`};
 `;
 const ImageWrap = styled.div`
-  width: 30vw;
-  max-width: 500px;
-  margin-right: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 40%;
+  margin-right: ${props => props.theme.sizes.large};
+  overflow: hidden;
 `;
 const Image = styled.img`
-  width: auto;
+  width: 100%;
   transition: 0.2s ease-in-out;
   :hover {
     opacity: 0.7;
@@ -56,11 +37,12 @@ const Image = styled.img`
   max-height: 281px;
 `;
 const Blurb = styled.div`
-  width: 40vw;
+  width: 60%;
   font-family: Helvetica;
   font-weight: 700;
   color: white;
   position: relative;
+  padding: ${props => props.theme.sizes.veryLarge};
 `;
 const Title = styled.h1`
   text-transform: uppercase;
@@ -92,46 +74,59 @@ const imagePath = "https://image.tmdb.org/t/p/w500";
 class SearchPage extends React.Component {
   state = {
     results: [],
-    searchMedia: "multi"
   };
 
-  getMovies = async (page = 1) => {
-    const query = this.props.location.search.split("=")[1];
-    const link = `https://api.themoviedb.org/3/search/${this.state.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`;
+  getMovies = async () => {
+    const query = queryString.parse(this.props.location.search);
+    const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
     const response = await axios.get(link);
     this.setState({
       results: response.data.results,
-      page: response.data.page,
       totalPages: response.data.total_pages
     });
-    // console.log(response);
   };
 
   componentDidMount() {
     this.getMovies();
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.location.search !== this.props.location.search){
+      this.getMovies()
+    }
+  }
+
   handleNextPage = () => {
-    const { page, totalPages } = this.state;
+    const query = queryString.parse(this.props.location.search);
+    const page = parseInt(query.page)
+    const { totalPages } = this.state;
     if (page + 1 > totalPages) return;
-    this.getMovies(page + 1);
+    query.page = page+1;
+
+    const stringified = queryString.stringify(query);
+
+    this.props.history.push(`?${stringified}`)
   };
 
   handleBackPage = () => {
     const { page } = this.state;
     if (page === 1) return;
-    this.getMovies(page - 1);
+    this.getMovies();
   };
 
   handleSelection = e => {
-    this.setState({ searchMedia: e.target.value });
-    console.log(this.props.history);
-    this.getMovies();
-    // this.props.history.push(`/filter?mediatype=${this.state.searchMedia}`);
+    const searchMedia = e.target.value
+    const query = queryString.parse(this.props.location.search);
+    query.searchMedia = searchMedia;
+    query.page = 1;
+
+    const stringified = queryString.stringify(query);
+
+    this.props.history.push(`?${stringified}`)
   };
 
   render() {
-    const { results } = this.state;
+    const { results } = this.state; 
     return (
       <Container>
         <SearchParams>
@@ -146,21 +141,20 @@ class SearchPage extends React.Component {
             <option value="person">PEOPLE</option>
             <option value="tv">TV SHOWS</option>
           </MediaSelection>
-          <PageBack onClick={this.handleBackPage}>BACK</PageBack>
-          <PageNext onClick={this.handleNextPage}>
-            {this.state.page === this.state.totalPages
-              ? "NO MORE PAGES"
-              : "FORWARD"}
-          </PageNext>
+          <Button 
+            onClick={this.handleBackPage} 
+            label={'BACK'} 
+          />
+          <Button 
+            onClick={this.handleNextPage} 
+            label={this.state.page === this.state.totalPages ? "NO MORE PAGES" : "FORWARD"} 
+          />
+         
         </SearchParams>
         {results.map(result => [
           <ResultWrap key={result.id}>
-            <Link
-              to={`/${result.title !== undefined ? "movie" : "tv"}/${
-                result.id
-              }`}
-            >
-              <ImageWrap key={result.id + "ImageWrap"}>
+            <ImageWrap>
+              <Link to={`/${result.title !== undefined ? "movie" : "tv"}/${result.id}`}>
                 <Image
                   key={result.id + "Image"}
                   src={
@@ -170,8 +164,8 @@ class SearchPage extends React.Component {
                   }
                   alt={`${result.title || result.name} backdrop`}
                 />
-              </ImageWrap>
-            </Link>
+              </Link>
+            </ImageWrap>
             <Blurb>
               <Title>{result.title || result.name}</Title>
               <MediaDate>

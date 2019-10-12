@@ -94,7 +94,7 @@ class Navigation extends React.Component {
     // preventDefault to avoid reloading entire page, which would be its default behavior
     e.preventDefault();
     console.log(this.props);
-    this.props.history.push(`/search?searchTerm=${this.state.searchTerm}`);
+    this.props.history.push(`/search?searchTerm=${this.state.searchTerm}&searchMedia=multi&page=1`);
   };
 
   render() {
