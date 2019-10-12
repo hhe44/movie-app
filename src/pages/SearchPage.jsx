@@ -10,6 +10,27 @@ const Container = styled.div`
   padding: 0 64px;
   box-sizing: border-box;
 `;
+const SearchParams = styled.div``;
+const MediaSelection = styled.select``;
+const PageNext = styled.button`
+  font-family: impact;
+  font-size: 2em;
+  border: 0;
+  border-radius: 4px;
+  margin-right: 52px;
+  background: -webkit-linear-gradient(#fd001d, #fc014f);
+  color: white;
+`;
+const PageBack = styled.button`
+  font-family: impact;
+  font-size: 2em;
+  border: 0;
+  border-radius: 4px;
+  margin-right: 52px;
+  background: -webkit-linear-gradient(#fd001d, #fc014f);
+  color: white;
+`;
+
 const ResultWrap = styled.div`
   height: 360px;
   border-bottom: solid 1px #92908e;
@@ -63,7 +84,7 @@ const Rating = styled.h3`
   margin: 0;
 `;
 const Overview = styled.p`
-  font-size: 0.9  em;
+  font-size: 0.9 em;
 `;
 
 const imagePath = "https://image.tmdb.org/t/p/w500";
@@ -96,31 +117,60 @@ class SearchPage extends React.Component {
     this.getMovies(page + 1);
   };
 
-  handleSelection = (e) => {
-    this.setState({searchMedia: e.target.value});
+  handleBackPage = () => {
+    const { page } = this.state;
+    if (page === 1) return;
+    this.getMovies(page - 1);
+  };
+
+  handleSelection = e => {
+    this.setState({ searchMedia: e.target.value });
     console.log(this.props.history);
     this.getMovies();
     // this.props.history.push(`/filter?mediatype=${this.state.searchMedia}`);
-  }
+  };
 
   render() {
     const { results } = this.state;
     return (
       <Container>
+        <SearchParams>
+          <MediaSelection
+            value={this.state.searchMedia}
+            onChange={this.handleSelection}
+          >
+            <option defaultValue value="multi">
+              ALL
+            </option>
+            <option value="movie">MOVIES</option>
+            <option value="person">PEOPLE</option>
+            <option value="tv">TV SHOWS</option>
+          </MediaSelection>
+          <PageBack onClick={this.handleBackPage}>BACK</PageBack>
+          <PageNext onClick={this.handleNextPage}>
+            {this.state.page === this.state.totalPages
+              ? "NO MORE PAGES"
+              : "FORWARD"}
+          </PageNext>
+        </SearchParams>
         {results.map(result => [
           <ResultWrap key={result.id}>
-            <Link to={`/${result.title !== undefined ? "movie" : "tv"}/${result.id}`}>
-            <ImageWrap key={result.id + "ImageWrap"}>
-              <Image
-                key={result.id + "Image"}
-                src={
-                  result.backdrop_path
-                    ? imagePath + result.backdrop_path
-                    : imagePath + result.poster_path
-                }
-                alt={`${result.title || result.name} backdrop`}
-              />
-            </ImageWrap>
+            <Link
+              to={`/${result.title !== undefined ? "movie" : "tv"}/${
+                result.id
+              }`}
+            >
+              <ImageWrap key={result.id + "ImageWrap"}>
+                <Image
+                  key={result.id + "Image"}
+                  src={
+                    result.backdrop_path
+                      ? imagePath + result.backdrop_path
+                      : imagePath + result.poster_path
+                  }
+                  alt={`${result.title || result.name} backdrop`}
+                />
+              </ImageWrap>
             </Link>
             <Blurb>
               <Title>{result.title || result.name}</Title>
@@ -134,19 +184,6 @@ class SearchPage extends React.Component {
             </Blurb>
           </ResultWrap>
         ])}
-        <select value={this.state.searchMedia} onChange={this.handleSelection}>
-          <option defaultValue value="multi">ALL</option>
-          <option value="movie">MOVIES</option>
-          <option value="person">PEOPLE</option>
-          <option value="tv">TV SHOWS</option>
-       </select>
-        <div style={{ color: "white" }}>
-          <button onClick={this.handleNextPage}>
-            {this.state.page === this.state.totalPages
-              ? "No more movies to load"
-              : "Load more"}
-          </button>
-        </div>
       </Container>
     );
   }
