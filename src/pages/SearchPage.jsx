@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import queryString from 'query-string'
+import queryString from "query-string";
 import { Link } from "react-router-dom";
-import { Button } from '../components/Button'
+import { Button } from "../components/Button";
 
 const Container = styled.div`
   max-width: 1400px;
@@ -14,13 +14,13 @@ const Container = styled.div`
 `;
 const SearchParams = styled.div``;
 const MediaSelection = styled.select``;
-
 const ResultWrap = styled.div`
   border-bottom: solid 1px ${props => props.theme.colors.muted};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: ${(props) => `${props.theme.sizes.veryLarge} ${props.theme.sizes.veryLarge}`};
+  padding: ${props =>
+    `${props.theme.sizes.veryLarge} ${props.theme.sizes.veryLarge}`};
 `;
 const ImageWrap = styled.div`
   width: 40%;
@@ -34,7 +34,6 @@ const Image = styled.img`
     opacity: 0.7;
     transform: scale(1.02);
   }
-  max-height: 281px;
 `;
 const Blurb = styled.div`
   width: 60%;
@@ -73,7 +72,7 @@ const imagePath = "https://image.tmdb.org/t/p/w500";
 
 class SearchPage extends React.Component {
   state = {
-    results: [],
+    results: []
   };
 
   getMovies = async () => {
@@ -91,42 +90,42 @@ class SearchPage extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.location.search !== this.props.location.search){
-      this.getMovies()
+    if (prevProps.location.search !== this.props.location.search) {
+      this.getMovies();
     }
   }
 
   handleNextPage = () => {
     const query = queryString.parse(this.props.location.search);
-    const page = parseInt(query.page)
+    const page = parseInt(query.page);
     const { totalPages } = this.state;
     if (page + 1 > totalPages) return;
-    query.page = page+1;
-
+    query.page = page + 1;
     const stringified = queryString.stringify(query);
-
-    this.props.history.push(`?${stringified}`)
+    this.props.history.push(`?${stringified}`);
   };
 
   handleBackPage = () => {
-    const { page } = this.state;
+    const query = queryString.parse(this.props.location.search);
+    console.log(query);
+    const page = parseInt(query.page);
     if (page === 1) return;
-    this.getMovies();
+    query.page = page - 1;
+    const stringified = queryString.stringify(query);
+    this.props.history.push(`?${stringified}`);
   };
 
   handleSelection = e => {
-    const searchMedia = e.target.value
+    const searchMedia = e.target.value;
     const query = queryString.parse(this.props.location.search);
     query.searchMedia = searchMedia;
     query.page = 1;
-
     const stringified = queryString.stringify(query);
-
-    this.props.history.push(`?${stringified}`)
+    this.props.history.push(`?${stringified}`);
   };
 
   render() {
-    const { results } = this.state; 
+    const { results } = this.state;
     return (
       <Container>
         <SearchParams>
@@ -141,20 +140,24 @@ class SearchPage extends React.Component {
             <option value="person">PEOPLE</option>
             <option value="tv">TV SHOWS</option>
           </MediaSelection>
-          <Button 
-            onClick={this.handleBackPage} 
-            label={'BACK'} 
+          <Button onClick={this.handleBackPage} label={"BACK"} />
+          <Button
+            onClick={this.handleNextPage}
+            label={
+              this.state.page === this.state.totalPages
+                ? "NO MORE PAGES"
+                : "FORWARD"
+            }
           />
-          <Button 
-            onClick={this.handleNextPage} 
-            label={this.state.page === this.state.totalPages ? "NO MORE PAGES" : "FORWARD"} 
-          />
-         
         </SearchParams>
         {results.map(result => [
           <ResultWrap key={result.id}>
             <ImageWrap>
-              <Link to={`/${result.title !== undefined ? "movie" : "tv"}/${result.id}`}>
+              <Link
+                to={`/${result.title !== undefined ? "movie" : "tv"}/${
+                  result.id
+                }`}
+              >
                 <Image
                   key={result.id + "Image"}
                   src={

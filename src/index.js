@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {ThemeProvider} from 'styled-components';
-import {rem } from 'polished'
+import {rem} from 'polished'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

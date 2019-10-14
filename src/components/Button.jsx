@@ -27,4 +27,4 @@ const StyledButton = styled.button`
     }}
 `
 
-export const Button = (props) => <StyledButton onClick={props.onClick} >{props.label}</StyledButton>
+export const Button = (props) => <StyledButton onClick={props.onClick}>{props.label}</StyledButton>
