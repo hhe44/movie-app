@@ -4,7 +4,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import VisibilitySensor from "react-visibility-sensor";
 
-
 const Container = styled.div`
   max-width: 1400px;
   width: 100vw;
@@ -73,7 +72,6 @@ const MediaWrap = styled.div`
 const imagePath = "https://image.tmdb.org/t/p/w500/";
 const baseURL = "https://api.themoviedb.org/3";
 
-
 export default class MediaList extends React.PureComponent {
   state = {
     medias: [],
@@ -90,7 +88,7 @@ export default class MediaList extends React.PureComponent {
       loading: false
     });
   };
-  
+
   render() {
     const { title } = this.props;
     const { medias } = this.state;
@@ -102,16 +100,18 @@ export default class MediaList extends React.PureComponent {
           <div>
             <List key="list1">
               {medias.map(media => [
-                  <MediaWrap key={media.id}>
-                    <Link to={`/${media.title !== undefined ? 'movie' : 'tv'}/${media.id}`}>
+                <MediaWrap key={media.id}>
+                  <Link to={`/${media.title !== undefined ? "movie" : "tv"}/${media.id}`}>
                     <Image
                       key={media.id + "image"}
                       src={imagePath + media.backdrop_path}
                       alt={`${media.title || media.name} backdrop`}
                     />
-                    </Link>
-                    <Caption key={media.id + "cap"}>{media.title || media.name}</Caption>
-                  </MediaWrap>
+                  </Link>
+                  <Caption key={media.id + "cap"}>
+                    {media.title || media.name}
+                  </Caption>
+                </MediaWrap>
               ])}
             </List>
           </div>

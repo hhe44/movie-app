@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 import logo from "../images/netflixlogo.png";
 import { Link } from "react-router-dom";
 
@@ -13,7 +14,7 @@ const Navbar = styled.div`
   box-shadow: 0px 5px 25px rgba(253, 0, 29, 0.1);
   z-index: 9;
 `;
-const Navlist = styled.div`
+const NavItems = styled.div`
   height: 100%;
   width: 100%;
   max-width: 1400px;
@@ -30,13 +31,36 @@ const Navlist = styled.div`
 const NavLogo = styled.img`
   height: 60px;
   width: auto;
-  margin-right: 128px;
   cursor: pointer;
 `;
 const NavSearch = styled.div`
+  margin-left: 128px;
   margin-right: 64px;
-  cursor: pointer;
+  display: flex;
 `;
+const SearchBar = styled.form`
+`
+const SearchButton = styled.button`
+  border: none;
+  outline: none;
+  font-size: 1em;
+  margin-right: 4px;
+  background-color: #212025;
+  color: #92908e;
+  cursor: pointer;
+`
+const SearchText = styled.input`
+  border: none;
+  outline: none;
+  height: 20px;
+  position: relative;
+  bottom: 2px;
+  font-family: Arial;
+  font-weight: 700;
+  background-color: #D6D6D7;
+  text-indent: 10px;
+  border-radius: 10px;
+`
 const NavBrowse = styled.div`
   cursor: pointer;
 `;
@@ -57,21 +81,45 @@ const UserProfile = styled.div`
   cursor: pointer;
 `;
 
-export default () => (
-  <Navbar>
-    <Navlist>
-      <Link to="/">
-        <NavLogo src={logo}></NavLogo>
-      </Link>
-      <NavSearch>
-        <i className="fa fa-search"></i>
-      </NavSearch>
-      <NavBrowse>BROWSE</NavBrowse>
-      <NavProfile>
-        <UserProfile>
-          <i className="fa fa-user"></i>
-        </UserProfile>
-      </NavProfile>
-    </Navlist>
-  </Navbar>
-);
+class Navigation extends React.Component {
+  state = {
+    searchTerm: ""
+  };
+
+  handleChange = e => {
+    this.setState({ searchTerm: e.target.value });
+  };
+
+  handleSubmit = e => {
+    // preventDefault to avoid reloading entire page, which would be its default behavior
+    e.preventDefault();
+    this.props.history.push(`/search?page=1&searchMedia=multi&searchTerm=${this.state.searchTerm}`);
+  };
+
+  render() {
+    return (
+      <Navbar>
+        <NavItems>
+          <Link to="/">
+            <NavLogo src={logo}></NavLogo>
+          </Link>
+          <NavSearch>
+            <SearchBar onSubmit={this.handleSubmit}>
+              <SearchButton type="submit"><i className="fa fa-search"></i></SearchButton>
+              <SearchText value={this.state.searchTerm} onChange={this.handleChange}/>
+            </SearchBar>
+          </NavSearch>
+          <NavBrowse>BROWSE</NavBrowse>
+          <NavProfile>
+            <UserProfile>
+              <i className="fa fa-user"></i>
+            </UserProfile>
+          </NavProfile>
+        </NavItems>
+      </Navbar>
+    );
+  }
+}
+
+// withRouter gives us access to the history
+export default withRouter(Navigation);
