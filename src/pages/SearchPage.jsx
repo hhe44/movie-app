@@ -9,6 +9,7 @@ import { Button } from "../components/Button";
 const Container = styled.div`
   max-width: 1400px;
   width: 100vw;
+  min-height: 90vh;
   padding: 0 64px;
   box-sizing: border-box;
 `;
@@ -107,7 +108,6 @@ class SearchPage extends React.Component {
 
   handleBackPage = () => {
     const query = queryString.parse(this.props.location.search);
-    console.log(query);
     const page = parseInt(query.page);
     if (page === 1) return;
     query.page = page - 1;
@@ -153,17 +153,13 @@ class SearchPage extends React.Component {
         {results.map(result => [
           <ResultWrap key={result.id}>
             <ImageWrap>
-              <Link
-                to={`/${result.title !== undefined ? "movie" : "tv"}/${
-                  result.id
-                }`}
-              >
+              <Link to={`/${result.title !== undefined ? "movie" : "tv"}/${result.id}`}>
                 <Image
                   key={result.id + "Image"}
                   src={
-                    result.backdrop_path
-                      ? imagePath + result.backdrop_path
-                      : imagePath + result.poster_path
+                    result.backdrop_path ? imagePath + result.backdrop_path
+                    : result.poster_path ?  imagePath + result.poster_path
+                    : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title || result.name}`
                   }
                   alt={`${result.title || result.name} backdrop`}
                 />
@@ -172,11 +168,13 @@ class SearchPage extends React.Component {
             <Blurb>
               <Title>{result.title || result.name}</Title>
               <MediaDate>
-                {result.release_date
-                  ? "Release Date: " + result.release_date
-                  : "Last Aired: " + result.last_air_date}
+                {
+                  result.release_date ? "Release Date: " + result.release_date 
+                  : result.last_air_date ? "Last Aired: " + result.last_air_date
+                  : ""
+                }
               </MediaDate>
-              <Rating>Rating: {result.vote_average} / 10</Rating>
+              <Rating>{result.vote_average ? `Rating: ${result.vote_average} / 10` : ""}</Rating>
               <Overview>{result.overview}</Overview>
             </Blurb>
           </ResultWrap>

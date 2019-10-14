@@ -93,6 +93,7 @@ class Navigation extends React.Component {
   handleSubmit = e => {
     // preventDefault to avoid reloading entire page, which would be its default behavior
     e.preventDefault();
+    if(!this.state.searchTerm) return;
     this.props.history.push(`/search?page=1&searchMedia=multi&searchTerm=${this.state.searchTerm}`);
   };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { Button } from "../components/Button";
 
 const Container = styled.div`
   width: 100%;
@@ -64,15 +65,7 @@ const Overview = styled.p`
 const Buttons = styled.div`
   padding-top: 42px;
 `;
-const Button = styled.button`
-  font-family: impact;
-  font-size: 2em;
-  border: 0;
-  border-radius: 4px;
-  margin-right: 52px;
-  background: -webkit-linear-gradient(#fd001d, #fc014f);
-  color: white;
-`;
+
 
 export default class MediaPage extends React.PureComponent {
   state = {
@@ -116,8 +109,8 @@ export default class MediaPage extends React.PureComponent {
             <Rating>Rating: {media.vote_average} / 10</Rating>
             <Overview>{media.overview}</Overview>
             <Buttons>
-              <Button>WATCH NOW</Button>
-              <Button>VISIT HOMEPAGE</Button>
+              <Button label={"WATCH NOW"}></Button>
+              <Button label={"VISIT HOMEPAGE"}></Button>
             </Buttons>
           </Blurb>
         </ColumnTwo>

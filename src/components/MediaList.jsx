@@ -10,7 +10,6 @@ const Container = styled.div`
   padding: 0 64px;
   box-sizing: border-box;
 `;
-
 const List = styled.div`
   background: #212025;
   padding-bottom: 26px;
@@ -19,7 +18,6 @@ const List = styled.div`
   justify-content: center;
   flex-wrap: wrap;
 `;
-
 const Header = styled.h1`
   font-family: Arial;
   font-size: ${props => (props.small ? "3em" : "5em")};
@@ -32,7 +30,6 @@ const Header = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
-
 const Caption = styled.h2`
   position: absolute;
   bottom: 0;
@@ -45,7 +42,6 @@ const Caption = styled.h2`
   opacity: 0;
   transition: 0.2s ease-in-out;
 `;
-
 const Image = styled.img`
   width: 100%;
   transition: 0.2s ease-in-out;
@@ -54,7 +50,6 @@ const Image = styled.img`
   }
   cursor: pointer;
 `;
-
 const MediaWrap = styled.div`
   width: 25%;
   margin-bottom: -3px;
@@ -88,7 +83,7 @@ export default class MediaList extends React.PureComponent {
       loading: false
     });
   };
-
+  
   render() {
     const { title } = this.props;
     const { medias } = this.state;
@@ -100,18 +95,20 @@ export default class MediaList extends React.PureComponent {
           <div>
             <List key="list1">
               {medias.map(media => [
-                <MediaWrap key={media.id}>
-                  <Link to={`/${media.title !== undefined ? "movie" : "tv"}/${media.id}`}>
+                  <MediaWrap key={media.id}>
+                    <Link to={`/${media.title !== undefined ? 'movie' : 'tv'}/${media.id}`}>
                     <Image
                       key={media.id + "image"}
-                      src={imagePath + media.backdrop_path}
+                      src={
+                        (media.backdrop_path !== null) 
+                        ? imagePath + media.backdrop_path 
+                        : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${media.title || media.name}`
+                      }
                       alt={`${media.title || media.name} backdrop`}
                     />
-                  </Link>
-                  <Caption key={media.id + "cap"}>
-                    {media.title || media.name}
-                  </Caption>
-                </MediaWrap>
+                    </Link>
+                    <Caption key={media.id + "cap"}>{media.title || media.name}</Caption>
+                  </MediaWrap>
               ])}
             </List>
           </div>

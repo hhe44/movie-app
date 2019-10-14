@@ -5,10 +5,8 @@ import {rem} from 'polished'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const main = '#fd001d'
-
 const theme = {
-    gradient: `-webkit-linear-gradient(${main}, #fc014f)`,
+    gradient: `-webkit-linear-gradient(#fd001d, #fc014f)`,
     borderRadius: rem(4),
     fonts: {
         small: rem(12),
@@ -23,10 +21,9 @@ const theme = {
         veryLarge: rem(32),
     },
     colors: {
-        main,
+        main: '#fd001d',
         muted: '#92908e',
         black: 'rgba(33, 32, 37, 1)',
-
     }
 }
 
