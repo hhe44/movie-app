@@ -7,25 +7,28 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/Button";
 
 const Container = styled.div`
-  max-width: 1400px;
+  max-width: 1800px;
   width: 100vw;
-  padding: 0 64px;
+  min-height: 90vh;
+  padding: 0 ${props => props.theme.fonts.xLarge};
   box-sizing: border-box;
 `;
 const SearchParams = styled.div``;
 const MediaSelection = styled.select``;
 const ResultWrap = styled.div`
-  border-bottom: solid 1px ${props => props.theme.colors.muted};
+  border-bottom: solid 1px ${props => props.theme.colors.grey};
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: ${props =>
-    `${props.theme.sizes.veryLarge} ${props.theme.sizes.veryLarge}`};
+    `${props.theme.sizes.large} ${props.theme.sizes.tiny}`};
 `;
 const ImageWrap = styled.div`
   width: 40%;
   margin-right: ${props => props.theme.sizes.large};
   overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
 `;
 const Image = styled.img`
   width: 100%;
@@ -46,36 +49,36 @@ const Blurb = styled.div`
 const Title = styled.h1`
   text-transform: uppercase;
   font-family: Arial;
-  font-size: 2em;
+  font-size: ${props => props.theme.fonts.xLarge};
   font-weight: 1000;
   letter-spacing: -2.5px;
-  background: -webkit-linear-gradient(#fd001d, #fc014f);
+  background: ${props => props.theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
 `;
 const MediaDate = styled.h3`
-  font-size: 1em;
-  padding: 12px 0px 12px 0px;
+  font-size: ${props => props.theme.fonts.medium};
+  padding: ${props => props.theme.sizes.small} 0px;
   margin: 0;
 `;
 const Rating = styled.h3`
-  font-size: 1em;
-  padding: 0px 0px 12px 0px;
+  font-size: ${props => props.theme.sizes.medium};
+  padding: 0px 0px ${props => props.theme.sizes.small} 0px;
   margin: 0;
 `;
 const Overview = styled.p`
-  font-size: 0.9 em;
+  font-size: ${props => props.theme.sizes.small};
 `;
 
-const imagePath = "https://image.tmdb.org/t/p/w500";
+const imagePath = "https://image.tmdb.org/t/p/w780";
 
 class SearchPage extends React.Component {
   state = {
     results: []
   };
 
-  getMovies = async () => {
+  getResults = async () => {
     const query = queryString.parse(this.props.location.search);
     const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
     const response = await axios.get(link);
@@ -83,15 +86,16 @@ class SearchPage extends React.Component {
       results: response.data.results,
       totalPages: response.data.total_pages
     });
+    console.log(this.state);
   };
 
   componentDidMount() {
-    this.getMovies();
+    this.getResults();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.location.search !== this.props.location.search) {
-      this.getMovies();
+      this.getResults();
     }
   }
 
@@ -107,7 +111,6 @@ class SearchPage extends React.Component {
 
   handleBackPage = () => {
     const query = queryString.parse(this.props.location.search);
-    console.log(query);
     const page = parseInt(query.page);
     if (page === 1) return;
     query.page = page - 1;
@@ -153,17 +156,19 @@ class SearchPage extends React.Component {
         {results.map(result => [
           <ResultWrap key={result.id}>
             <ImageWrap>
-              <Link
-                to={`/${result.title !== undefined ? "movie" : "tv"}/${
-                  result.id
-                }`}
+              <Link to={
+                  result.title ? "movie/" + result.id
+                  : result.original_name ? "tv/" + result.id
+                  : "person/" + result.id
+                }
               >
                 <Image
                   key={result.id + "Image"}
                   src={
-                    result.backdrop_path
-                      ? imagePath + result.backdrop_path
-                      : imagePath + result.poster_path
+                    result.backdrop_path ? imagePath + result.backdrop_path
+                    : result.poster_path ?  imagePath + result.poster_path
+                    : result.profile_path ?  imagePath + result.profile_path
+                    : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title || result.name}`
                   }
                   alt={`${result.title || result.name} backdrop`}
                 />
@@ -172,11 +177,13 @@ class SearchPage extends React.Component {
             <Blurb>
               <Title>{result.title || result.name}</Title>
               <MediaDate>
-                {result.release_date
-                  ? "Release Date: " + result.release_date
-                  : "Last Aired: " + result.last_air_date}
+                {
+                  result.release_date ? "Release Date: " + result.release_date 
+                  : result.last_air_date ? "Last Aired: " + result.last_air_date
+                  : ""
+                }
               </MediaDate>
-              <Rating>Rating: {result.vote_average} / 10</Rating>
+              <Rating>{result.vote_average ? `Rating: ${result.vote_average} / 10` : ""}</Rating>
               <Overview>{result.overview}</Overview>
             </Blurb>
           </ResultWrap>

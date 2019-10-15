@@ -7,45 +7,41 @@ import VisibilitySensor from "react-visibility-sensor";
 const Container = styled.div`
   max-width: 1400px;
   width: 100vw;
-  padding: 0 64px;
+  padding: 0 ${props => props.theme.sizes.xLarge};
   box-sizing: border-box;
 `;
-
 const List = styled.div`
-  background: #212025;
-  padding-bottom: 26px;
+  background: ${props => props.theme.colors.mainBG};
+  padding-bottom: ${props => props.theme.sizes.medium};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 `;
-
 const Header = styled.h1`
   font-family: Arial;
-  font-size: ${props => (props.small ? "3em" : "5em")};
+  font-size: ${props => props.theme.fonts.title};
   font-weight: 1000;
   align-self: flex-start;
   position: relative;
-  padding-top: 32px;
+  padding-top: ${props => props.theme.sizes.large};
   letter-spacing: -2.5px;
-  background: -webkit-linear-gradient(#fd001d, #fc014f);
+  background: ${props => props.theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
-
 const Caption = styled.h2`
   position: absolute;
   bottom: 0;
   left: 0;
-  padding-left: 32px;
+  padding-left: ${props => props.theme.sizes.medium};
   font-family: Arial;
-  font-size: 1rem;
+  font-size: ${props => props.theme.fonts.small};
   font-weight: 700;
   color: white;
   opacity: 0;
   transition: 0.2s ease-in-out;
 `;
-
 const Image = styled.img`
   width: 100%;
   transition: 0.2s ease-in-out;
@@ -54,7 +50,6 @@ const Image = styled.img`
   }
   cursor: pointer;
 `;
-
 const MediaWrap = styled.div`
   width: 25%;
   margin-bottom: -3px;
@@ -65,7 +60,7 @@ const MediaWrap = styled.div`
   }
   &:hover ${Caption} {
     opacity: 1;
-    transform: translatey(-16px);
+    transform: translatey(-${props => props.theme.sizes.small});
   }
 `;
 
@@ -88,7 +83,7 @@ export default class MediaList extends React.PureComponent {
       loading: false
     });
   };
-
+  
   render() {
     const { title } = this.props;
     const { medias } = this.state;
@@ -100,18 +95,20 @@ export default class MediaList extends React.PureComponent {
           <div>
             <List key="list1">
               {medias.map(media => [
-                <MediaWrap key={media.id}>
-                  <Link to={`/${media.title !== undefined ? "movie" : "tv"}/${media.id}`}>
+                  <MediaWrap key={media.id}>
+                    <Link to={`/${media.title !== undefined ? 'movie' : 'tv'}/${media.id}`}>
                     <Image
                       key={media.id + "image"}
-                      src={imagePath + media.backdrop_path}
+                      src={
+                        (media.backdrop_path !== null) 
+                        ? imagePath + media.backdrop_path 
+                        : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${ media.title || media.name }`
+                      }
                       alt={`${media.title || media.name} backdrop`}
                     />
-                  </Link>
-                  <Caption key={media.id + "cap"}>
-                    {media.title || media.name}
-                  </Caption>
-                </MediaWrap>
+                    </Link>
+                    <Caption key={media.id + "cap"}>{media.title || media.name}</Caption>
+                  </MediaWrap>
               ])}
             </List>
           </div>

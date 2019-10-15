@@ -21,8 +21,9 @@ const StyledButton = styled.button`
             border: 0;
             border-radius: ${theme.borderRadius};
             margin-right: ${rem(8)};
-            background: ${theme.gradient};
+            background: ${theme.colors.gradient};
             color: white;
+            outline: none;
         `
     }}
 `

@@ -5,28 +5,31 @@ import {rem} from 'polished'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const main = '#fd001d'
-
 const theme = {
-    gradient: `-webkit-linear-gradient(${main}, #fc014f)`,
+    
     borderRadius: rem(4),
     fonts: {
-        small: rem(12),
+        tiny: rem(8),
+        small: rem(16),
         medium: rem(24),
         large: rem(32),
-        veryLarge: rem(40),
+        xLarge: rem(40),
+        title: rem(64),
     },
     sizes: {
-        small: rem(8),
-        medium: rem(16),
-        large: rem(24),
-        veryLarge: rem(32),
+        tiny: rem(8),
+        small: rem(16),
+        medium: rem(24),
+        large: rem(32),
+        xLarge: rem(64),
+        xxLarge: rem(128),
     },
     colors: {
-        main,
-        muted: '#92908e',
-        black: 'rgba(33, 32, 37, 1)',
-
+        mainBG: 'rgba(33, 32, 37, 1)',
+        red: '#fd001d',
+        grey: '#92908e',
+        white: '#d6d6d7',
+        gradient: `-webkit-linear-gradient(#fd001d, #fc014f)`,
     }
 }
 

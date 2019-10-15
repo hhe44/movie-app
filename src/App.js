@@ -32,6 +32,7 @@ class App extends React.Component {
             <Route path="/" exact component={Landing} />
             <Route path="/movie/:id" exact component={MediaPage} />
             <Route path="/tv/:id" exact component={MediaPage} />
+            <Route path="/person/:id" exact component={MediaPage} />
             <Route path="/search" component={SearchPage} />
           </Switch>
         </Router>

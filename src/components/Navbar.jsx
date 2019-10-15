@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 
 const Navbar = styled.div`
   position: fixed;
-  height: 128px;
+  height: ${props => props.theme.sizes.xxLarge};
   width: 100vw;
   top: 0;
   left: 0;
   background: linear-gradient(rgba(33, 32, 37, 1) 60%, rgba(33, 32, 37, 0.9));
-  box-shadow: 0px 5px 25px rgba(253, 0, 29, 0.1);
+  box-shadow: 0px 4px 24px rgba(253, 0, 29, 0.1);
   z-index: 9;
 `;
 const NavItems = styled.div`
@@ -19,47 +19,45 @@ const NavItems = styled.div`
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  font-size: 1.3em;
+  font-size: ${props => props.theme.fonts.medium};
   font-family: Nunito;
-  color: #92908e;
+  color: ${props => props.theme.colors.grey};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 64px;
   box-sizing: border-box;
 `;
 const NavLogo = styled.img`
-  height: 60px;
+  height: ${props => props.theme.sizes.xLarge};
   width: auto;
   cursor: pointer;
 `;
 const NavSearch = styled.div`
-  margin-left: 128px;
-  margin-right: 64px;
+  margin-left: ${props => props.theme.sizes.xLarge};
+  margin-right: ${props => props.theme.sizes.large};
   display: flex;
 `;
-const SearchBar = styled.form`
-`
+const SearchBar = styled.form``
 const SearchButton = styled.button`
   border: none;
   outline: none;
-  font-size: 1em;
-  margin-right: 4px;
-  background-color: #212025;
-  color: #92908e;
+  font-size: ${props => props.theme.fonts.medium};
+  margin-right: ${props => props.theme.sizes.tiny};
+  background-color: ${props => props.theme.colors.mainBG};
+  color: ${props => props.theme.colors.grey};
   cursor: pointer;
 `
 const SearchText = styled.input`
   border: none;
   outline: none;
-  height: 20px;
+  height: ${props => props.theme.sizes.medium};
   position: relative;
   bottom: 2px;
   font-family: Arial;
   font-weight: 700;
-  background-color: #D6D6D7;
-  text-indent: 10px;
-  border-radius: 10px;
+  background-color: ${props => props.theme.colors.white};
+  text-indent: ${props => props.theme.sizes.small};
+  border-radius: ${props => props.theme.sizes.small};
 `
 const NavBrowse = styled.div`
   cursor: pointer;
@@ -72,12 +70,11 @@ const NavProfile = styled.div`
   margin-left: auto;
   cursor: pointer;
 `;
-
 const UserProfile = styled.div`
   text-align: center;
   vertical-align: center;
   position: relative;
-  top: 10px;
+  top: 8px;
   cursor: pointer;
 `;
 
@@ -93,6 +90,7 @@ class Navigation extends React.Component {
   handleSubmit = e => {
     // preventDefault to avoid reloading entire page, which would be its default behavior
     e.preventDefault();
+    if(!this.state.searchTerm) return;
     this.props.history.push(`/search?page=1&searchMedia=multi&searchTerm=${this.state.searchTerm}`);
   };
 
