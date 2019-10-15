@@ -102,7 +102,7 @@ export default class MediaList extends React.PureComponent {
                       src={
                         (media.backdrop_path !== null) 
                         ? imagePath + media.backdrop_path 
-                        : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${media.title || media.name}`
+                        : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${ media.title || media.name }`
                       }
                       alt={`${media.title || media.name} backdrop`}
                     />

@@ -12,18 +12,21 @@ const theme = {
         small: rem(12),
         medium: rem(24),
         large: rem(32),
-        veryLarge: rem(40),
+        xLarge: rem(40),
     },
     sizes: {
-        small: rem(8),
-        medium: rem(16),
-        large: rem(24),
-        veryLarge: rem(32),
+        tiny: rem(8),
+        small: rem(16),
+        medium: rem(24),
+        large: rem(32),
+        xLarge: rem(64),
+        xxLarge: rem(128),
     },
     colors: {
-        main: '#fd001d',
-        muted: '#92908e',
-        black: 'rgba(33, 32, 37, 1)',
+        mainBG: 'rgba(33, 32, 37, 1)',
+        red: '#fd001d',
+        grey: '#92908e',
+        white: '#d6d6d7',
     }
 }
 

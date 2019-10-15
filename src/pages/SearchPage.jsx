@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/Button";
 
 const Container = styled.div`
-  max-width: 1400px;
+  max-width: 1800px;
   width: 100vw;
   min-height: 90vh;
   padding: 0 64px;
@@ -27,6 +27,8 @@ const ImageWrap = styled.div`
   width: 40%;
   margin-right: ${props => props.theme.sizes.large};
   overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
 `;
 const Image = styled.img`
   width: 100%;
@@ -69,14 +71,14 @@ const Overview = styled.p`
   font-size: 0.9 em;
 `;
 
-const imagePath = "https://image.tmdb.org/t/p/w500";
+const imagePath = "https://image.tmdb.org/t/p/w780";
 
 class SearchPage extends React.Component {
   state = {
     results: []
   };
 
-  getMovies = async () => {
+  getResults = async () => {
     const query = queryString.parse(this.props.location.search);
     const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
     const response = await axios.get(link);
@@ -84,15 +86,16 @@ class SearchPage extends React.Component {
       results: response.data.results,
       totalPages: response.data.total_pages
     });
+    console.log(this.state);
   };
 
   componentDidMount() {
-    this.getMovies();
+    this.getResults();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.location.search !== this.props.location.search) {
-      this.getMovies();
+      this.getResults();
     }
   }
 
@@ -153,12 +156,18 @@ class SearchPage extends React.Component {
         {results.map(result => [
           <ResultWrap key={result.id}>
             <ImageWrap>
-              <Link to={`/${result.title !== undefined ? "movie" : "tv"}/${result.id}`}>
+              <Link to={
+                  result.title ? "movie/" + result.id
+                  : result.original_name ? "tv/" + result.id
+                  : "person/" + result.id
+                }
+              >
                 <Image
                   key={result.id + "Image"}
                   src={
                     result.backdrop_path ? imagePath + result.backdrop_path
                     : result.poster_path ?  imagePath + result.poster_path
+                    : result.profile_path ?  imagePath + result.profile_path
                     : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title || result.name}`
                   }
                   alt={`${result.title || result.name} backdrop`}
