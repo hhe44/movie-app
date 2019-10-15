@@ -13,6 +13,7 @@ const theme = {
         small: rem(16),
         medium: rem(24),
         large: rem(32),
+        xLarge: rem(40),
         title: rem(64),
     },
     sizes: {
