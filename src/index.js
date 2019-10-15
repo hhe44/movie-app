@@ -6,13 +6,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const theme = {
-    gradient: `-webkit-linear-gradient(#fd001d, #fc014f)`,
+    
     borderRadius: rem(4),
     fonts: {
-        small: rem(12),
+        tiny: rem(8),
+        small: rem(16),
         medium: rem(24),
         large: rem(32),
-        xLarge: rem(40),
+        title: rem(64),
     },
     sizes: {
         tiny: rem(8),
@@ -27,6 +28,7 @@ const theme = {
         red: '#fd001d',
         grey: '#92908e',
         white: '#d6d6d7',
+        gradient: `-webkit-linear-gradient(#fd001d, #fc014f)`,
     }
 }
 

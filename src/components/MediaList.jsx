@@ -7,12 +7,12 @@ import VisibilitySensor from "react-visibility-sensor";
 const Container = styled.div`
   max-width: 1400px;
   width: 100vw;
-  padding: 0 64px;
+  padding: 0 ${props => props.theme.sizes.xLarge};
   box-sizing: border-box;
 `;
 const List = styled.div`
-  background: #212025;
-  padding-bottom: 26px;
+  background: ${props => props.theme.colors.mainBG};
+  padding-bottom: ${props => props.theme.sizes.medium};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,13 +20,13 @@ const List = styled.div`
 `;
 const Header = styled.h1`
   font-family: Arial;
-  font-size: ${props => (props.small ? "3em" : "5em")};
+  font-size: ${props => props.theme.fonts.title};
   font-weight: 1000;
   align-self: flex-start;
   position: relative;
-  padding-top: 32px;
+  padding-top: ${props => props.theme.sizes.large};
   letter-spacing: -2.5px;
-  background: -webkit-linear-gradient(#fd001d, #fc014f);
+  background: ${props => props.theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
@@ -34,9 +34,9 @@ const Caption = styled.h2`
   position: absolute;
   bottom: 0;
   left: 0;
-  padding-left: 32px;
+  padding-left: ${props => props.theme.sizes.medium};
   font-family: Arial;
-  font-size: 1rem;
+  font-size: ${props => props.theme.fonts.small};
   font-weight: 700;
   color: white;
   opacity: 0;
@@ -60,7 +60,7 @@ const MediaWrap = styled.div`
   }
   &:hover ${Caption} {
     opacity: 1;
-    transform: translatey(-16px);
+    transform: translatey(-${props => props.theme.sizes.small});
   }
 `;
 
