@@ -2,15 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Button } from "../components/Button";
+import { MediaPageContainer } from "../components/Container";
 
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  overflow-x: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 const ColumnOne = styled.div`
   height: 90vh;
   padding: 0px ${props => props.theme.sizes.large};
@@ -26,8 +19,7 @@ const Blurb = styled.div`
   height: 100%;
   font-family: Helvetica;
   font-weight: 700;
-  color: white;
-  position: relative;
+  color: ${props => props.theme.colors.white};
 `;
 const Title = styled.h1`
   text-transform: uppercase;
@@ -77,8 +69,6 @@ export default class MediaPage extends React.PureComponent {
     }?api_key=${process.env.REACT_APP_API_KEY}`;
     const response = await axios.get(getMediaDetail);
     this.setState({ media: response.data });
-    // Uncomment line 94 to see response data in console
-    // console.log(response.data);
   }
 
   // Little debugger function here for help...!
@@ -91,7 +81,7 @@ export default class MediaPage extends React.PureComponent {
     const { media } = this.state;
     const imagePath = "https://image.tmdb.org/t/p/original";
     return (
-      <Container>
+      <MediaPageContainer>
         <ColumnOne>
           <Poster src={imagePath + media.poster_path}></Poster>
         </ColumnOne>
@@ -112,7 +102,7 @@ export default class MediaPage extends React.PureComponent {
             </Buttons>
           </Blurb>
         </ColumnTwo>
-      </Container>
+      </MediaPageContainer>
     );
   }
 }

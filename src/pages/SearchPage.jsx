@@ -5,14 +5,15 @@ import axios from "axios";
 import queryString from "query-string";
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button";
+import { SearchPageContainer } from "../components/Container";
 
-const Container = styled.div`
-  max-width: 1800px;
-  width: 100vw;
-  min-height: 90vh;
-  padding: 0 ${props => props.theme.fonts.xLarge};
-  box-sizing: border-box;
-`;
+// const Container = styled.div`
+//   max-width: 1800px;
+//   width: 100vw;
+//   min-height: 90vh;
+//   padding: 0 ${props => props.theme.fonts.xLarge};
+//   box-sizing: border-box;
+// `;
 const SearchParams = styled.div``;
 const MediaSelection = styled.select``;
 const ResultWrap = styled.div`
@@ -130,7 +131,7 @@ class SearchPage extends React.Component {
   render() {
     const { results } = this.state;
     return (
-      <Container>
+      <SearchPageContainer>
         <SearchParams>
           <MediaSelection
             value={this.state.searchMedia}
@@ -188,7 +189,7 @@ class SearchPage extends React.Component {
             </Blurb>
           </ResultWrap>
         ])}
-      </Container>
+      </SearchPageContainer>
     );
   }
 }

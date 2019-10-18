@@ -3,13 +3,8 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import VisibilitySensor from "react-visibility-sensor";
+import { Container } from "../components/Container";
 
-const Container = styled.div`
-  max-width: 1400px;
-  width: 100vw;
-  padding: 0 ${props => props.theme.sizes.xLarge};
-  box-sizing: border-box;
-`;
 const List = styled.div`
   background: ${props => props.theme.colors.mainBG};
   padding-bottom: ${props => props.theme.sizes.medium};
