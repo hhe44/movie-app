@@ -15,6 +15,7 @@ import {
 
 const SearchParams = styled.div``;
 const MediaSelection = styled.select``;
+
 const ResultWrap = styled.div`
   border-bottom: solid 1px ${props => props.theme.colors.grey};
   display: flex;
@@ -22,6 +23,7 @@ const ResultWrap = styled.div`
   justify-content: space-between;
   padding: ${props => `${props.theme.sizes.large} ${props.theme.sizes.tiny}`};
 `;
+
 const ImageWrap = styled.div`
   width: 40%;
   margin-right: ${props => props.theme.sizes.large};
@@ -29,6 +31,7 @@ const ImageWrap = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
 const Image = styled.img`
   width: 100%;
   transition: 0.2s ease-in-out;
@@ -124,25 +127,19 @@ class SearchPage extends React.Component {
           <ResultWrap key={result.id}>
             <ImageWrap>
               <Link
-                to={
-                  result.title
-                    ? "movie/" + result.id
-                    : result.original_name
-                    ? "tv/" + result.id
-                    : "person/" + result.id
+                to={ 
+                  result.title ? "movie/" + result.id 
+                  : result.original_name ? "tv/" + result.id 
+                  : "person/" + result.id
                 }
               >
                 <Image
                   key={result.id + "Image"}
-                  src={
-                    result.backdrop_path
-                      ? imagePath + result.backdrop_path
-                      : result.poster_path
-                      ? imagePath + result.poster_path
-                      : result.profile_path
-                      ? imagePath + result.profile_path
-                      : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title ||
-                          result.name}`
+                  src={ 
+                    result.backdrop_path ? imagePath + result.backdrop_path
+                      : result.poster_path ? imagePath + result.poster_path
+                      : result.profile_path ? imagePath + result.profile_path
+                      : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title || result.name}`
                   }
                   alt={`${result.title || result.name} backdrop`}
                 />
@@ -153,16 +150,17 @@ class SearchPage extends React.Component {
                 {result.title || result.name}
               </SearchResultTitle>
               <MediaDetail>
-                {result.release_date
-                  ? "Release Date: " + result.release_date
-                  : result.last_air_date
-                  ? "Last Aired: " + result.last_air_date
-                  : ""}
+                {
+                  result.release_date ? "Release Date: " + result.release_date
+                  : result.last_air_date ? "Last Aired: " + result.last_air_date
+                  : ""
+                }
               </MediaDetail>
               <MediaDetail>
-                {result.vote_average
-                  ? `Rating: ${result.vote_average} / 10`
-                  : ""}
+                {
+                  result.vote_average ? `Rating: ${result.vote_average} / 10`
+                  : ""
+                }
               </MediaDetail>
               <Overview>{result.overview}</Overview>
             </SearchPageBlurb>

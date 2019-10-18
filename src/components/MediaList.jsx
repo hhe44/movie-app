@@ -8,7 +8,7 @@ import { MediaListTitle, Caption } from "../components/Typography";
 
 const List = styled.div`
   background: ${props => props.theme.colors.mainBG};
-  padding-bottom: ${props => props.theme.sizes.medium};
+  padding-bottom: ${props => props.theme.sizes.xLarge};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,6 +23,7 @@ const Image = styled.img`
   }
   cursor: pointer;
 `;
+
 const MediaWrap = styled.div`
   width: 25%;
   margin-bottom: -3px;
@@ -69,11 +70,7 @@ export default class MediaList extends React.PureComponent {
             <List key="list1">
               {medias.map(media => [
                 <MediaWrap key={media.id}>
-                  <Link
-                    to={`/${media.title !== undefined ? "movie" : "tv"}/${
-                      media.id
-                    }`}
-                  >
+                  <Link to={`/${media.title !== undefined ? "movie" : "tv"}/${media.id }`}>
                     <Image
                       key={media.id + "image"}
                       src={
