@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { Button } from "../components/Button";
 import { MediaPageContainer } from "../components/Container";
+import { Title, Blurb, MediaDetail, Overview } from "../components/Typography";
 
 const ColumnOne = styled.div`
   height: 90vh;
@@ -15,47 +16,16 @@ const ColumnTwo = styled.div`
 const Poster = styled.img`
   height: 100%;
 `;
-const Blurb = styled.div`
-  height: 100%;
-  font-family: Helvetica;
-  font-weight: 700;
-  color: ${props => props.theme.colors.white};
-`;
-const Title = styled.h1`
-  text-transform: uppercase;
-  font-family: Arial;
-  font-size: ${props => props.theme.fonts.title};
-  font-weight: 1000;
-  letter-spacing: -2.5px;
-  background: ${props => props.theme.colors.gradient};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
-`;
 const Tagline = styled.h3`
   font-family: Impact;
   font-style: italic;
   font-size: ${props => props.theme.fonts.xLarge};
   font-weight: 1000;
-  margin: 0;
-`;
-const MediaDate = styled.h3`
-  font-size: ${props => props.theme.fonts.large};
-  padding: ${props => props.theme.sizes.medium} 0;
-  margin: 0;
-`;
-const Rating = styled.h3`
-  font-size: ${props => props.theme.fonts.large};
   padding-bottom: ${props => props.theme.sizes.medium};
-  margin: 0;
-`;
-const Overview = styled.p`
-  font-size: ${props => props.theme.fonts.medium};
 `;
 const Buttons = styled.div`
   padding-top: ${props => props.theme.fonts.xLarge};
 `;
-
 
 export default class MediaPage extends React.PureComponent {
   state = {
@@ -89,12 +59,12 @@ export default class MediaPage extends React.PureComponent {
           <Blurb>
             <Title>{media.title || media.name}</Title>
             <Tagline>{media.tagline}</Tagline>
-            <MediaDate>
+            <MediaDetail>
               {media.release_date
                 ? "Release Date: " + media.release_date
                 : "Last Aired: " + media.last_air_date}
-            </MediaDate>
-            <Rating>Rating: {media.vote_average} / 10</Rating>
+            </MediaDetail>
+            <MediaDetail>Rating: {media.vote_average} / 10</MediaDetail>
             <Overview>{media.overview}</Overview>
             <Buttons>
               <Button label={"WATCH NOW"}></Button>

@@ -6,14 +6,13 @@ import queryString from "query-string";
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button";
 import { SearchPageContainer } from "../components/Container";
+import {
+  SearchResultTitle,
+  SearchPageBlurb,
+  MediaDetail,
+  Overview
+} from "../components/Typography";
 
-// const Container = styled.div`
-//   max-width: 1800px;
-//   width: 100vw;
-//   min-height: 90vh;
-//   padding: 0 ${props => props.theme.fonts.xLarge};
-//   box-sizing: border-box;
-// `;
 const SearchParams = styled.div``;
 const MediaSelection = styled.select``;
 const ResultWrap = styled.div`
@@ -21,8 +20,7 @@ const ResultWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: ${props =>
-    `${props.theme.sizes.large} ${props.theme.sizes.tiny}`};
+  padding: ${props => `${props.theme.sizes.large} ${props.theme.sizes.tiny}`};
 `;
 const ImageWrap = styled.div`
   width: 40%;
@@ -38,38 +36,6 @@ const Image = styled.img`
     opacity: 0.7;
     transform: scale(1.02);
   }
-`;
-const Blurb = styled.div`
-  width: 60%;
-  font-family: Helvetica;
-  font-weight: 700;
-  color: white;
-  position: relative;
-  padding: ${props => props.theme.sizes.veryLarge};
-`;
-const Title = styled.h1`
-  text-transform: uppercase;
-  font-family: Arial;
-  font-size: ${props => props.theme.fonts.xLarge};
-  font-weight: 1000;
-  letter-spacing: -2.5px;
-  background: ${props => props.theme.colors.gradient};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
-`;
-const MediaDate = styled.h3`
-  font-size: ${props => props.theme.fonts.medium};
-  padding: ${props => props.theme.sizes.small} 0px;
-  margin: 0;
-`;
-const Rating = styled.h3`
-  font-size: ${props => props.theme.sizes.medium};
-  padding: 0px 0px ${props => props.theme.sizes.small} 0px;
-  margin: 0;
-`;
-const Overview = styled.p`
-  font-size: ${props => props.theme.sizes.small};
 `;
 
 const imagePath = "https://image.tmdb.org/t/p/w780";
@@ -157,36 +123,49 @@ class SearchPage extends React.Component {
         {results.map(result => [
           <ResultWrap key={result.id}>
             <ImageWrap>
-              <Link to={
-                  result.title ? "movie/" + result.id
-                  : result.original_name ? "tv/" + result.id
-                  : "person/" + result.id
+              <Link
+                to={
+                  result.title
+                    ? "movie/" + result.id
+                    : result.original_name
+                    ? "tv/" + result.id
+                    : "person/" + result.id
                 }
               >
                 <Image
                   key={result.id + "Image"}
                   src={
-                    result.backdrop_path ? imagePath + result.backdrop_path
-                    : result.poster_path ?  imagePath + result.poster_path
-                    : result.profile_path ?  imagePath + result.profile_path
-                    : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title || result.name}`
+                    result.backdrop_path
+                      ? imagePath + result.backdrop_path
+                      : result.poster_path
+                      ? imagePath + result.poster_path
+                      : result.profile_path
+                      ? imagePath + result.profile_path
+                      : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title ||
+                          result.name}`
                   }
                   alt={`${result.title || result.name} backdrop`}
                 />
               </Link>
             </ImageWrap>
-            <Blurb>
-              <Title>{result.title || result.name}</Title>
-              <MediaDate>
-                {
-                  result.release_date ? "Release Date: " + result.release_date 
-                  : result.last_air_date ? "Last Aired: " + result.last_air_date
-                  : ""
-                }
-              </MediaDate>
-              <Rating>{result.vote_average ? `Rating: ${result.vote_average} / 10` : ""}</Rating>
+            <SearchPageBlurb>
+              <SearchResultTitle>
+                {result.title || result.name}
+              </SearchResultTitle>
+              <MediaDetail>
+                {result.release_date
+                  ? "Release Date: " + result.release_date
+                  : result.last_air_date
+                  ? "Last Aired: " + result.last_air_date
+                  : ""}
+              </MediaDetail>
+              <MediaDetail>
+                {result.vote_average
+                  ? `Rating: ${result.vote_average} / 10`
+                  : ""}
+              </MediaDetail>
               <Overview>{result.overview}</Overview>
-            </Blurb>
+            </SearchPageBlurb>
           </ResultWrap>
         ])}
       </SearchPageContainer>
