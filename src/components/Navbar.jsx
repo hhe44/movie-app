@@ -10,7 +10,7 @@ const Navbar = styled.div`
   width: 100vw;
   top: 0;
   left: 0;
-  background: linear-gradient(rgba(33, 32, 37, 1) 60%, rgba(33, 32, 37, 0.9));
+  background: linear-gradient(rgba(20, 20, 20, 1) 60%, rgba(20, 20, 20, 0.8));
   box-shadow: 0px 4px 24px rgba(253, 0, 29, 0.1);
   z-index: 9;
 `;

@@ -7,11 +7,11 @@ import MediaPage from "./pages/MediaPage";
 import SearchPage from "./pages/SearchPage";
 
 const Content = styled.div`
-  background: #212025;
+  background: ${props => props.theme.colors.mainBG};
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 128px;
+  padding-top: ${props => props.theme.sizes.xxLarge};
 `;
 
 const Landing = () => (
