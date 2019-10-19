@@ -12,16 +12,30 @@ import {
   MediaDetail,
   Overview
 } from "../components/Typography";
+import {rem} from 'polished'
 
-const SearchParams = styled.div``;
-const MediaSelection = styled.select``;
+const SearchParams = styled.div`
+  padding: ${props => props.theme.sizes.large} 0 ${props => props.theme.sizes.small} 0;
+  display: flex;
+  justify-content: space-around;
+`;
+const MediaSelection = styled.select`
+  width: ${rem(160)};
+  padding: ${rem(8)};
+  font-size: ${props => props.theme.fonts.small};
+  border: 0;
+  border-radius: 0;
+  height: ${props => props.theme.sizes.Large};
+  -webkit-appearance: none;
+`;
+const ButtonRowOne = styled.div``;
 
 const ResultWrap = styled.div`
   border-bottom: solid 1px ${props => props.theme.colors.grey};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: ${props => `${props.theme.sizes.large} ${props.theme.sizes.tiny}`};
+  padding: ${props => props.theme.sizes.small} 0;
 `;
 
 const ImageWrap = styled.div`
@@ -39,6 +53,12 @@ const Image = styled.img`
     opacity: 0.7;
     transform: scale(1.02);
   }
+`;
+
+const ButtonRowTwo = styled.div`
+  padding: ${props => props.theme.sizes.large} 0;
+  display: flex;
+  justify-content: center;
 `;
 
 const imagePath = "https://image.tmdb.org/t/p/w780";
@@ -113,33 +133,41 @@ class SearchPage extends React.Component {
             <option value="person">PEOPLE</option>
             <option value="tv">TV SHOWS</option>
           </MediaSelection>
-          <Button onClick={this.handleBackPage} label={"BACK"} />
-          <Button
-            onClick={this.handleNextPage}
-            label={
-              this.state.page === this.state.totalPages
-                ? "NO MORE PAGES"
-                : "FORWARD"
-            }
-          />
+          <ButtonRowOne>
+            <Button onClick={this.handleBackPage} label={"BACK"} />
+            <Button
+              onClick={this.handleNextPage}
+              label={
+                this.state.page === this.state.totalPages
+                  ? "NO MORE PAGES"
+                  : "FORWARD"
+              }
+            />
+          </ButtonRowOne>
         </SearchParams>
         {results.map(result => [
           <ResultWrap key={result.id}>
             <ImageWrap>
               <Link
-                to={ 
-                  result.title ? "movie/" + result.id 
-                  : result.original_name ? "tv/" + result.id 
-                  : "person/" + result.id
+                to={
+                  result.title
+                    ? "movie/" + result.id
+                    : result.original_name
+                    ? "tv/" + result.id
+                    : "person/" + result.id
                 }
               >
                 <Image
                   key={result.id + "Image"}
-                  src={ 
-                    result.backdrop_path ? imagePath + result.backdrop_path
-                      : result.poster_path ? imagePath + result.poster_path
-                      : result.profile_path ? imagePath + result.profile_path
-                      : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title || result.name}`
+                  src={
+                    result.backdrop_path
+                      ? imagePath + result.backdrop_path
+                      : result.poster_path
+                      ? imagePath + result.poster_path
+                      : result.profile_path
+                      ? imagePath + result.profile_path
+                      : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title ||
+                          result.name}`
                   }
                   alt={`${result.title || result.name} backdrop`}
                 />
@@ -150,22 +178,32 @@ class SearchPage extends React.Component {
                 {result.title || result.name}
               </SearchResultTitle>
               <MediaDetail>
-                {
-                  result.release_date ? "Release Date: " + result.release_date
-                  : result.last_air_date ? "Last Aired: " + result.last_air_date
-                  : ""
-                }
+                {result.release_date
+                  ? "Release Date: " + result.release_date
+                  : result.last_air_date
+                  ? "Last Aired: " + result.last_air_date
+                  : ""}
               </MediaDetail>
               <MediaDetail>
-                {
-                  result.vote_average ? `Rating: ${result.vote_average} / 10`
-                  : ""
-                }
+                {result.vote_average
+                  ? `Rating: ${result.vote_average} / 10`
+                  : ""}
               </MediaDetail>
               <Overview>{result.overview}</Overview>
             </SearchPageBlurb>
           </ResultWrap>
         ])}
+        <ButtonRowTwo>
+          <Button onClick={this.handleBackPage} label={"BACK"} />
+          <Button
+            onClick={this.handleNextPage}
+            label={
+              this.state.page === this.state.totalPages
+                ? "NO MORE PAGES"
+                : "FORWARD"
+            }
+          />
+        </ButtonRowTwo>
       </SearchPageContainer>
     );
   }

@@ -38,11 +38,10 @@ export default class MediaPage extends React.PureComponent {
 
   async componentDidMount() {
     const param = this.props.match.url.split("/");
-    const getMediaDetail = `https://api.themoviedb.org/3/${param[1]}/${
-      param[2]
-    }?api_key=${process.env.REACT_APP_API_KEY}`;
+    const getMediaDetail = `https://api.themoviedb.org/3/${param[1]}/${param[2]}?api_key=${process.env.REACT_APP_API_KEY}`;
     const response = await axios.get(getMediaDetail);
     this.setState({ media: response.data });
+    console.log(this.state);
   }
 
   // Little debugger function here for help...!
@@ -66,14 +65,21 @@ export default class MediaPage extends React.PureComponent {
             <MediaDetail>
               {
                 media.release_date ? "Release Date: " + media.release_date
-                : "Last Aired: " + media.last_air_date
+                : media.last_air_date ? "Last Aired: " + media.last_air_date
+                : media.birthday ? "Birthdate: " + media.birthday
+                : ""
               }
             </MediaDetail>
-            <MediaDetail>Rating: {media.vote_average} / 10</MediaDetail>
-            <Overview>{media.overview}</Overview>
+            <MediaDetail>
+              {
+                media.vote_average ? "Rating " + media.vote_average + " / 10"
+                : "Popularity: " + media.popularity + " / 10"
+              }
+            </MediaDetail>
+            <Overview>{media.overview || media.biography}</Overview>
             <Buttons>
-              <Button label={"WATCH NOW"}></Button>
-              <Button label={"VISIT HOMEPAGE"}></Button>
+              <Button label={media.release_date || media.last_air_date ? "WATCH NOW" : "VISIT PROFILE"}></Button>
+              <Button label={media.release_date || media.last_air_date ? "VISIT HOMEPAGE" : "MORE DETAILS"}></Button>
             </Buttons>
           </Blurb>
         </ColumnTwo>

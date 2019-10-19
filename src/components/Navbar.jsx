@@ -17,7 +17,7 @@ const Navbar = styled.div`
 const NavItems = styled.div`
   height: 100%;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1750px;
   margin: 0 auto;
   font-size: ${props => props.theme.fonts.medium};
   font-family: Nunito;
