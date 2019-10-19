@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {rem} from 'polished'
 
 // Personal Reference: You can do it this way!...
 // const StyledButton = styled.button`
@@ -19,10 +18,10 @@ const StyledButton = styled.button`
         const {theme} = props;
         return css`
             font-family: impact;
-            font-size: ${theme.fonts.medium};
+            font-size: ${theme.fonts.large};
             border: 0;
             border-radius: ${theme.borderRadius};
-            margin-right: ${rem(8)};
+            margin-right: ${props => props.theme.sizes.medium};
             background: ${theme.colors.red};
             color: ${theme.colors.white};
             outline: none;

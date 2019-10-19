@@ -38,7 +38,7 @@ const MediaWrap = styled.div`
   }
 `;
 
-const imagePath = "https://image.tmdb.org/t/p/w500/";
+const imagePath = "https://image.tmdb.org/t/p/w780/";
 const baseURL = "https://api.themoviedb.org/3";
 
 export default class MediaList extends React.PureComponent {
