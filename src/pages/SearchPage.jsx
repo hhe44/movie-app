@@ -1,9 +1,10 @@
 import React from "react";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
 import { Link } from "react-router-dom";
+import {rem} from 'polished';
 import { Button } from "../components/Button";
 import { SearchPageContainer } from "../components/Container";
 import {
@@ -12,7 +13,7 @@ import {
   MediaDetail,
   Overview
 } from "../components/Typography";
-import {rem} from 'polished'
+import Poster from '../components/Poster'
 
 const SearchParams = styled.div`
   padding: ${props => props.theme.sizes.large} 0 ${props => props.theme.sizes.small} 0;
@@ -38,22 +39,7 @@ const ResultWrap = styled.div`
   padding: ${props => props.theme.sizes.small} 0;
 `;
 
-const ImageWrap = styled.div`
-  width: 40%;
-  margin-right: ${props => props.theme.sizes.large};
-  overflow: hidden;
-  align-items: center;
-  justify-content: space-between;
-`;
 
-const Image = styled.img`
-  width: 100%;
-  transition: 0.2s ease-in-out;
-  :hover {
-    opacity: 0.7;
-    transform: scale(1.02);
-  }
-`;
 
 const ButtonRowTwo = styled.div`
   padding: ${props => props.theme.sizes.large} 0;
@@ -61,12 +47,14 @@ const ButtonRowTwo = styled.div`
   justify-content: center;
 `;
 
-const imagePath = "https://image.tmdb.org/t/p/w780";
+
 
 class SearchPage extends React.Component {
   state = {
     results: []
   };
+
+  
 
   getResults = async () => {
     const query = queryString.parse(this.props.location.search);
@@ -81,6 +69,7 @@ class SearchPage extends React.Component {
 
   componentDidMount() {
     this.getResults();
+   
   }
 
   componentDidUpdate(prevProps) {
@@ -120,7 +109,7 @@ class SearchPage extends React.Component {
   render() {
     const { results } = this.state;
     return (
-      <SearchPageContainer>
+      <SearchPageContainer  >
         <SearchParams>
           <MediaSelection
             value={this.state.searchMedia}
@@ -147,32 +136,7 @@ class SearchPage extends React.Component {
         </SearchParams>
         {results.map(result => [
           <ResultWrap key={result.id}>
-            <ImageWrap>
-              <Link
-                to={
-                  result.title
-                    ? "movie/" + result.id
-                    : result.original_name
-                    ? "tv/" + result.id
-                    : "person/" + result.id
-                }
-              >
-                <Image
-                  key={result.id + "Image"}
-                  src={
-                    result.backdrop_path
-                      ? imagePath + result.backdrop_path
-                      : result.poster_path
-                      ? imagePath + result.poster_path
-                      : result.profile_path
-                      ? imagePath + result.profile_path
-                      : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title ||
-                          result.name}`
-                  }
-                  alt={`${result.title || result.name} backdrop`}
-                />
-              </Link>
-            </ImageWrap>
+           <Poster result={result} />
             <SearchPageBlurb>
               <SearchResultTitle>
                 {result.title || result.name}
