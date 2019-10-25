@@ -12,7 +12,7 @@ const ColumnOne = styled.div`
 
 const ColumnTwo = styled.div`
   height: 90vh;
-  max-width: 600px;
+  max-width: 750px;
 `;
 
 const Poster = styled.img`
