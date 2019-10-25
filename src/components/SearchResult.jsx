@@ -53,18 +53,20 @@ export default class SearchPageResult extends React.Component {
           }
         >
           <Image
-            // Render portrait IF there is no backdrop AND there is a poster path
-            renderPortrait={ (!result.backdrop_path && result.poster_path) || (!result.backdrop && !result.poster_path)}
+            // Render portrait IF there is no backdrop AND there is a poster path OR if it is an actor
+            renderPortrait={ (!result.backdrop_path && result.poster_path) || (result.gender)}
             width={this.state.width}
+            // if there is a backdrop, use that
+            // else if there is a poster, use a poster
+            // else if there is a profile pic, use the profile pic
+            // else if the media type is a movie or TV and there's neither a backdrop or poster, use a place holder
+            // else we're stuck with an actor with no profile picture, use a different sized placeholder...
             src={
-              result.backdrop_path
-                ? imagePath + result.backdrop_path
-                : result.poster_path
-                ? imagePath + result.poster_path
-                : result.profile_path
-                ? imagePath + result.profile_path
-                : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title ||
-                    result.name}`
+              result.backdrop_path ? imagePath + result.backdrop_path 
+              : result.poster_path ? imagePath + result.poster_path 
+              : result.profile_path ? imagePath + result.profile_path 
+              : (result.media_type === "movie" || "tv") ? `https://via.placeholder.com/500x281/212025/FFFFFF?text=${result.title || result.name}`
+              :`https://via.placeholder.com/270x480/212025/FFFFFF?text=${result.name}`
             }
             alt={`${result.title || result.name} backdrop`}
           />

@@ -137,11 +137,11 @@ class SearchPage extends React.Component {
                 {result.title || result.name}
               </SearchResultTitle>
               <MediaDetail>
-                {result.release_date
-                  ? "Release Date: " + result.release_date
-                  : result.last_air_date
-                  ? "Last Aired: " + result.last_air_date
-                  : ""}
+                {
+                  result.release_date ? "Release Date: " + result.release_date 
+                  : result.last_air_date ? "Last Aired: " + result.last_air_date
+                  : ""
+                }
               </MediaDetail>
               <MediaDetail>
                 {result.vote_average
