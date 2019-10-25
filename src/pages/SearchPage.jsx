@@ -1,10 +1,9 @@
 import React from "react";
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
-import { Link } from "react-router-dom";
-import {rem} from 'polished';
+import { rem } from "polished";
 import { Button } from "../components/Button";
 import { SearchPageContainer } from "../components/Container";
 import {
@@ -13,13 +12,15 @@ import {
   MediaDetail,
   Overview
 } from "../components/Typography";
-import Poster from '../components/Poster'
+import SearchResult from "../components/SearchResult";
 
 const SearchParams = styled.div`
-  padding: ${props => props.theme.sizes.large} 0 ${props => props.theme.sizes.small} 0;
+  padding: ${props => props.theme.sizes.large} 0
+    ${props => props.theme.sizes.small} 0;
   display: flex;
   justify-content: space-around;
 `;
+
 const MediaSelection = styled.select`
   width: ${rem(160)};
   padding: ${rem(8)};
@@ -29,6 +30,7 @@ const MediaSelection = styled.select`
   height: ${props => props.theme.sizes.Large};
   -webkit-appearance: none;
 `;
+
 const ButtonRowOne = styled.div``;
 
 const ResultWrap = styled.div`
@@ -39,22 +41,16 @@ const ResultWrap = styled.div`
   padding: ${props => props.theme.sizes.small} 0;
 `;
 
-
-
 const ButtonRowTwo = styled.div`
   padding: ${props => props.theme.sizes.large} 0;
   display: flex;
   justify-content: center;
 `;
 
-
-
 class SearchPage extends React.Component {
   state = {
     results: []
   };
-
-  
 
   getResults = async () => {
     const query = queryString.parse(this.props.location.search);
@@ -69,7 +65,6 @@ class SearchPage extends React.Component {
 
   componentDidMount() {
     this.getResults();
-   
   }
 
   componentDidUpdate(prevProps) {
@@ -109,7 +104,7 @@ class SearchPage extends React.Component {
   render() {
     const { results } = this.state;
     return (
-      <SearchPageContainer  >
+      <SearchPageContainer>
         <SearchParams>
           <MediaSelection
             value={this.state.searchMedia}
@@ -136,7 +131,7 @@ class SearchPage extends React.Component {
         </SearchParams>
         {results.map(result => [
           <ResultWrap key={result.id}>
-           <Poster result={result} />
+            <SearchResult result={result} />
             <SearchPageBlurb>
               <SearchResultTitle>
                 {result.title || result.name}
