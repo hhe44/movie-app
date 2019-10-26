@@ -61,7 +61,6 @@ export default class MediaList extends React.PureComponent {
     const { genreId } = this.props
     this.setState({ loading: true });
     const getMediaList = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc&include_adult=false&language=en-US&page=1${genreId ? "&with_genres="+genreId : ""}`;
-    console.log(getMediaList);
     const response = await axios.get(getMediaList);
     this.setState({
       medias: response.data.results,
@@ -81,7 +80,7 @@ export default class MediaList extends React.PureComponent {
             <List key="list1">
               {medias.map(media => [
                 <MediaWrap key={media.id}>
-                  <Link to={`/${media.title !== undefined ? "movie" : "tv"}/${media.id }`}>
+                  <Link to={`/${media.title !== undefined ? "movie" : "tv"}/${media.id}`}>
                     <Image
                       key={media.id + "image"}
                       src={

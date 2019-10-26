@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
+  text-align: center;
   text-transform: uppercase;
   font-family: Arial;
   font-size: ${props => props.theme.fonts.title};
@@ -13,7 +14,7 @@ export const Title = styled.h1`
 `;
 
 export const MediaListTitle = styled(Title)`
-  align-self: flex-start;
+  text-align: left;
   padding-top: ${props => props.theme.sizes.large};
 `;
 
