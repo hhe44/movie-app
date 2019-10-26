@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import MediaList from "./components/MediaList";
 import MediaPage from "./pages/MediaPage";
 import SearchPage from "./pages/SearchPage";
+import BrowsePage from "./pages/BrowsePage";
 
 const Content = styled.div`
   background: ${props => props.theme.colors.mainBG};
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Navbar />
           <Switch>
             <Route path="/" exact component={Landing} />
+            <Route path="/browse" exact component={BrowsePage} />
             <Route path="/movie/:id" exact component={MediaPage} />
             <Route path="/tv/:id" exact component={MediaPage} />
             <Route path="/person/:id" exact component={MediaPage} />

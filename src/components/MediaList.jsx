@@ -36,6 +36,15 @@ const MediaWrap = styled.div`
     opacity: 1;
     transform: translatey(-${props => props.theme.sizes.small});
   }
+  @media (max-width: 1200px) {
+    width: 33%;
+  }
+  @media (max-width: 900px) {
+    width: 50%;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const imagePath = "https://image.tmdb.org/t/p/w780/";
@@ -49,8 +58,10 @@ export default class MediaList extends React.PureComponent {
   };
 
   fetchMedias = async () => {
+    const { genreId } = this.props
     this.setState({ loading: true });
-    const getMediaList = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
+    const getMediaList = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc&include_adult=false&language=en-US&page=1${genreId ? "&with_genres="+genreId : ""}`;
+    console.log(getMediaList);
     const response = await axios.get(getMediaList);
     this.setState({
       medias: response.data.results,
@@ -75,9 +86,8 @@ export default class MediaList extends React.PureComponent {
                       key={media.id + "image"}
                       src={
                         media.backdrop_path !== null
-                          ? imagePath + media.backdrop_path
-                          : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${media.title ||
-                              media.name}`
+                        ? imagePath + media.backdrop_path 
+                        : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${media.title || media.name}`
                       }
                       alt={`${media.title || media.name} backdrop`}
                     />
