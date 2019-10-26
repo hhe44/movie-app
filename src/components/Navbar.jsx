@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import logo from "../images/logo_5.png";
+import logo from "../images/logo_6.png";
 import { Link } from "react-router-dom";
 
 const Navbar = styled.div`
@@ -43,7 +43,10 @@ const NavSearch = styled.div`
   display: flex;
 `;
 
-const SearchBar = styled.form``
+const SearchBar = styled.form`
+  position: relative;
+  width: 16rem;
+`
 
 const SearchButton = styled.button`
   border: none;
@@ -55,16 +58,22 @@ const SearchButton = styled.button`
   cursor: pointer;
 `
 const SearchText = styled.input`
+
   border: none;
   outline: none;
   height: ${props => props.theme.sizes.medium};
-  position: relative;
-  bottom: 2px;
+  position: absolute;
+  top: 1px
+  left: 50px
   font-family: Arial;
   font-weight: 700;
   background-color: ${props => props.theme.colors.white};
   text-indent: ${props => props.theme.sizes.small};
   border-radius: ${props => props.theme.sizes.small};
+
+  width: ${props => props.isShown ? "12rem" : "0rem"};
+  visibility: ${props => props.isShown ? "visible" : "hidden"};
+
 `
 const NavBrowse = styled.div`
   cursor: pointer;
@@ -94,12 +103,17 @@ const StyledLink = styled(Link)`
 
 class Navigation extends React.Component {
   state = {
-    searchTerm: ""
+    searchTerm: "",
+    searchToggle: false
   };
 
   handleChange = e => {
     this.setState({ searchTerm: e.target.value });
   };
+
+  handleSearchToggle = e => {
+    this.setState(({ searchToggle }) => ({ searchToggle: !searchToggle}));
+  }
 
   handleSubmit = e => {
     // preventDefault to avoid reloading entire page, which would be its default behavior
@@ -109,6 +123,7 @@ class Navigation extends React.Component {
   };
 
   render() {
+    const { searchToggle } = this.state;
     return (
       <Navbar>
         <NavItems>
@@ -117,8 +132,8 @@ class Navigation extends React.Component {
           </StyledLink>
           <NavSearch>
             <SearchBar onSubmit={this.handleSubmit}>
-              <SearchButton type="submit"><i className="fa fa-search"></i></SearchButton>
-              <SearchText value={this.state.searchTerm} onChange={this.handleChange}/>
+              <SearchButton type="submit" onClick={this.handleSearchToggle}><i className="fa fa-search"></i></SearchButton>
+              <SearchText value={this.state.searchTerm} onChange={this.handleChange} isShown={searchToggle}/>
             </SearchBar>
           </NavSearch>
           <StyledLink to="/browse">

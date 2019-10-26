@@ -39,16 +39,14 @@ export default class SearchPageResult extends React.Component {
   componentDidMount() {
     this.setState({ width: this.poster.current.clientWidth });
   }
+
   render() {
     const { result } = this.props;
     return (
       <ImageWrap ref={this.poster}>
         <Link
-          to={
-            result.title
-              ? "movie/" + result.id
-              : result.original_name
-              ? "tv/" + result.id
+          to={ result.title ? "movie/" + result.id
+              : result.original_name ? "tv/" + result.id
               : "person/" + result.id
           }
         >

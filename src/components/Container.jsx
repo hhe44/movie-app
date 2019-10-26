@@ -13,11 +13,10 @@ export const SearchPageContainer = styled(Container)`
     min-height: 90vh;
 `
 
-export const MediaPageContainer = styled(Container)`
-    width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+// export const MediaPageContainer = styled(Container)`
+//     width: 100%;
+//     overflow-x: hidden;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// `
