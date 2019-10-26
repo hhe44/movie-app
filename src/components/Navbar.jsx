@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import logo from "../images/netflixlogo.png";
+import logo from "../images/logo_5.png";
 import { Link } from "react-router-dom";
 
 const Navbar = styled.div`
@@ -16,10 +16,11 @@ const Navbar = styled.div`
   box-shadow: 0px 4px 24px rgba(253, 0, 29, 0.1);
   z-index: 9;
 `;
+
 const NavItems = styled.div`
   height: 100%;
   width: 100%;
-  max-width: 1750px;
+  max-width: 1800px;
   margin: 0 auto;
   font-size: ${props => props.theme.fonts.medium};
   font-family: Nunito;
@@ -29,17 +30,21 @@ const NavItems = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
 `;
+
 const NavLogo = styled.img`
   height: ${props => props.theme.sizes.xLarge};
   width: auto;
   cursor: pointer;
 `;
+
 const NavSearch = styled.div`
   margin-left: ${props => props.theme.sizes.xLarge};
   margin-right: ${props => props.theme.sizes.large};
   display: flex;
 `;
+
 const SearchBar = styled.form``
+
 const SearchButton = styled.button`
   border: none;
   outline: none;
@@ -64,6 +69,7 @@ const SearchText = styled.input`
 const NavBrowse = styled.div`
   cursor: pointer;
 `;
+
 const NavProfile = styled.div`
   width: 40px;
   height: 40px;
@@ -72,12 +78,18 @@ const NavProfile = styled.div`
   margin-left: auto;
   cursor: pointer;
 `;
+
 const UserProfile = styled.div`
   text-align: center;
   vertical-align: center;
   position: relative;
   top: 8px;
   cursor: pointer;
+`;
+
+const StyledLink = styled(Link)`
+  color: ${props => props.theme.colors.grey};
+  text-decoration: none;
 `;
 
 class Navigation extends React.Component {
@@ -100,16 +112,18 @@ class Navigation extends React.Component {
     return (
       <Navbar>
         <NavItems>
-          <Link to="/">
+          <StyledLink to="/">
             <NavLogo src={logo}></NavLogo>
-          </Link>
+          </StyledLink>
           <NavSearch>
             <SearchBar onSubmit={this.handleSubmit}>
               <SearchButton type="submit"><i className="fa fa-search"></i></SearchButton>
               <SearchText value={this.state.searchTerm} onChange={this.handleChange}/>
             </SearchBar>
           </NavSearch>
-          <NavBrowse>BROWSE</NavBrowse>
+          <StyledLink to="/browse">
+            <NavBrowse>BROWSE</NavBrowse>
+          </StyledLink>
           <NavProfile>
             <UserProfile>
               <i className="fa fa-user"></i>

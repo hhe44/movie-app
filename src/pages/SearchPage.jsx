@@ -122,9 +122,7 @@ class SearchPage extends React.Component {
             <Button
               onClick={this.handleNextPage}
               label={
-                this.state.page === this.state.totalPages
-                  ? "NO MORE PAGES"
-                  : "FORWARD"
+                this.state.page === this.state.totalPages ? "NO MORE PAGES" : "FORWARD"
               }
             />
           </ButtonRowOne>
@@ -144,9 +142,7 @@ class SearchPage extends React.Component {
                 }
               </MediaDetail>
               <MediaDetail>
-                {result.vote_average
-                  ? `Rating: ${result.vote_average} / 10`
-                  : ""}
+                {result.vote_average ? `Rating: ${result.vote_average} / 10` : ""}
               </MediaDetail>
               <Overview>{result.overview}</Overview>
             </SearchPageBlurb>
@@ -157,9 +153,7 @@ class SearchPage extends React.Component {
           <Button
             onClick={this.handleNextPage}
             label={
-              this.state.page === this.state.totalPages
-                ? "NO MORE PAGES"
-                : "FORWARD"
+              this.state.page === this.state.totalPages ? "NO MORE PAGES" : "FORWARD"
             }
           />
         </ButtonRowTwo>

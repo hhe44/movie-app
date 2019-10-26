@@ -17,13 +17,13 @@ const Image = styled.img`
   width: ${props => props.width}px;
   height: ${props => props.width / 1.78}px;
   transition: 0.2s ease-in-out;
-  ${props =>
-    props.renderPortrait &&
+  ${
+    props => props.renderPortrait &&
     css`
       width: ${props => props.width / 2}px;
       height: calc(${props => (props.width / 2) * 1.5}px);
-    `}
-
+    `
+  }
   :hover {
     opacity: 0.7;
     transform: scale(1.02);
