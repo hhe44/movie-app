@@ -10,6 +10,7 @@ export const Title = styled.h1`
   background: ${props => props.theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-attachment: fixed;
   margin: 0;
 `;
 

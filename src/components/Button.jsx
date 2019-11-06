@@ -1,18 +1,6 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 
-// Personal Reference: You can do it this way!...
-// const StyledButton = styled.button`
-//   font-family: impact;
-//   font-size: ${(props) => props.theme.fonts.medium};
-//   border: 0;
-//   border-radius: ${(props) => props.theme.borderRadius};
-//   margin-right: ${rem(8)};
-//   background: ${(props) => props.theme.gradient};
-//   color: white;
-// `;
-
-// Or this way! :) 
 const StyledButton = styled.button`
     ${(props) => {
         const {theme} = props;
