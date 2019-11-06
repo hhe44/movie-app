@@ -74,6 +74,7 @@ const SearchText = styled.input`
 
 `
 const NavBrowse = styled.div`
+  font-family: Open Sans;
   cursor: pointer;
 `;
 

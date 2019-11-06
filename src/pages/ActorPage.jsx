@@ -37,8 +37,8 @@ export default class ActorPage extends React.PureComponent {
   };
 
   async componentDidMount() {
-    const param = this.props.match.url.split("/");
-    const getMediaDetail = `https://api.themoviedb.org/3/${param[1]}/${param[2]}?api_key=${process.env.REACT_APP_API_KEY}`;
+    const param = this.props.location.pathname;
+    const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}`;
     const response = await axios.get(getMediaDetail);
     this.setState({ media: response.data });
     console.log(this.state);

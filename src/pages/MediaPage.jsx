@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { rem } from "polished";
 import axios from "axios";
 import { rgba } from "polished";
 
@@ -20,7 +21,7 @@ const Image = styled.div`
   left: 0;
 `;
 
-const MediaDetails = styled.div`
+const FilterEffect = styled.div`
   position: relative;
   width: 100%;
   height: calc(100vh - ${props => props.theme.sizes.xxLarge});
@@ -39,6 +40,12 @@ const MediaDetails = styled.div`
   padding-right: 15%;
   box-sizing: border-box;
 `;
+
+const MediaDetails = styled.div`
+    font-family: Open Sans;
+    position: relative;
+    top: ${props => props.theme.sizes.xxLarge};
+`
 
 const Tagline = styled.h3`
   font-size: ${props => props.theme.fonts.medium};
@@ -76,10 +83,12 @@ const Button = styled.button`
   margin-right: ${props => props.theme.sizes.small};
   border: 1px solid #e8e8e8;
   cursor: pointer;
-  ${props =>  props.alt && css`
+  ${
+    props =>  props.alt && css`
       color: #e8e8e8;
       background: ${rgba(props.theme.colors.mainBG, 0.1)};
-    `}
+    `
+  }
 `;
 
 const StyledHyperlink = styled.a`
@@ -87,7 +96,6 @@ const StyledHyperlink = styled.a`
 `
 
 const OverviewDiv = styled.div`
-  position: relative;
   background: rgba(20, 20, 20);
   width: 100vw;
   padding-top: ${props => props.theme.sizes.xLarge};
@@ -98,6 +106,7 @@ const OverviewDiv = styled.div`
 `
 
 const Overview = styled.h3`
+  font-family: Open Sans;
   font-size: ${props => props.theme.fonts.medium};
   color: ${props => props.theme.colors.white};
 `
@@ -121,22 +130,20 @@ class MediaPage extends React.PureComponent {
     return (
       <MediaPageContainer>
         <Image src={imagePath + media.backdrop_path} />
-        <MediaDetails>
-            <Tagline>{media.tagline}</Tagline>
-            <StyledTitle>{media.title || media.name}</StyledTitle>
-            <Buttons>
-              <Button>
-                {media.release_date || media.last_air_date
-                  ? "TRAILER"
-                  : "VISIT PROFILE"}
-              </Button>
-              <StyledHyperlink href={media.homepage} target="_blank">
-                <Button alt="true">
-                  {media.release_date || media.last_air_date ? "HOMEPAGE" : "MORE DETAILS"}
+        <FilterEffect>
+            <MediaDetails>
+              <Tagline>{media.tagline}</Tagline>
+              <StyledTitle>{media.title || media.name}</StyledTitle>
+              <Buttons>
+                <Button>
+                  {"TRAILER"}
                 </Button>
-              </StyledHyperlink>
-            </Buttons>
-        </MediaDetails>
+                <StyledHyperlink href={media.homepage} target='_blank'>
+                  <Button alt>{"HOMEPAGE"}</Button>
+                </StyledHyperlink>
+              </Buttons>
+            </MediaDetails>
+        </FilterEffect>
         {/* For some reason, overview is giving me an overflow on the x-plane */}
         <OverviewDiv>
           <Overview>{media.overview || media.biography}</Overview>

@@ -5,7 +5,7 @@ const StyledButton = styled.button`
     ${(props) => {
         const {theme} = props;
         return css`
-            font-family: impact;
+            font-family: Impact;
             font-size: ${theme.fonts.large};
             border: 0;
             border-radius: ${theme.borderRadius};

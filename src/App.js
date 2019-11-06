@@ -6,7 +6,7 @@ import MediaList from "./components/MediaList";
 import MediaPage from "./pages/MediaPage";
 import SearchPage from "./pages/SearchPage";
 import BrowsePage from "./pages/BrowsePage";
-import MediaPageBackup from "./pages/ActorPage"
+import ActorPage from "./pages/ActorPage"
 import './App.css'
 
 const Content = styled.div`
@@ -36,7 +36,7 @@ class App extends React.Component {
             <Route path="/browse" exact component={BrowsePage} />
             <Route path="/movie/:id" exact component={MediaPage} />
             <Route path="/tv/:id" exact component={MediaPage} />
-            <Route path="/person/:id" exact component={MediaPageBackup} />
+            <Route path="/person/:id" exact component={ActorPage} />
             <Route path="/search" component={SearchPage} />
             <Route path="/mediahomepage" />
           </Switch>
