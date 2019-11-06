@@ -5,11 +5,12 @@ export const Title = styled.h1`
   text-transform: uppercase;
   font-family: Arial;
   font-size: ${props => props.theme.fonts.title};
-  font-weight: 1000;
+  font-weight: 900;
   letter-spacing: -2.5px;
   background: ${props => props.theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-attachment: fixed;
   margin: 0;
 `;
 

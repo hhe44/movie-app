@@ -58,7 +58,6 @@ const SearchButton = styled.button`
   cursor: pointer;
 `
 const SearchText = styled.input`
-
   border: none;
   outline: none;
   height: ${props => props.theme.sizes.medium};
@@ -70,12 +69,12 @@ const SearchText = styled.input`
   background-color: ${props => props.theme.colors.white};
   text-indent: ${props => props.theme.sizes.small};
   border-radius: ${props => props.theme.sizes.small};
-
   width: ${props => props.isShown ? "12rem" : "0rem"};
   visibility: ${props => props.isShown ? "visible" : "hidden"};
 
 `
 const NavBrowse = styled.div`
+  font-family: Open Sans;
   cursor: pointer;
 `;
 

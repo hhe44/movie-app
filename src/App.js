@@ -6,6 +6,8 @@ import MediaList from "./components/MediaList";
 import MediaPage from "./pages/MediaPage";
 import SearchPage from "./pages/SearchPage";
 import BrowsePage from "./pages/BrowsePage";
+import ActorPage from "./pages/ActorPage"
+import './App.css'
 
 const Content = styled.div`
   background: ${props => props.theme.colors.mainBG};
@@ -34,9 +36,9 @@ class App extends React.Component {
             <Route path="/browse" exact component={BrowsePage} />
             <Route path="/movie/:id" exact component={MediaPage} />
             <Route path="/tv/:id" exact component={MediaPage} />
-            <Route path="/person/:id" exact component={MediaPage} />
+            <Route path="/person/:id" exact component={ActorPage} />
             <Route path="/search" component={SearchPage} />
-            <Route path="/mediahomepage" component={() => window.location = this.props.homepageurl} />
+            <Route path="/mediahomepage" />
           </Switch>
         </Router>
       </Content>

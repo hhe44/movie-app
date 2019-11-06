@@ -54,6 +54,7 @@ class SearchPage extends React.Component {
 
   getResults = async () => {
     const query = queryString.parse(this.props.location.search);
+    console.log(query);
     const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
     const response = await axios.get(link);
     this.setState({

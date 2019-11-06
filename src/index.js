@@ -13,6 +13,7 @@ const theme = {
     medium: rem(24),
     large: rem(32),
     xLarge: rem(40),
+    xxLarge: rem(80),
     title: rem(64)
   },
   sizes: {
@@ -21,7 +22,8 @@ const theme = {
     medium: rem(24),
     large: rem(32),
     xLarge: rem(64),
-    xxLarge: rem(128)
+    xxLarge: rem(128),
+    xxxLarge: rem(256)
   },
   colors: {
     mainBG: "#141414",
