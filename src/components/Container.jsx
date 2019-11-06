@@ -15,7 +15,7 @@ export const SearchPageContainer = styled(Container)`
 
 export const MediaPageContainer = styled(Container)`
     width: 100%;
-    overflow-x: hidden;
+    overflow-y: hidden;
     display: flex;
     justify-content: center;
     align-items: center;

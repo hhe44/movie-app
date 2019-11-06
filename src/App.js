@@ -6,7 +6,7 @@ import MediaList from "./components/MediaList";
 import MediaPage from "./pages/MediaPage";
 import SearchPage from "./pages/SearchPage";
 import BrowsePage from "./pages/BrowsePage";
-import MediaPageBackup from "./pages/MediaPageBackup"
+import MediaPageBackup from "./pages/ActorPage"
 import './App.css'
 
 const Content = styled.div`

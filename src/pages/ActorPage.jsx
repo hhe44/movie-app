@@ -31,7 +31,7 @@ const Buttons = styled.div`
   padding-top: ${props => props.theme.fonts.xLarge};
 `;
 
-export default class MediaPage extends React.PureComponent {
+export default class ActorPage extends React.PureComponent {
   state = {
     media: []
   };
@@ -56,7 +56,7 @@ export default class MediaPage extends React.PureComponent {
     return (
       <MediaPageContainer>
         <ColumnOne>
-          <Poster src={imagePath + media.poster_path}></Poster>
+          <Poster src={imagePath + media.profile_path}></Poster>
         </ColumnOne>
         <ColumnTwo>
           <Blurb>
