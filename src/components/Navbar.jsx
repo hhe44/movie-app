@@ -66,12 +66,10 @@ const SearchText = styled.input`
   left: 50px
   font-family: Arial;
   font-weight: 700;
-  background-color: ${props => props.theme.colors.white};
   text-indent: ${props => props.theme.sizes.small};
   border-radius: ${props => props.theme.sizes.small};
   width: ${props => props.isShown ? "12rem" : "0rem"};
-  visibility: ${props => props.isShown ? "visible" : "hidden"};
-
+  background-color: ${props => props.isShown ? props.theme.colors.white : props.theme.colors.mainBG };
 `
 const NavBrowse = styled.div`
   font-family: Open Sans;
@@ -105,6 +103,7 @@ class Navigation extends React.Component {
     searchTerm: "",
     searchToggle: false
   };
+  inputRef = React.createRef();
 
   handleChange = e => {
     this.setState({ searchTerm: e.target.value });
@@ -112,6 +111,7 @@ class Navigation extends React.Component {
 
   handleSearchToggle = e => {
     this.setState(({ searchToggle }) => ({ searchToggle: !searchToggle}));
+    this.inputRef.current.focus();
   }
 
   handleSubmit = e => {
@@ -132,7 +132,7 @@ class Navigation extends React.Component {
           <NavSearch>
             <SearchBar onSubmit={this.handleSubmit}>
               <SearchButton type="submit" onClick={this.handleSearchToggle}><i className="fa fa-search"></i></SearchButton>
-              <SearchText value={this.state.searchTerm} onChange={this.handleChange} isShown={searchToggle}/>
+              <SearchText ref={this.inputRef} value={this.state.searchTerm} onChange={this.handleChange} isShown={searchToggle}/>
             </SearchBar>
           </NavSearch>
           <StyledLink to="/browse">

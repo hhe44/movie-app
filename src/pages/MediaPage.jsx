@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { rem } from "polished";
 import axios from "axios";
 import { rgba } from "polished";
 
@@ -125,28 +124,31 @@ class MediaPage extends React.PureComponent {
   }
 
   render() {
+
     const { media } = this.state;
     const imagePath = "https://image.tmdb.org/t/p/original";
+
+
     return (
       <MediaPageContainer>
         <Image src={imagePath + media.backdrop_path} />
         <FilterEffect>
-            <MediaDetails>
-              <Tagline>{media.tagline}</Tagline>
-              <StyledTitle>{media.title || media.name}</StyledTitle>
-              <Buttons>
-                <Button>
-                  {"TRAILER"}
-                </Button>
-                <StyledHyperlink href={media.homepage} target='_blank'>
+          <MediaDetails>
+            <Tagline>{media.tagline}</Tagline>
+            <StyledTitle>{media.title || media.name}</StyledTitle>
+            <Buttons>
+              <Button>{"TRAILER"}</Button>
+              {media.homepage && (
+                <StyledHyperlink href={media.homepage} target="_blank">
                   <Button alt>{"HOMEPAGE"}</Button>
                 </StyledHyperlink>
-              </Buttons>
-            </MediaDetails>
+              )}
+            </Buttons>
+          </MediaDetails>
         </FilterEffect>
         {/* For some reason, overview is giving me an overflow on the x-plane */}
         <OverviewDiv>
-          <Overview>{media.overview || media.biography}</Overview>
+          <Overview>{media.overview}</Overview>
         </OverviewDiv>
       </MediaPageContainer>
     );

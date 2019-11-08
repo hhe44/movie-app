@@ -10,7 +10,6 @@ export const Title = styled.h1`
   background: ${props => props.theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-attachment: fixed;
   margin: 0;
 `;
 
@@ -20,6 +19,8 @@ export const MediaListTitle = styled(Title)`
 `;
 
 export const SearchResultTitle = styled(Title)`
+  text-align: left;
+  position: relative;
   font-size: ${props => props.theme.fonts.xLarge};
   padding-bottom: ${props => props.theme.sizes.medium};
 `;
