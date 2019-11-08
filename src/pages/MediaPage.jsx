@@ -117,7 +117,7 @@ class MediaPage extends React.PureComponent {
 
   async componentDidMount() {
     const param = this.props.location.pathname;
-    const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}`;
+    const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
     const response = await axios.get(getMediaDetail);
     this.setState({ media: response.data });
     console.log(this.state);
@@ -126,8 +126,9 @@ class MediaPage extends React.PureComponent {
   render() {
 
     const { media } = this.state;
+    if(!media.videos) return <div>...loading</div>;
+    const trailerKey = media.videos.results
     const imagePath = "https://image.tmdb.org/t/p/original";
-
 
     return (
       <MediaPageContainer>
@@ -137,7 +138,11 @@ class MediaPage extends React.PureComponent {
             <Tagline>{media.tagline}</Tagline>
             <StyledTitle>{media.title || media.name}</StyledTitle>
             <Buttons>
-              <Button>{"TRAILER"}</Button>
+              { trailerKey.length > 0 && (
+                <StyledHyperlink href={"https://www.youtube.com/watch?v=" + trailerKey[0].key} target="_blank">
+                  <Button>{"TRAILER"}</Button>
+                </StyledHyperlink>
+              )}
               {media.homepage && (
                 <StyledHyperlink href={media.homepage} target="_blank">
                   <Button alt>{"HOMEPAGE"}</Button>
