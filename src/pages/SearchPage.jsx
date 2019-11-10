@@ -29,6 +29,7 @@ const MediaSelection = styled.select`
   border-radius: 0;
   height: ${props => props.theme.sizes.Large};
   -webkit-appearance: none;
+  transition: 0.2s ease-in-out;
 `;
 
 const ButtonRowOne = styled.div``;
@@ -107,13 +108,8 @@ class SearchPage extends React.Component {
     return (
       <SearchPageContainer>
         <SearchParams>
-          <MediaSelection
-            value={this.state.searchMedia}
-            onChange={this.handleSelection}
-          >
-            <option defaultValue value="multi">
-              ALL
-            </option>
+          <MediaSelection value={this.state.searchMedia} onChange={this.handleSelection}>
+            <option defaultValue value="multi">ALL</option>
             <option value="movie">MOVIES</option>
             <option value="person">PEOPLE</option>
             <option value="tv">TV SHOWS</option>

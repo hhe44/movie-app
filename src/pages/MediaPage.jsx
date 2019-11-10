@@ -145,7 +145,7 @@ class MediaPage extends React.PureComponent {
               )}
               {media.homepage && (
                 <StyledHyperlink href={media.homepage} target="_blank">
-                  <Button alt>{"HOMEPAGE"}</Button>
+                  <Button alt="true">{"HOMEPAGE"}</Button>
                 </StyledHyperlink>
               )}
             </Buttons>

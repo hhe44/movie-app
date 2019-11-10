@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     max-width: 1800px;
-    width: 100vw;
+    x-overflow: hidden;
     padding: 0 ${props => props.theme.sizes.xLarge};
     box-sizing: border-box;
 `

@@ -40,12 +40,13 @@ const NavLogo = styled.img`
 const NavSearch = styled.div`
   margin-left: ${props => props.theme.sizes.xLarge};
   margin-right: ${props => props.theme.sizes.large};
-  display: flex;
 `;
 
 const SearchBar = styled.form`
   position: relative;
   width: 16rem;
+  display: flex;
+  align-items: center;
 `
 
 const SearchButton = styled.button`
@@ -57,20 +58,20 @@ const SearchButton = styled.button`
   color: ${props => props.theme.colors.grey};
   cursor: pointer;
 `
+
 const SearchText = styled.input`
   border: none;
   outline: none;
   height: ${props => props.theme.sizes.medium};
-  position: absolute;
-  top: 1px
-  left: 50px
   font-family: Arial;
   font-weight: 700;
+  transition: 0.3s ease-in-out;
   text-indent: ${props => props.theme.sizes.small};
   border-radius: ${props => props.theme.sizes.small};
   width: ${props => props.isShown ? "12rem" : "0rem"};
   background-color: ${props => props.isShown ? props.theme.colors.white : props.theme.colors.mainBG };
 `
+
 const NavBrowse = styled.div`
   font-family: Open Sans;
   cursor: pointer;
