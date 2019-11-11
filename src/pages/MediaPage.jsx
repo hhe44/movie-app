@@ -6,7 +6,7 @@ import { rgba } from "polished";
 
 const MediaPageContainer = styled.div`
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - ${props => props.theme.sizes.xxLarge});
 `;
 
@@ -96,7 +96,6 @@ const StyledHyperlink = styled.a`
 
 const OverviewDiv = styled.div`
   background: rgba(20, 20, 20);
-  width: 100vw;
   padding-top: ${props => props.theme.sizes.xLarge};
   padding-bottom: ${props => props.theme.sizes.xLarge};
   padding-left: 15%;
@@ -151,7 +150,6 @@ class MediaPage extends React.PureComponent {
             </Buttons>
           </MediaDetails>
         </FilterEffect>
-        {/* For some reason, overview is giving me an overflow on the x-plane */}
         <OverviewDiv>
           <Overview>{media.overview}</Overview>
         </OverviewDiv>

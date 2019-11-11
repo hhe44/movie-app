@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = styled.div`
   position: fixed;
-  height: ${props => props.theme.sizes.xxLarge};
+  height: ${props => props.theme.sizes.navHeight};
   width: 100vw;
   top: 0;
   left: 0;

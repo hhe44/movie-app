@@ -14,7 +14,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: ${props => props.theme.sizes.xxLarge};
+  padding-top: ${props => props.theme.sizes.navHeight};
 `;
 
 const Landing = () => (
