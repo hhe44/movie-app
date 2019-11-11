@@ -108,7 +108,6 @@ class SearchPage extends React.Component {
     const { results } = this.state;
     const hasResults = (this.state.results.length > 0);
     const showForwardBtn = !(this.state.currentPage === this.state.totalPages) && hasResults;
-    {console.log(showForwardBtn)}
     return (
       <SearchPageContainer>
         <SearchParams>
