@@ -50,19 +50,18 @@ const ButtonRowTwo = styled.div`
 
 class SearchPage extends React.Component {
   state = {
-    results: []
+    results: [],
+    currentPage: 1
   };
 
   getResults = async () => {
     const query = queryString.parse(this.props.location.search);
-    console.log(query);
     const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
     const response = await axios.get(link);
     this.setState({
       results: response.data.results,
       totalPages: response.data.total_pages
     });
-    console.log(this.state);
   };
 
   componentDidMount() {
@@ -81,6 +80,7 @@ class SearchPage extends React.Component {
     const { totalPages } = this.state;
     if (page + 1 > totalPages) return;
     query.page = page + 1;
+    this.setState({currentPage: query.page});
     const stringified = queryString.stringify(query);
     this.props.history.push(`?${stringified}`);
   };
@@ -90,6 +90,7 @@ class SearchPage extends React.Component {
     const page = parseInt(query.page);
     if (page === 1) return;
     query.page = page - 1;
+    this.setState({currentPage: query.page});
     const stringified = queryString.stringify(query);
     this.props.history.push(`?${stringified}`);
   };
@@ -105,23 +106,25 @@ class SearchPage extends React.Component {
 
   render() {
     const { results } = this.state;
+    const hasResults = (this.state.results.length > 0);
+    const showForwardBtn = !(this.state.currentPage === this.state.totalPages) && hasResults;
+    {console.log(showForwardBtn)}
     return (
       <SearchPageContainer>
         <SearchParams>
-          <MediaSelection value={this.state.searchMedia} onChange={this.handleSelection}>
+          {hasResults && (<MediaSelection value={this.state.searchMedia} onChange={this.handleSelection}>
             <option defaultValue value="multi">ALL</option>
             <option value="movie">MOVIES</option>
             <option value="person">PEOPLE</option>
             <option value="tv">TV SHOWS</option>
-          </MediaSelection>
+          </MediaSelection>)}
           <ButtonRowOne>
-            <Button onClick={this.handleBackPage} label={"BACK"} />
-            <Button
-              onClick={this.handleNextPage}
-              label={
-                this.state.page === this.state.totalPages ? "NO MORE PAGES" : "FORWARD"
-              }
-            />
+            {!(this.state.currentPage === 1) && (
+              <Button onClick={this.handleBackPage} label={"BACK"} />
+            )}
+            {showForwardBtn && (
+              <Button onClick={this.handleNextPage} label={"FORWARD"}/>
+            )}
           </ButtonRowOne>
         </SearchParams>
         {results.map(result => [
@@ -146,14 +149,14 @@ class SearchPage extends React.Component {
           </ResultWrap>
         ])}
         <ButtonRowTwo>
-          <Button onClick={this.handleBackPage} label={"BACK"} />
-          <Button
-            onClick={this.handleNextPage}
-            label={
-              this.state.page === this.state.totalPages ? "NO MORE PAGES" : "FORWARD"
-            }
-          />
+          {!(this.state.currentPage === 1) && (
+            <Button onClick={this.handleBackPage} label={"BACK"} />
+          )}
+          {showForwardBtn && (
+            <Button onClick={this.handleNextPage} label={"FORWARD"} />
+          )}
         </ButtonRowTwo>
+        {!hasResults && (<SearchResultTitle>NO RESULTS FOUND!</SearchResultTitle>)}
       </SearchPageContainer>
     );
   }
