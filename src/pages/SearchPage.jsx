@@ -13,6 +13,7 @@ import {
   Overview
 } from "../components/Typography";
 import SearchResult from "../components/SearchResult";
+import { LoadingConsumer } from "../loadingContext";
 
 const SearchParams = styled.div`
   padding: ${props => props.theme.sizes.large} 0
@@ -55,6 +56,7 @@ class SearchPage extends React.Component {
   };
 
   getResults = async () => {
+    this.props.setLoading(true);
     const query = queryString.parse(this.props.location.search);
     const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
     const response = await axios.get(link);
@@ -62,6 +64,7 @@ class SearchPage extends React.Component {
       results: response.data.results,
       totalPages: response.data.total_pages
     });
+    this.props.setLoading(false);
   };
 
   componentDidMount() {
@@ -71,6 +74,8 @@ class SearchPage extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.location.search !== this.props.location.search) {
       this.getResults();
+      const query = queryString.parse(this.props.location.search);
+      this.setState({currentPage: parseInt(query.page)});
     }
   }
 
@@ -161,4 +166,9 @@ class SearchPage extends React.Component {
   }
 }
 
-export default withRouter(SearchPage);
+const WithConsumer = (props) => (
+  <LoadingConsumer>
+    {(loading) => <SearchPage {...loading} {...props} />}
+  </LoadingConsumer>
+);
+export default withRouter(WithConsumer);

@@ -119,11 +119,9 @@ class MediaPage extends React.PureComponent {
     const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
     const response = await axios.get(getMediaDetail);
     this.setState({ media: response.data });
-    console.log(this.state);
   }
 
   render() {
-
     const { media } = this.state;
     if(!media.videos) return <div>...loading</div>;
     const trailerKey = media.videos.results
@@ -139,7 +137,7 @@ class MediaPage extends React.PureComponent {
             <Buttons>
               { trailerKey.length > 0 && (
                 <StyledHyperlink href={"https://www.youtube.com/watch?v=" + trailerKey[0].key} target="_blank">
-                  <Button>{"TRAILER"}</Button>
+                  <Button className="trailer">{"TRAILER"}</Button>
                 </StyledHyperlink>
               )}
               {media.homepage && (
