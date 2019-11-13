@@ -8,7 +8,7 @@ Deployed using zeit now at: https://movie-app.hhe.now.sh
 1) Get a MovieDB API key @ https://developers.themoviedb.org/
 2) Clone git repo
 3) Create a .env file with the following property:
-  REACT_APP_API_KEY=<INSERT API KEY IN HERE>
+  REACT_APP_API_KEY=(INSERT API KEY IN HERE)
 4) Run npm install in the terminal
 5) Run npm start
 6) You're done!
