@@ -137,7 +137,7 @@ class MediaPage extends React.PureComponent {
             <Buttons>
               { trailerKey.length > 0 && (
                 <StyledHyperlink href={"https://www.youtube.com/watch?v=" + trailerKey[0].key} target="_blank">
-                  <Button className="trailer">{"TRAILER"}</Button>
+                  <Button className="trailer" onClick={this.handleShowMessageClick}>{"TRAILER"}</Button>
                 </StyledHyperlink>
               )}
               {media.homepage && (
