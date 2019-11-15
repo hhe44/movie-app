@@ -126,7 +126,7 @@ class Navigation extends React.Component {
   render() {
     const { searchToggle } = this.state;
     return (
-      <Navbar>
+      <Navbar className="navbar">
         <NavItems>
           <StyledLink to="/">
             <NavLogo src={logo}></NavLogo>

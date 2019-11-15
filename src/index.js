@@ -5,7 +5,7 @@ import { rem } from "polished";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-const theme = {
+export const theme = {
   borderRadius: rem(4),
   fonts: {
     tiny: rem(8),

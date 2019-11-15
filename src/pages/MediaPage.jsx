@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import styled, { css } from "styled-components";
 import axios from "axios";
 import { rgba } from "polished";
+import TrailerModal from "../components/TrailerModal";
 
 const MediaPageContainer = styled.div`
   position: relative;
@@ -111,7 +112,7 @@ const Overview = styled.h3`
 
 class MediaPage extends React.PureComponent {
   state = {
-    media: {}
+    media: {},
   };
 
   async componentDidMount() {
@@ -133,12 +134,13 @@ class MediaPage extends React.PureComponent {
         <FilterEffect>
           <MediaDetails>
             <Tagline>{media.tagline}</Tagline>
-            <StyledTitle>{media.title || media.name}</StyledTitle>
+            <StyledTitle>{media.title}</StyledTitle>
             <Buttons>
               { trailerKey.length > 0 && (
-                <StyledHyperlink href={"https://www.youtube.com/watch?v=" + trailerKey[0].key} target="_blank">
-                  <Button className="trailer" onClick={this.handleShowMessageClick}>{"TRAILER"}</Button>
-                </StyledHyperlink>
+                <TrailerModal title={media.title} trailerKey={trailerKey[0].key}></TrailerModal>
+                // <StyledHyperlink href={"https://www.youtube.com/watch?v=" + trailerKey[0].key} target="_blank">
+                //   <Button id="trailer" onClick={this.handleShowMessageClick}>{"TRAILER"}</Button>
+                // </StyledHyperlink>
               )}
               {media.homepage && (
                 <StyledHyperlink href={media.homepage} target="_blank">
@@ -151,6 +153,7 @@ class MediaPage extends React.PureComponent {
         <OverviewDiv>
           <Overview>{media.overview}</Overview>
         </OverviewDiv>
+        
       </MediaPageContainer>
     );
   }
