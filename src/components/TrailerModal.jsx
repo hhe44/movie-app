@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
-import styled from "styled-components";
-import { rem } from "polished";
+import styled, {css} from 'styled-components';
+import { rgba, rem } from "polished";
+// import { MediaPageButton } from "../components/Button";
 
 const customStyles = {
   overlay: {
@@ -28,6 +29,24 @@ const customStyles = {
     flexDirection         : 'column',
   }
 };
+
+const MediaPageButton = styled.button`
+  font-size: ${rem(24)};
+  color: black;
+  background: #e8e8e8;
+  font-weight: 800;
+  padding: ${rem(8)} ${rem(16)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: ${rem(16)};
+  border: 1px solid #e8e8e8;
+  cursor: pointer;
+  ${props => props.alt && css`
+      color: #e8e8e8;
+      background: ${rgba(props.theme.colors.mainBG, 0.1)};
+    `}
+`;
 
 const ModalCloseButton = styled.button`
   align-self: flex-end;
@@ -65,7 +84,7 @@ export default class TrailerModal extends React.Component {
     console.log(this.props);
     return (
       <div>
-        <button onClick={this.handleOpenModal}>Trigger Modal</button>
+        <MediaPageButton onClick={this.handleOpenModal}>TRAILER</MediaPageButton>
         <ReactModal isOpen={this.state.showModal} style={customStyles}>
           <ModalCloseButton onClick={this.handleCloseModal}>EXIT</ModalCloseButton>
           <iframe 

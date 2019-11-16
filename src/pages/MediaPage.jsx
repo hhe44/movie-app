@@ -1,8 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import axios from "axios";
 import { rgba } from "polished";
+import { MediaPageButton } from "../components/Button";
 import TrailerModal from "../components/TrailerModal";
 
 const MediaPageContainer = styled.div`
@@ -71,26 +72,6 @@ const Buttons = styled.div`
   text-decoration: none;
 `;
 
-const Button = styled.button`
-  font-size: ${props => props.theme.fonts.medium};
-  color: black;
-  background: #e8e8e8;
-  font-weight: 800;
-  padding: ${props => props.theme.sizes.tiny} ${props => props.theme.sizes.small};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: ${props => props.theme.sizes.small};
-  border: 1px solid #e8e8e8;
-  cursor: pointer;
-  ${
-    props =>  props.alt && css`
-      color: #e8e8e8;
-      background: ${rgba(props.theme.colors.mainBG, 0.1)};
-    `
-  }
-`;
-
 const StyledHyperlink = styled.a`
   text-decoration: none;
 `
@@ -144,7 +125,7 @@ class MediaPage extends React.PureComponent {
               )}
               {media.homepage && (
                 <StyledHyperlink href={media.homepage} target="_blank">
-                  <Button alt="true">{"HOMEPAGE"}</Button>
+                  <MediaPageButton alt="true">{"HOMEPAGE"}</MediaPageButton>
                 </StyledHyperlink>
               )}
             </Buttons>
