@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Snapshots 1`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": false,
+        "rules": Array [
+          "
+    max-width: 1800px;
+    x-overflow: hidden;
+    padding: 0 ",
+          [Function],
+          ";
+    box-sizing: border-box;
+",
+        ],
+      },
+      "displayName": "styled.div",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+/>
+`;
+
+exports[`Button Snapshots 2`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bwzfXH",
+        "isStatic": false,
+        "rules": Array [
+          "
+    max-width: 1800px;
+    x-overflow: hidden;
+    padding: 0 ",
+          [Function],
+          ";
+    box-sizing: border-box;
+",
+          "
+    min-height: 90vh;
+",
+        ],
+      },
+      "displayName": "Styled(styled.div)",
+      "foldedComponentIds": Array [
+        "sc-bdVaJa",
+      ],
+      "render": [Function],
+      "styledComponentId": "sc-bwzfXH",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+/>
+`;
+
+exports[`Button Snapshots 3`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-htpNat",
+        "isStatic": false,
+        "rules": Array [
+          "
+    max-width: 1800px;
+    x-overflow: hidden;
+    padding: 0 ",
+          [Function],
+          ";
+    box-sizing: border-box;
+",
+          "
+    width: 100%;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+",
+        ],
+      },
+      "displayName": "Styled(styled.div)",
+      "foldedComponentIds": Array [
+        "sc-bdVaJa",
+      ],
+      "render": [Function],
+      "styledComponentId": "sc-htpNat",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+/>
+`;
