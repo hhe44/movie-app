@@ -1,14 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button Snapshots 1`] = `
-<styled.button
-  onClick={[Function]}
->
-  TEST
-</styled.button>
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": false,
+        "rules": Array [
+          "
+    ",
+          [Function],
+          "
+",
+        ],
+      },
+      "displayName": "styled.button",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "button",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+/>
 `;
 
-exports[`Button Snapshots 2`] = `
+exports[`Button Snapshots 2`] = `<styled.button />`;
+
+exports[`Button Snapshots 3`] = `
 <StyledComponent
   forwardedComponent={
     Object {

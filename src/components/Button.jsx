@@ -2,7 +2,7 @@ import React from 'react';
 import styled, {css} from 'styled-components';
 import { rgba } from "polished";
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
     ${(props) => {
         const {theme} = props;
         return css`

@@ -1,11 +1,10 @@
 import React from "react";
 import {shallow} from 'enzyme';
-import { Button , MediaPageButton } from './Button';
+import { StyledButton, Button, MediaPageButton } from './Button';
 import toJson from 'enzyme-to-json';
 
 it('Button Snapshots', () => {
-    const buttonWrap = shallow(<Button onClick={() => {}} label={"TEST"} />)
-    expect(toJson(buttonWrap)).toMatchSnapshot();
-    const mediaPageButtonWrap = shallow(<MediaPageButton />)
-    expect(toJson(mediaPageButtonWrap)).toMatchSnapshot();
+    expect(toJson(shallow(<StyledButton />))).toMatchSnapshot();
+    expect(toJson(shallow(<Button />))).toMatchSnapshot();
+    expect(toJson(shallow(<MediaPageButton />))).toMatchSnapshot();
 });
