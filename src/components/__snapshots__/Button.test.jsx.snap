@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Snapshots 1`] = `
+<styled.button
+  onClick={[Function]}
+>
+  TEST
+</styled.button>
+`;
+
+exports[`Button Snapshots 2`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bwzfXH",
+        "isStatic": false,
+        "rules": Array [
+          "
+  font-size: ",
+          [Function],
+          ";
+  color: black;
+  background: #e8e8e8;
+  font-weight: 800;
+  padding: ",
+          [Function],
+          "
+    ",
+          [Function],
+          ";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: ",
+          [Function],
+          ";
+  border: 1px solid #e8e8e8;
+  cursor: pointer;
+  ",
+          [Function],
+          "
+",
+        ],
+      },
+      "displayName": "styled.button",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bwzfXH",
+      "target": "button",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+/>
+`;
