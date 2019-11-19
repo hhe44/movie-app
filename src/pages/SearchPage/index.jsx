@@ -4,16 +4,16 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
 import { rem } from "polished";
-import { Button } from "../components/Button";
-import { SearchPageContainer } from "../components/Container";
+import { Button } from "../../components/Button";
+import { SearchPageContainer } from "../../components/Container";
 import {
   SearchResultTitle,
   SearchPageBlurb,
   MediaDetail,
   Overview
-} from "../components/Typography";
-import SearchResult from "../components/SearchResult";
-import { LoadingConsumer } from "../loadingContext";
+} from "../../components/Typography";
+import SearchResult from "../../components/SearchResult";
+import { LoadingConsumer } from "../../loadingContext";
 
 const SearchParams = styled.div`
   padding: ${props => props.theme.sizes.large} 0
@@ -49,14 +49,23 @@ const ButtonRowTwo = styled.div`
   justify-content: center;
 `;
 
-class SearchPage extends React.Component {
+
+const options = [
+  {defaultValue: true, value: 'multi', label: 'ALL'},
+   { value: 'movie', label: 'MOVIES'},
+    { value: 'person', label: 'ACTORS'},
+     { value: 'tv', label: 'TV SERIES'}
+]
+
+export class SearchPage extends React.Component {
   state = {
     results: [],
     currentPage: 1
   };
 
   getResults = async () => {
-    this.props.setLoading(true);
+    try {
+       this.props.setLoading(true);
     const query = queryString.parse(this.props.location.search);
     const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
     const response = await axios.get(link);
@@ -65,6 +74,12 @@ class SearchPage extends React.Component {
       totalPages: response.data.total_pages
     });
     this.props.setLoading(false);
+    }catch(err){
+      console.log(err.message);
+      this.setState({ error: true });
+      this.props.setLoading(false);
+    }
+   
   };
 
   componentDidMount() {
@@ -79,26 +94,23 @@ class SearchPage extends React.Component {
     }
   }
 
-  handleNextPage = () => {
-    const query = queryString.parse(this.props.location.search);
-    const page = parseInt(query.page);
-    const { totalPages } = this.state;
-    if (page + 1 > totalPages) return;
-    query.page = page + 1;
-    this.setState({currentPage: query.page});
-    const stringified = queryString.stringify(query);
-    this.props.history.push(`?${stringified}`);
-  };
 
-  handleBackPage = () => {
+
+  handlePageChange = (bool) => {
     const query = queryString.parse(this.props.location.search);
     const page = parseInt(query.page);
-    if (page === 1) return;
-    query.page = page - 1;
+     const { totalPages } = this.state;
+    if(bool){
+      if (page + 1 > totalPages) return;
+      query.page = page + 1;
+    }else {
+      if (page === 1) return;
+      query.page = page - 1;
+    }
     this.setState({currentPage: query.page});
     const stringified = queryString.stringify(query);
     this.props.history.push(`?${stringified}`);
-  };
+  }
 
   handleSelection = e => {
     const searchMedia = e.target.value;
@@ -116,18 +128,17 @@ class SearchPage extends React.Component {
     return (
       <SearchPageContainer>
         <SearchParams>
-          {hasResults && (<MediaSelection value={this.state.searchMedia} onChange={this.handleSelection}>
-            <option defaultValue value="multi">ALL</option>
-            <option value="movie">MOVIES</option>
-            <option value="person">PEOPLE</option>
-            <option value="tv">TV SHOWS</option>
-          </MediaSelection>)}
+          {hasResults && (
+            <MediaSelection value={this.state.searchMedia} onChange={this.handleSelection}>
+             {options.map(option =>  <option defaultValue={option.defaultValue} key={option.value} value={option.value}>{option.label}</option>)}
+            </MediaSelection>
+          )}
           <ButtonRowOne>
             {!(this.state.currentPage === 1) && (
-              <Button onClick={this.handleBackPage} label={"BACK"} />
+              <Button onClick={() => this.handlePageChange(false)} label={"BACK"} />
             )}
             {showForwardBtn && (
-              <Button onClick={this.handleNextPage} label={"FORWARD"}/>
+              <Button onClick={() => this.handlePageChange(true)} label={"FORWARD"}/>
             )}
           </ButtonRowOne>
         </SearchParams>
@@ -160,7 +171,7 @@ class SearchPage extends React.Component {
             <Button onClick={this.handleNextPage} label={"FORWARD"} />
           )}
         </ButtonRowTwo>
-        {!hasResults && (<SearchResultTitle>NO RESULTS FOUND!</SearchResultTitle>)}
+        {!this.props.loading && !hasResults && (<SearchResultTitle>NO RESULTS FOUND!</SearchResultTitle>)}
       </SearchPageContainer>
     );
   }
@@ -168,7 +179,8 @@ class SearchPage extends React.Component {
 
 const WithConsumer = (props) => (
   <LoadingConsumer>
-    {(loading) => <SearchPage {...loading} {...props} />}
+    {(values) => <SearchPage {...values} {...props} />}
   </LoadingConsumer>
 );
-export default withRouter(WithConsumer);
+
+export default WithConsumer;

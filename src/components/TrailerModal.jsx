@@ -59,7 +59,7 @@ const ModalCloseButton = styled.button`
   background: rgba(0, 0, 255, 0);
 `;
 
-ReactModal.setAppElement('#root');
+// ReactModal.setAppElement('#root');
 
 export default class TrailerModal extends React.Component {
 
@@ -101,4 +101,4 @@ export default class TrailerModal extends React.Component {
 
 const props = {};
 
-ReactDOM.render(<TrailerModal {...props} />, document.getElementById('root'))
+// ReactDOM.render(<TrailerModal {...props} />, document.getElementById('root'))
