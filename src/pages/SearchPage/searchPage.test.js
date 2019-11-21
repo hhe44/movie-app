@@ -1,10 +1,12 @@
-import React from 'react'
-import { ThemeProvider } from 'styled-components'
-import { render, fireEvent, waitForElement } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-import axios from 'axios'
+import React from 'react';
 import {SearchPage} from './index';
+import axios from 'axios';
 import theme from '../../theme';
+import { ThemeProvider } from 'styled-components';
+import queryString from "query-string";
+import { render, fireEvent, waitForElement } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import response from './dummydata.json';
 
 jest.mock('axios');
 
@@ -16,20 +18,44 @@ function withTheme (Component, props) {
     )
 }
 
-it.only('<SearchPage />', () => {
-    const search = '?page=1&searchMedia=multi&searchTerm=joker'
-    const url = `/search${search}`;
-    const props = {
-        setLoading: jest.fn(),
-        location: {
-            search
-        }
-    }
-    axios.get.mockResolvedValueOnce({
-        data: { results: [], totalPages: 0 },
-    });
-    const { debug, getByText } = render(withTheme(SearchPage, props))
-    // note to self: console log debug for hints
-    expect(getByText('NO RESULTS FOUND!')).toBeInTheDocument()
+const search = '?page=1&searchMedia=multi&searchTerm=joker'
+const url = `/search${search}`;
 
-})
+describe('Search Page', () => {
+
+    it('renders nothing when there are no results', () => { 
+        const props = {
+            setLoading: jest.fn(),
+            location: { search }
+        };
+        axios.get.mockResolvedValueOnce({ data: { results: [], totalPages: 0 } });
+        const { debug, getByText } = render(withTheme(SearchPage, props));
+        // note to self: console log debug for hints
+        expect(getByText('NO RESULTS FOUND!')).toBeInTheDocument();
+    }),
+
+    it('renders results when there are results', () => {
+        const props = {
+            setLoading: jest.fn(),
+            location: { search }
+        };
+        const { debug, getByText } = render(withTheme(SearchPage, props));
+        axios.get.mockResolvedValueOnce({ 
+            data: {
+                results: response.data.results, 
+                totalPages: response.data.total_pages
+            } 
+        });
+        console.log(debug());
+    }),
+
+    it('parses link correctly', () => {
+        const props = {
+            setLoading: jest.fn(),
+            location: { search: "?page=1&searchMedia=multi&searchTerm=Joker" }
+        };
+        const query = queryString.parse(props.location.search);
+        expect(query).toEqual({ page: '1', searchMedia: 'multi', searchTerm: 'Joker' });
+    })
+
+});

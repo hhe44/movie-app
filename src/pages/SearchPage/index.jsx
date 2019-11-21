@@ -49,12 +49,11 @@ const ButtonRowTwo = styled.div`
   justify-content: center;
 `;
 
-
 const options = [
   {defaultValue: true, value: 'multi', label: 'ALL'},
-   { value: 'movie', label: 'MOVIES'},
-    { value: 'person', label: 'ACTORS'},
-     { value: 'tv', label: 'TV SERIES'}
+  { value: 'movie', label: 'MOVIES'},
+  { value: 'person', label: 'ACTORS'},
+  { value: 'tv', label: 'TV SERIES'}
 ]
 
 export class SearchPage extends React.Component {
@@ -66,20 +65,19 @@ export class SearchPage extends React.Component {
   getResults = async () => {
     try {
        this.props.setLoading(true);
-    const query = queryString.parse(this.props.location.search);
-    const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
-    const response = await axios.get(link);
-    this.setState({
-      results: response.data.results,
-      totalPages: response.data.total_pages
-    });
-    this.props.setLoading(false);
-    }catch(err){
-      console.log(err.message);
+      const query = queryString.parse(this.props.location.search);
+      const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
+      const response = await axios.get(link);
+      this.setState({
+        results: response.data.results,
+        totalPages: response.data.total_pages
+      });
+      this.props.setLoading(false);
+    } catch(err) {
+      // console.log(err.message);
       this.setState({ error: true });
       this.props.setLoading(false);
     }
-   
   };
 
   componentDidMount() {
@@ -94,16 +92,14 @@ export class SearchPage extends React.Component {
     }
   }
 
-
-
   handlePageChange = (bool) => {
     const query = queryString.parse(this.props.location.search);
     const page = parseInt(query.page);
-     const { totalPages } = this.state;
+    const { totalPages } = this.state;
     if(bool){
       if (page + 1 > totalPages) return;
       query.page = page + 1;
-    }else {
+    } else {
       if (page === 1) return;
       query.page = page - 1;
     }

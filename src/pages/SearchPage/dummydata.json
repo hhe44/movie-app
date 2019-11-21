@@ -1,0 +1,524 @@
+{
+    "data": {
+      "page": 1,
+      "total_results": 83,
+      "total_pages": 5,
+      "results": [
+        {
+          "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+          "popularity": 325.893,
+          "vote_count": 5728,
+          "video": false,
+          "media_type": "movie",
+          "id": 475557,
+          "adult": false,
+          "backdrop_path": "/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
+          "original_language": "en",
+          "original_title": "Joker",
+          "genre_ids": [
+            80,
+            18,
+            53
+          ],
+          "title": "Joker",
+          "vote_average": 8.4,
+          "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+          "release_date": "2019-10-02"
+        },
+        {
+          "vote_count": 23,
+          "popularity": 2.343,
+          "id": 129507,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 3.4,
+          "title": "Joker",
+          "release_date": "2012-08-31",
+          "original_language": "hi",
+          "original_title": "Joker",
+          "genre_ids": [
+            35,
+            878
+          ],
+          "backdrop_path": "/7hsepp47nWm5cPgC1bEFJQK3Rk8.jpg",
+          "adult": false,
+          "overview": "In 1947 when the maps of India and Pakistan were being drawn, an oversight ensured that the village of Paglapur didn't find a place in either country. Over 60 years later, Paglapur is isolated, and in need of help. The residents seek help, but as a direct result of being left off the map, they find noone willing to accept Paglapur, and its problems, as their jurisdiction. The villagers decide they need to draw media attention to Paglapur, and in so doing, gain acceptance and help from those who had previously denied them.",
+          "poster_path": "/ql1DUWjY6Y6zEbVFS83s20SBo8J.jpg"
+        },
+        {
+          "poster_path": "/vIRHN4AXaQM6mMVj8CozhtelYmF.jpg",
+          "popularity": 9.037,
+          "vote_count": 327,
+          "video": false,
+          "media_type": "movie",
+          "id": 16234,
+          "adult": false,
+          "backdrop_path": "/pZCuxgUsDICPDKIFH8s5nQGeL4r.jpg",
+          "original_language": "en",
+          "original_title": "Batman Beyond: Return of the Joker",
+          "genre_ids": [
+            28,
+            16,
+            878,
+            10751
+          ],
+          "title": "Batman Beyond: Return of the Joker",
+          "vote_average": 7.6,
+          "overview": "The Joker is back with a vengeance, and Gotham's newest Dark Knight needs answers as he stands alone to face Gotham's most infamous Clown Prince of Crime.",
+          "release_date": "2000-12-12"
+        },
+        {
+          "vote_count": 6,
+          "popularity": 3.621,
+          "id": 214711,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 5.9,
+          "title": "Joker Rising",
+          "release_date": "2013-09-21",
+          "original_language": "en",
+          "original_title": "Joker Rising",
+          "genre_ids": [
+            80
+          ],
+          "backdrop_path": "/ftVV8apC1o79GnFjxMmbKkL7qX3.jpg",
+          "adult": false,
+          "overview": "The dark and gritty story of where the Joker came from and how he became the villain that he is today.",
+          "poster_path": "/61TRGy5wAKHFIfJ3eZpvlJ2TA8X.jpg"
+        },
+        {
+          "vote_count": 0,
+          "popularity": 5.619,
+          "id": 472639,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 0,
+          "title": "Untitled Harley Quinn & The Joker Project",
+          "release_date": "",
+          "original_language": "en",
+          "original_title": "Untitled Harley Quinn & The Joker Project",
+          "genre_ids": [
+            28,
+            80,
+            10749
+          ],
+          "backdrop_path": null,
+          "adult": false,
+          "overview": "A criminal love story. Plot unknown.",
+          "poster_path": null
+        },
+        {
+          "vote_count": 8,
+          "popularity": 1.851,
+          "id": 133792,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 7.5,
+          "title": "The Joker Is Wild",
+          "release_date": "1957-09-26",
+          "original_language": "en",
+          "original_title": "The Joker Is Wild",
+          "genre_ids": [
+            18
+          ],
+          "backdrop_path": "/qrDGuzucmpKtNwp27xljTl0UymL.jpg",
+          "adult": false,
+          "overview": "Frank Sinatra stars in director Charles Vidor's 1957 film biography of nightclub entertainer Joe E. Lewis. The cast also includes Mitzi Gaynor, Jeanne Crain, Eddie Albert, Beverly Garland, Jackie Coogan, Harold Huber, Barry Kelley, Ted de Corsia, Ned Glass, Mary Treen and Sid Melton.",
+          "poster_path": "/IzpqXlHFAHKDI5xpZ68OugMkyn.jpg"
+        },
+        {
+          "vote_count": 7,
+          "popularity": 0.884,
+          "id": 146486,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 4.4,
+          "title": "Joker",
+          "release_date": "1991-11-01",
+          "original_language": "sv",
+          "original_title": "Joker",
+          "genre_ids": [
+            35
+          ],
+          "backdrop_path": "/53WIxWs7RWUja4CzE3TJOQ2xjVv.jpg",
+          "adult": false,
+          "overview": "",
+          "poster_path": "/rY8eu4yQTwpZgz8BEVKfGIh8TUG.jpg"
+        },
+        {
+          "known_for_department": "Acting",
+          "id": 587984,
+          "name": "Joker Thulasi",
+          "known_for": [
+            {
+              "vote_count": 1,
+              "id": 179848,
+              "video": false,
+              "media_type": "movie",
+              "vote_average": 7,
+              "title": "Ratchagan",
+              "release_date": "1997-10-29",
+              "original_language": "ta",
+              "original_title": "ரட்சகன்",
+              "genre_ids": [
+                28,
+                10749
+              ],
+              "backdrop_path": "/eVNVGrWXnfDr14AQKiqsa6odQgv.jpg",
+              "adult": false,
+              "overview": "A girl falls for a violent man, who keeps taking law in his hands and beats people up. She wants to marry to him and eventually even he says yes, but her father has a condition that he should control his anger and work with him in his factory.",
+              "poster_path": "/xkNyNPJJdmslYKnD1vYSPhPmyxh.jpg"
+            },
+            {
+              "vote_count": 0,
+              "id": 504703,
+              "video": false,
+              "media_type": "movie",
+              "vote_average": 0,
+              "title": "Maruthu Pandi",
+              "release_date": "1990-04-27",
+              "original_language": "ta",
+              "original_title": "மருதுபாண்டி",
+              "genre_ids": [
+                10749,
+                80,
+                28
+              ],
+              "backdrop_path": null,
+              "adult": false,
+              "overview": "In the village Ammapatti, Maruthu Pandi is a coracle operator in day and the village protector at night. The villagers give him food in exchange of his work. Maruthu Pandi has a mentally ill sister Lakshmi who is pregnant and he takes care of Lakshmi like a mother. Kanagavalli, a dancer, slowly falls in love with Maruthu Pandi. Kanagavalli is in fact a police officer who wants to arrest Maruthu Pandi. Maruthu Pandi's real name is Manickam, and after a revealed flashback, police team come to Ammapatti to arrest Manickam. What transpires later forms the crux of the story.",
+              "poster_path": "/nI5qdvLHApaUTa3aZA8e2gBU0IZ.jpg"
+            }
+          ],
+          "popularity": 0.6,
+          "profile_path": null,
+          "adult": false,
+          "media_type": "person",
+          "gender": 2
+        },
+        {
+          "vote_count": 10,
+          "popularity": 2.215,
+          "id": 416572,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 3.8,
+          "title": "Joker's Poltergeist",
+          "release_date": "2015-06-03",
+          "original_language": "en",
+          "original_title": "Joker's Poltergeist",
+          "genre_ids": [
+            27,
+            53
+          ],
+          "backdrop_path": "/fihXbO1gnEcoeYNzSdV8864XLSS.jpg",
+          "adult": false,
+          "overview": "After a clown-masked assailant guns down Aurora's Place, the resident theater owner fights to re-open her business.",
+          "poster_path": "/q27Irmlp9SansPgBv3u0D7TU6Sv.jpg"
+        },
+        {
+          "vote_count": 1,
+          "popularity": 0.726,
+          "id": 394520,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 4,
+          "title": "JOKER: Marginal City",
+          "release_date": "1992-04-21",
+          "original_language": "ja",
+          "original_title": "JOKER マージナル・シティ",
+          "genre_ids": [
+            9648,
+            16,
+            878
+          ],
+          "backdrop_path": "/xLkGhJdPYypptPTy1H8A65b0AEM.jpg",
+          "adult": false,
+          "overview": "Joker is a cyborg who has superior strength, can absorb the DNA of any person by touch and regrow its body or part of it at will (hence Joker can be a male or a female). Joker belongs to a special troop of law enforcement: as cop, judge and executioner at the same time. Along with his/her lover, a police officer, they have dealt against criminals of every type.",
+          "poster_path": "/68DKYcI7DdhYfw9C2rGgs6FdLFp.jpg"
+        },
+        {
+          "vote_count": 5,
+          "popularity": 1.11,
+          "id": 92152,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 5.6,
+          "title": "Lethal Obsession",
+          "release_date": "1987-10-15",
+          "original_language": "de",
+          "original_title": "Der Joker",
+          "genre_ids": [
+            18,
+            80,
+            53
+          ],
+          "backdrop_path": null,
+          "adult": false,
+          "overview": "",
+          "poster_path": "/lCh6AFRr0NN7bxt8E52Xvg01Hlz.jpg"
+        },
+        {
+          "known_for_department": "Camera",
+          "id": 40793,
+          "name": "Brian 'Joker' Mulvey",
+          "known_for": [
+            {
+              "release_date": "2006-02-23",
+              "id": 752,
+              "vote_count": 8724,
+              "video": false,
+              "media_type": "movie",
+              "vote_average": 7.9,
+              "title": "V for Vendetta",
+              "genre_ids": [
+                28,
+                14,
+                53
+              ],
+              "original_title": "V for Vendetta",
+              "original_language": "en",
+              "adult": false,
+              "backdrop_path": "/gcxpeba5CtUA8Jkwio8sNZyimEC.jpg",
+              "overview": "In a world in which Great Britain has become a fascist state, a masked vigilante known only as “V” conducts guerrilla warfare against the oppressive British government. When V rescues a young woman from the secret police, he finds in her an ally with whom he can continue his fight to free the people of Britain.",
+              "poster_path": "/AoGpqw4S4ZGgwhlM3FgzFVwyIGl.jpg"
+            },
+            {
+              "release_date": "2002-07-12",
+              "id": 6278,
+              "vote_count": 1213,
+              "video": false,
+              "media_type": "movie",
+              "vote_average": 6,
+              "title": "Reign of Fire",
+              "genre_ids": [
+                28,
+                12,
+                14
+              ],
+              "original_title": "Reign of Fire",
+              "original_language": "en",
+              "adult": false,
+              "backdrop_path": "/xtyNXEmCjSR55cBSIYJ59RSuK7t.jpg",
+              "overview": "In post-apocalyptic England, an American volunteer and a British survivor team up to fight off a brood of fire-breathing dragons seeking to return to global dominance after centuries of rest underground. The Brit -- leading a clan of survivors to hunt down the King of the Dragons -- has much at stake: His mother was killed by a dragon, but his love is still alive.",
+              "poster_path": "/c9FlSkQ0EV2vzln4Bo5NCvzzxWm.jpg"
+            }
+          ],
+          "popularity": 0.6,
+          "profile_path": null,
+          "gender": 0,
+          "media_type": "person",
+          "adult": false
+        },
+        {
+          "vote_count": 2,
+          "popularity": 0.954,
+          "id": 407788,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 5.5,
+          "title": "King, Queen and Joker",
+          "release_date": "1921-05-15",
+          "original_language": "en",
+          "original_title": "King, Queen and Joker",
+          "genre_ids": [],
+          "backdrop_path": null,
+          "adult": false,
+          "overview": "King, Queen, Joker is a 1921 silent feature farce written and directed by Sydney Chaplin, Charlie's older brother. The picture was produced by Famous Players-Lasky and distributed through Paramount Pictures. The film was shot in England, France and the United States.\r Less than a reel of this film, the barbershop sequence, survives at the British Film Institute. It was included in the 2011 Criterion DVD special two disc edition release of The Great Dictator.",
+          "poster_path": "/1ZDsR98CQDZefD9feRWNKKjkvLY.jpg"
+        },
+        {
+          "poster_path": "/sxvGzhK62cZ3KVDnJ7hDTcQvgMz.jpg",
+          "popularity": 0.6,
+          "vote_count": 0,
+          "video": false,
+          "media_type": "movie",
+          "id": 361365,
+          "adult": false,
+          "backdrop_path": null,
+          "original_language": "en",
+          "original_title": "Joker",
+          "genre_ids": [],
+          "title": "Joker",
+          "vote_average": 0,
+          "overview": "1983 short by Tessa Hughes-Freeland",
+          "release_date": "1983-09-25"
+        },
+        {
+          "original_name": "Jolly Joker",
+          "id": 41155,
+          "media_type": "tv",
+          "name": "Jolly Joker",
+          "popularity": 0.925,
+          "vote_count": 1,
+          "vote_average": 5,
+          "first_air_date": "1991-01-06",
+          "poster_path": null,
+          "genre_ids": [
+            35
+          ],
+          "original_language": "de",
+          "backdrop_path": null,
+          "overview": "Jolly Joker is a German television series.",
+          "origin_country": [
+            "DE"
+          ]
+        },
+        {
+          "known_for_department": "Acting",
+          "id": 2402477,
+          "name": "The Joker",
+          "known_for": [
+            {
+              "poster_path": "/a661yO6SozDzsm0qA2KH9oXpQtK.jpg",
+              "vote_count": 0,
+              "video": false,
+              "media_type": "movie",
+              "id": 628221,
+              "adult": false,
+              "genre_ids": [
+                99
+              ],
+              "original_title": "The Great American Mud Wrestle",
+              "original_language": "en",
+              "title": "The Great American Mud Wrestle",
+              "vote_average": 0,
+              "overview": "For one-night-only blood was spilled in the mud.",
+              "release_date": "2018-09-17"
+            }
+          ],
+          "popularity": 0.6,
+          "profile_path": null,
+          "gender": 0,
+          "media_type": "person",
+          "adult": false
+        },
+        {
+          "known_for_department": "Sound",
+          "id": 2305480,
+          "name": "Jimmy Joker",
+          "known_for": [
+            {
+              "original_name": "Melodifestivalen",
+              "id": 12642,
+              "media_type": "tv",
+              "name": "Melodifestivalen",
+              "vote_count": 4,
+              "vote_average": 4.3,
+              "first_air_date": "1958-10-07",
+              "poster_path": "/pIVmxtQ4eKLf75Ku5kltDAw8hx8.jpg",
+              "genre_ids": [
+                10764,
+                10751
+              ],
+              "original_language": "sv",
+              "backdrop_path": "/3P7WxTOl6yhSBudoikDVTyQP9zr.jpg",
+              "overview": "The annual music competition organised by Swedish public broadcasters Sveriges Television and Sveriges Radio to determine the country's representative for the Eurovision Song Contest.",
+              "origin_country": [
+                "SE"
+              ]
+            }
+          ],
+          "popularity": 0.6,
+          "profile_path": null,
+          "adult": false,
+          "media_type": "person",
+          "gender": 0
+        },
+        {
+          "known_for_department": "Acting",
+          "id": 2133276,
+          "name": "Joker Arroyo",
+          "known_for": [
+            {
+              "vote_count": 0,
+              "id": 549928,
+              "video": false,
+              "media_type": "movie",
+              "vote_average": 0,
+              "title": "Batas Militar",
+              "release_date": "1997-09-21",
+              "original_language": "tl",
+              "original_title": "Batas Militar",
+              "genre_ids": [
+                99
+              ],
+              "backdrop_path": null,
+              "adult": false,
+              "overview": "It features the human rights violations during martial law. Economy and biographies of Ferdinand Marcos, Imelda Marcos, and Benigno Aquino Jr.",
+              "poster_path": "/52KTMHx4i8CTamSg1V3agrKVaQt.jpg"
+            }
+          ],
+          "popularity": 0.6,
+          "profile_path": null,
+          "adult": false,
+          "media_type": "person",
+          "gender": 0
+        },
+        {
+          "vote_count": 0,
+          "popularity": 0.6,
+          "id": 556726,
+          "video": false,
+          "media_type": "movie",
+          "vote_average": 0,
+          "title": "Le joker",
+          "release_date": "1930-11-14",
+          "original_language": "fr",
+          "original_title": "Le joker",
+          "genre_ids": [],
+          "backdrop_path": null,
+          "adult": false,
+          "overview": "",
+          "poster_path": null
+        },
+        {
+          "original_name": "Joker Poker",
+          "id": 5345,
+          "media_type": "tv",
+          "name": "Joker Poker",
+          "popularity": 0.6,
+          "vote_count": 0,
+          "vote_average": 0,
+          "first_air_date": "2005-09-24",
+          "poster_path": null,
+          "genre_ids": [],
+          "original_language": "en",
+          "backdrop_path": null,
+          "overview": "Joker Poker was a late night Australian poker program on Network Ten which aired in 2005 and 2006. Series one was hosted by Adam Spencer, with series two hosted by Mike Goldman. Both series were co-hosted by New Zealand poker pro Lee Nelson and Australian model Laura Weston acted as hostess. The show was produced by Australian Production Company Freehand Group.\n\nThe show featured Australian comedians playing no-limit Texas hold'em poker. Four comedians compete in each episode on behalf of their chosen charity. It was recorded in the high rollers' room of Sydney's Star City Casino for the first season and in a studio at Fox Studios in Sydney for the second. The weekly winner donates $5,000 to charity, while the series winner donates $25,000.\n\nA New Zealand version also aired in 2007.",
+          "origin_country": [
+            "AU"
+          ]
+        }
+      ]
+    },
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "cache-control": "public, max-age=21600",
+      "content-type": "application/json;charset=utf-8",
+      "x-ratelimit-limit": "40",
+      "x-ratelimit-remaining": "39",
+      "x-ratelimit-reset": "1574304477"
+    },
+    "config": {
+      "url": "https://api.themoviedb.org/3/search/multi?api_key=a8e93c8551b6dd18fe3863ce195fd340&language=en-US&page=1&include_adult=false&query=Joker",
+      "method": "get",
+      "headers": {
+        "Accept": "application/json, text/plain, */*"
+      },
+      "transformRequest": [
+        null
+      ],
+      "transformResponse": [
+        null
+      ],
+      "timeout": 0,
+      "xsrfCookieName": "XSRF-TOKEN",
+      "xsrfHeaderName": "X-XSRF-TOKEN",
+      "maxContentLength": -1
+    },
+    "request": {
+      "klIsCORSRequest": true
+    }
+  }
