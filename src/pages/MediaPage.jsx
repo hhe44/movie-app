@@ -10,6 +10,9 @@ const MediaPageContainer = styled.div`
   position: relative;
   width: 100%;
   height: calc(100vh - ${props => props.theme.sizes.xxLarge});
+  @media (max-width: 600px) {
+    height: calc(100vh - ${props => props.theme.sizes.navHeightMobile});
+  }
 `;
 
 const Image = styled.div`
@@ -20,6 +23,10 @@ const Image = styled.div`
   background-size: cover;
   top: 0;
   left: 0;
+  @media (max-width: 600px) {
+    top: 1rem;
+    height: calc(100vh - ${props => props.theme.sizes.navHeightMobile});
+  }
 `;
 
 const FilterEffect = styled.div`
@@ -40,6 +47,10 @@ const FilterEffect = styled.div`
   padding-left: 15%;
   padding-right: 15%;
   box-sizing: border-box;
+  @media (max-width: 600px) {
+    top: 1rem;
+    height: calc(100vh - ${props => props.theme.sizes.navHeightMobile});
+  }
 `;
 
 const MediaDetails = styled.div`
@@ -58,18 +69,25 @@ const Tagline = styled.h3`
 `;
 
 const StyledTitle = styled.h1`
-  font-size: ${props => props.theme.fonts.xxLarge};;
+  font-size: ${props => props.theme.fonts.xxLarge};
   font-weight: 400;
   color: ${props => props.theme.colors.white};
   text-align: center;
   margin-top: 0;
   margin-bottom: ${props => props.theme.sizes.large};
+  @media (max-width: 900px) {
+    font-size: ${props => props.theme.fonts.xLarge};
+  }
 `;
 
 const Buttons = styled.div`
   display: flex;
   justify-content: center;
   text-decoration: none;
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const StyledHyperlink = styled.a`

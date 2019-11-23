@@ -10,7 +10,7 @@ export default  {
         xLarge: rem(40),
         xxLarge: rem(80),
         title: rem(64),
-        titleMobile: rem(60)
+        titleMobile: rem(60),
     },
     sizes: {
         tiny: rem(8),
@@ -21,6 +21,7 @@ export default  {
         xxLarge: rem(128),
         xxxLarge: rem(256),
         navHeight: rem(96),
+        navHeightMobile: rem(110),
     },
     colors: {
         mainBG: "#141414",

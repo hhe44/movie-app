@@ -17,7 +17,7 @@ const Navbar = styled.div`
   box-shadow: 0px 4px 24px rgba(253, 0, 29, 0.1);
   z-index: 9;
   @media (max-width: 600px) {
-    height: ${rem(110)}
+    height: ${props => props.theme.sizes.navHeightMobile};
   }
 `;
 
