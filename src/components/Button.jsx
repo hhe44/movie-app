@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import { rgba } from "polished";
+import { rem } from "polished";
 
 export const StyledButton = styled.button`
   ${(props) => {
@@ -10,10 +11,15 @@ export const StyledButton = styled.button`
           font-size: ${theme.fonts.large};
           border: 0;
           border-radius: ${theme.borderRadius};
-          margin-right: ${props => props.theme.sizes.medium};
+          margin-right: ${props => props.theme.sizes.small};
           background: ${theme.colors.red};
           color: ${theme.colors.white};
           outline: none;
+          @media (max-width: 600px) {
+            padding-right: ${rem(4)};
+            padding-left: ${rem(4)};
+            font-size: ${theme.fonts.medium};
+          }
       `
   }}
 `

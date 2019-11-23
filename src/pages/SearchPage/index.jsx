@@ -31,6 +31,11 @@ const MediaSelection = styled.select`
   height: ${props => props.theme.sizes.Large};
   -webkit-appearance: none;
   transition: 0.2s ease-in-out;
+  @media (max-width: 600px) {
+    padding: ${rem(4)};
+    width: ${rem(100)};
+    margin-right: ${rem(12)};
+  }
 `;
 
 const ButtonRowOne = styled.div``;
@@ -41,6 +46,9 @@ const ResultWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: ${props => props.theme.sizes.small} 0;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const ButtonRowTwo = styled.div`
@@ -161,10 +169,10 @@ export class SearchPage extends React.Component {
         ])}
         <ButtonRowTwo>
           {!(this.state.currentPage === 1) && (
-            <Button onClick={this.handleBackPage} label={"BACK"} />
+            <Button onClick={() => this.handlePageChange(false)} label={"BACK"} />
           )}
           {showForwardBtn && (
-            <Button onClick={this.handleNextPage} label={"FORWARD"} />
+            <Button onClick={() => this.handlePageChange(true)} label={"FORWARD"}/>
           )}
         </ButtonRowTwo>
         {!this.props.loading && !hasResults && (<SearchResultTitle>NO RESULTS FOUND!</SearchResultTitle>)}

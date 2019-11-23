@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import logo from "../images/logo_6.png";
+import logo from "../images/logo_7.png";
 import { Link } from "react-router-dom";
 import { rem } from "polished";
 
@@ -44,7 +44,7 @@ const NavLogo = styled.img`
   cursor: pointer;
   @media (max-width: 600px) {
     height: auto;
-    width: ${rem(200)};
+    width: ${rem(150)};
     padding-top: ${props => props.theme.sizes.tiny};
     padding-bottom: ${props => props.theme.sizes.tiny};
   }

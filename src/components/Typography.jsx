@@ -26,6 +26,10 @@ export const SearchResultTitle = styled(Title)`
   position: relative;
   font-size: ${props => props.theme.fonts.xLarge};
   padding-bottom: ${props => props.theme.sizes.medium};
+  @media (max-width: 600px) {
+    text-align: center;
+    font-size: ${props => props.theme.fonts.xLarge};
+  }
 `;
 
 export const Blurb = styled.div`
@@ -47,6 +51,9 @@ export const Caption = styled(Blurb)`
 export const SearchPageBlurb = styled(Blurb)`
   width: 60%;
   padding: ${props => props.theme.sizes.veryLarge};
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 export const MediaDetail = styled.h3`
@@ -54,6 +61,9 @@ export const MediaDetail = styled.h3`
   font-size: ${props => props.theme.fonts.large};
   padding-bottom: ${props => props.theme.sizes.medium};
   color: ${props => props.theme.colors.white};
+  @media (max-width: 600px) {
+    font-size: ${props => props.theme.fonts.medium};
+  }
 `;
 
 export const Overview = styled(MediaDetail)`
