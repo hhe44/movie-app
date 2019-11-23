@@ -75,14 +75,18 @@ export class SearchPage extends React.Component {
        this.props.setLoading(true);
       const query = queryString.parse(this.props.location.search);
       const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
-      const response = await axios.get(link);
+      let response = await axios.get(link);
+      if(parseInt(response.data.total_pages) < parseInt(query.page)){
+        console.log('heere mate')
+        return this.props.history.push(`/search?page=${response.data.total_pages}&searchMedia=${query.searchMedia}&searchTerm=${query.searchTerm}`);
+      }
       this.setState({
         results: response.data.results,
         totalPages: response.data.total_pages
       });
       this.props.setLoading(false);
     } catch(err) {
-      // console.log(err.message);
+      console.log(err.message);
       this.setState({ error: true });
       this.props.setLoading(false);
     }
@@ -126,9 +130,9 @@ export class SearchPage extends React.Component {
   };
 
   render() {
-    const { results } = this.state;
-    const hasResults = (this.state.results.length > 0);
-    const showForwardBtn = !(this.state.currentPage === this.state.totalPages) && hasResults;
+    const { results,currentPage, totalPages } = this.state;
+    const hasResults = results.length;
+    const showForwardBtn = !(currentPage === totalPages) && hasResults;
     return (
       <SearchPageContainer>
         <SearchParams>
@@ -146,7 +150,7 @@ export class SearchPage extends React.Component {
             )}
           </ButtonRowOne>
         </SearchParams>
-        {results.map(result => [
+        {results.map(result => (
           <ResultWrap key={result.id}>
             <SearchResult result={result} />
             <SearchPageBlurb>
@@ -166,7 +170,7 @@ export class SearchPage extends React.Component {
               <Overview>{result.overview}</Overview>
             </SearchPageBlurb>
           </ResultWrap>
-        ])}
+        ))}
         <ButtonRowTwo>
           {!(this.state.currentPage === 1) && (
             <Button onClick={() => this.handlePageChange(false)} label={"BACK"} />

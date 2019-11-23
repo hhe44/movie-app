@@ -152,12 +152,13 @@ class Navigation extends React.Component {
     // preventDefault to avoid reloading entire page, which would be its default behavior
     e.preventDefault();
     if(this.state.searchToggle) return;
-    if(!this.state.searchTerm) return;
+    if(!this.state.searchTerm.trim()) return;
     this.props.history.push(`/search?page=1&searchMedia=multi&searchTerm=${this.state.searchTerm}`);
   };
 
   render() {
     const { searchToggle } = this.state;
+    
     return (
       <Navbar className="navbar">
         <NavItems>
