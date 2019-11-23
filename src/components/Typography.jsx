@@ -11,6 +11,9 @@ export const Title = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+  @media (max-width: 600px) {
+    font-size: ${props => props.theme.fonts.titleMobile};
+  }
 `;
 
 export const MediaListTitle = styled(Title)`

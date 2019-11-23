@@ -9,7 +9,8 @@ export default  {
         large: rem(32),
         xLarge: rem(40),
         xxLarge: rem(80),
-        title: rem(64)
+        title: rem(64),
+        titleMobile: rem(60)
     },
     sizes: {
         tiny: rem(8),

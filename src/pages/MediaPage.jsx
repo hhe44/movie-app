@@ -43,9 +43,9 @@ const FilterEffect = styled.div`
 `;
 
 const MediaDetails = styled.div`
-    font-family: Open Sans;
-    position: relative;
-    top: ${props => props.theme.sizes.xxLarge};
+  font-family: Open Sans;
+  position: relative;
+  top: ${props => props.theme.sizes.xxLarge};
 `
 
 const Tagline = styled.h3`

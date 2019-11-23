@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import logo from "../images/logo_6.png";
 import { Link } from "react-router-dom";
+import { rem } from "polished";
 
 const Navbar = styled.div`
   position: fixed;
@@ -15,6 +16,9 @@ const Navbar = styled.div`
   background: linear-gradient(rgba(20, 20, 20, 1) 60%, rgba(20, 20, 20, 0.8));
   box-shadow: 0px 4px 24px rgba(253, 0, 29, 0.1);
   z-index: 9;
+  @media (max-width: 600px) {
+    height: ${rem(110)}
+  }
 `;
 
 const NavItems = styled.div`
@@ -29,17 +33,29 @@ const NavItems = styled.div`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const NavLogo = styled.img`
   height: ${props => props.theme.sizes.xLarge};
   width: auto;
   cursor: pointer;
+  @media (max-width: 600px) {
+    height: auto;
+    width: ${rem(200)};
+    padding-top: ${props => props.theme.sizes.tiny};
+    padding-bottom: ${props => props.theme.sizes.tiny};
+  }
 `;
 
 const NavSearch = styled.div`
   margin-left: ${props => props.theme.sizes.xLarge};
   margin-right: ${props => props.theme.sizes.large};
+  @media (max-width: 600px) {
+    margin: 0;
+  }
 `;
 
 const SearchBar = styled.form`
@@ -47,6 +63,9 @@ const SearchBar = styled.form`
   width: 16rem;
   display: flex;
   align-items: center;
+  @media (max-width: 600px) {
+    width: 12rem;
+  }
 `
 
 const SearchButton = styled.button`
@@ -57,6 +76,10 @@ const SearchButton = styled.button`
   background-color: ${props => props.theme.colors.mainBG};
   color: ${props => props.theme.colors.grey};
   cursor: pointer;
+  @media (max-width: 600px) {
+    width: 12rem;
+    background-color: rgba(0,0,0,0);
+  }
 `
 
 const SearchText = styled.input`
@@ -70,11 +93,17 @@ const SearchText = styled.input`
   border-radius: ${props => props.theme.sizes.small};
   width: ${props => props.isShown ? "12rem" : "0rem"};
   background-color: ${props => props.isShown ? props.theme.colors.white : props.theme.colors.mainBG };
+  @media (max-width: 600px) {
+    width: ${props => props.isShown ? "9rem" : "0rem"};
+  }
 `
 
 const NavBrowse = styled.div`
   font-family: Open Sans;
   cursor: pointer;
+  @media (max-width: 600px) {
+    visibility: hidden;
+  }
 `;
 
 const NavProfile = styled.div`
@@ -84,6 +113,9 @@ const NavProfile = styled.div`
   background-color: white;
   margin-left: auto;
   cursor: pointer;
+  @media (max-width: 900px) {
+    visibility: hidden;
+  }
 `;
 
 const UserProfile = styled.div`
@@ -97,6 +129,7 @@ const UserProfile = styled.div`
 const StyledLink = styled(Link)`
   color: ${props => props.theme.colors.grey};
   text-decoration: none;
+  background-color: rgba(0,0,0,0);
 `;
 
 class Navigation extends React.Component {
