@@ -39,14 +39,13 @@ describe('Search Page', () => {
             setLoading: jest.fn(),
             location: { search }
         };
-        const { debug, getByText } = render(withTheme(SearchPage, props));
         axios.get.mockResolvedValueOnce({ 
             data: {
                 results: response.data.results, 
                 totalPages: response.data.total_pages
             } 
         });
-        console.log(debug());
+        const { debug, getByText } = render(withTheme(SearchPage, props));
     }),
 
     it('parses link correctly', () => {

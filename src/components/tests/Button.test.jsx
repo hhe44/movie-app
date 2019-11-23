@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from 'enzyme';
-import { StyledButton, Button, MediaPageButton } from '.';
+import { StyledButton, Button, MediaPageButton } from '../Button';
 import toJson from 'enzyme-to-json';
 
 it('Button Snapshots', () => {

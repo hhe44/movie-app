@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { rgba } from "polished";
 import { MediaPageButton } from "../components/Button";
-// import TrailerModal from "../components/TrailerModal";
+import TrailerModal from "../components/TrailerModal";
 
 const MediaPageContainer = styled.div`
   position: relative;
@@ -117,12 +117,9 @@ class MediaPage extends React.PureComponent {
             <Tagline>{media.tagline}</Tagline>
             <StyledTitle>{media.title}</StyledTitle>
             <Buttons>
-              {/* trailerKey.length > 0 && (
-                // <TrailerModal title={media.title} trailerKey={trailerKey[0].key}></TrailerModal>
-                <StyledHyperlink href={"https://www.youtube.com/watch?v=" + trailerKey[0].key} target="_blank">
-                  <Button id="trailer" onClick={this.handleShowMessageClick}>{"TRAILER"}</Button>
-                </StyledHyperlink>
-              )*/}
+              { trailerKey.length > 0 && (
+                <TrailerModal title={media.title} trailerKey={trailerKey[0].key}></TrailerModal>
+              )}
               {media.homepage && (
                 <StyledHyperlink href={media.homepage} target="_blank">
                   <MediaPageButton alt="true">{"HOMEPAGE"}</MediaPageButton>
