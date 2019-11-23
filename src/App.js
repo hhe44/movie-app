@@ -18,6 +18,10 @@ const Content = styled.div`
   padding-top: ${props => props.theme.sizes.navHeight};
 `;
 
+const fullWidth = {
+  width: '100vw'
+}
+
 const Landing = () => (
   <>
     <MediaList title={"POPULAR"} mediaType={"discover/movie"} />

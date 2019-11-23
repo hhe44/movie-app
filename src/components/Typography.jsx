@@ -68,4 +68,7 @@ export const MediaDetail = styled.h3`
 
 export const Overview = styled(MediaDetail)`
   font-size: ${props => props.theme.fonts.medium};
+  @media (max-width: 600px) {
+    font-size: ${props => props.theme.fonts.small};
+  }
 `;
