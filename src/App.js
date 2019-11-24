@@ -19,7 +19,7 @@ const Content = styled.div`
 `;
 
 const fullWidth = {
-  width: '100vw'
+  width: '100%'
 }
 
 const Landing = () => (
@@ -34,10 +34,10 @@ class App extends React.Component {
   render() {
     return (
       <Content>
-        <LoadingProvider>
+        <LoadingProvider style={fullWidth}>
           <Router>
             <Navbar />
-            <Switch>
+            <div style={fullWidth} >
               <Route path="/" exact component={Landing} />
               <Route path="/browse" exact component={BrowsePage} />
               <Route path="/movie/:id" exact component={MediaPage} />
@@ -45,7 +45,7 @@ class App extends React.Component {
               <Route path="/person/:id" exact component={ActorPage} />
               <Route path="/search" component={SearchPage} />
               <Route path="/mediahomepage" />
-            </Switch>
+            </div>
           </Router>
         </LoadingProvider>
       </Content>
