@@ -19,7 +19,7 @@ const Content = styled.div`
 `;
 
 const fullWidth = {
-  width: '100vw'
+  width: '100%'
 }
 
 const Landing = () => (
