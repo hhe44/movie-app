@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import VisibilitySensor from "react-visibility-sensor";
 import { Container } from "../components/Container";
 import { MediaListTitle, Caption } from "../components/Typography";
+import { LoadingConsumer } from "../loadingContext";
 
 const List = styled.div`
   background: ${props => props.theme.colors.mainBG};
@@ -50,22 +51,22 @@ const MediaWrap = styled.div`
 const imagePath = "https://image.tmdb.org/t/p/w780/";
 const baseURL = "https://api.themoviedb.org/3";
 
-export default class MediaList extends React.PureComponent {
+class MediaList extends React.PureComponent {
   state = {
     medias: [],
-    loading: false,
     isVisible: false
   };
 
   fetchMedias = async () => {
-    const { genreId } = this.props
-    this.setState({ loading: true });
+    this.props.setLoading(true);
+    const { genreId } = this.props;
     const getMediaList = `${baseURL}/${this.props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc&include_adult=false&language=en-US&page=1${genreId ? "&with_genres="+genreId : ""}`;
     const response = await axios.get(getMediaList);
     this.setState({
       medias: response.data.results,
-      loading: false
     });
+    console.log(this.props);
+    this.props.setLoading(false);
   };
 
   render() {
@@ -75,7 +76,6 @@ export default class MediaList extends React.PureComponent {
       <VisibilitySensor onChange={this.fetchMedias}>
         <Container>
           <MediaListTitle>{title}</MediaListTitle>
-          {this.state.loading && <MediaListTitle>Loading</MediaListTitle>}
           <div>
             <List key="list1">
               {medias.map(media => [
@@ -103,3 +103,9 @@ export default class MediaList extends React.PureComponent {
     );
   }
 }
+
+export default (props) => (
+  <LoadingConsumer>
+    {(loading) => <MediaList {...loading} {...props} />}
+  </LoadingConsumer>
+);

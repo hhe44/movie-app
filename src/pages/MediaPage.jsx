@@ -1,13 +1,18 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import axios from "axios";
 import { rgba } from "polished";
+import { MediaPageButton } from "../components/Button";
+import TrailerModal from "../components/TrailerModal";
 
 const MediaPageContainer = styled.div`
   position: relative;
   width: 100%;
   height: calc(100vh - ${props => props.theme.sizes.xxLarge});
+  @media (max-width: 600px) {
+    height: calc(100vh - ${props => props.theme.sizes.navHeightMobile});
+  }
 `;
 
 const Image = styled.div`
@@ -18,6 +23,10 @@ const Image = styled.div`
   background-size: cover;
   top: 0;
   left: 0;
+  @media (max-width: 600px) {
+    top: 1rem;
+    height: calc(100vh - ${props => props.theme.sizes.navHeightMobile});
+  }
 `;
 
 const FilterEffect = styled.div`
@@ -38,12 +47,16 @@ const FilterEffect = styled.div`
   padding-left: 15%;
   padding-right: 15%;
   box-sizing: border-box;
+  @media (max-width: 600px) {
+    top: 1rem;
+    height: calc(100vh - ${props => props.theme.sizes.navHeightMobile});
+  }
 `;
 
 const MediaDetails = styled.div`
-    font-family: Open Sans;
-    position: relative;
-    top: ${props => props.theme.sizes.xxLarge};
+  font-family: Open Sans;
+  position: relative;
+  top: ${props => props.theme.sizes.xxLarge};
 `
 
 const Tagline = styled.h3`
@@ -56,37 +69,24 @@ const Tagline = styled.h3`
 `;
 
 const StyledTitle = styled.h1`
-  font-size: ${props => props.theme.fonts.xxLarge};;
+  font-size: ${props => props.theme.fonts.xxLarge};
   font-weight: 400;
   color: ${props => props.theme.colors.white};
   text-align: center;
   margin-top: 0;
   margin-bottom: ${props => props.theme.sizes.large};
+  @media (max-width: 900px) {
+    font-size: ${props => props.theme.fonts.xLarge};
+  }
 `;
 
 const Buttons = styled.div`
   display: flex;
   justify-content: center;
   text-decoration: none;
-`;
-
-const Button = styled.button`
-  font-size: ${props => props.theme.fonts.medium};
-  color: black;
-  background: #e8e8e8;
-  font-weight: 800;
-  padding: ${props => props.theme.sizes.tiny} ${props => props.theme.sizes.small};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: ${props => props.theme.sizes.small};
-  border: 1px solid #e8e8e8;
-  cursor: pointer;
-  ${
-    props =>  props.alt && css`
-      color: #e8e8e8;
-      background: ${rgba(props.theme.colors.mainBG, 0.1)};
-    `
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -111,7 +111,7 @@ const Overview = styled.h3`
 
 class MediaPage extends React.PureComponent {
   state = {
-    media: {}
+    media: {},
   };
 
   async componentDidMount() {
@@ -119,11 +119,9 @@ class MediaPage extends React.PureComponent {
     const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
     const response = await axios.get(getMediaDetail);
     this.setState({ media: response.data });
-    console.log(this.state);
   }
 
   render() {
-
     const { media } = this.state;
     if(!media.videos) return <div>...loading</div>;
     const trailerKey = media.videos.results
@@ -135,16 +133,14 @@ class MediaPage extends React.PureComponent {
         <FilterEffect>
           <MediaDetails>
             <Tagline>{media.tagline}</Tagline>
-            <StyledTitle>{media.title || media.name}</StyledTitle>
+            <StyledTitle>{media.title}</StyledTitle>
             <Buttons>
               { trailerKey.length > 0 && (
-                <StyledHyperlink href={"https://www.youtube.com/watch?v=" + trailerKey[0].key} target="_blank">
-                  <Button>{"TRAILER"}</Button>
-                </StyledHyperlink>
+                <TrailerModal title={media.title} trailerKey={trailerKey[0].key}></TrailerModal>
               )}
               {media.homepage && (
                 <StyledHyperlink href={media.homepage} target="_blank">
-                  <Button alt="true">{"HOMEPAGE"}</Button>
+                  <MediaPageButton alt="true">{"HOMEPAGE"}</MediaPageButton>
                 </StyledHyperlink>
               )}
             </Buttons>
@@ -153,6 +149,7 @@ class MediaPage extends React.PureComponent {
         <OverviewDiv>
           <Overview>{media.overview}</Overview>
         </OverviewDiv>
+        
       </MediaPageContainer>
     );
   }

@@ -8,6 +8,8 @@
     "query-string": "^6.8.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-loading-bar": "0.0.7",
+    "react-modal": "^3.11.1",
     "react-router-dom": "^5.1.1",
     "react-scripts": "3.1.2",
     "react-visibility-sensor": "^5.1.1",
@@ -33,5 +35,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3"
   }
 }
