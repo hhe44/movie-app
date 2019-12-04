@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
 import styled, {css} from 'styled-components';
 import { rgba, rem } from "polished";
-// import { MediaPageButton } from "../components/Button";
 
 const customStyles = {
   overlay: {
@@ -58,8 +56,6 @@ const ModalCloseButton = styled.button`
   color: white;
   background: rgba(0, 0, 255, 0);
 `;
-
-// ReactModal.setAppElement('#root');
 
 export default class TrailerModal extends React.Component {
 

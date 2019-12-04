@@ -69,11 +69,14 @@ class MediaList extends React.PureComponent {
     this.props.setLoading(false);
   };
 
+  componentDidMount() {
+    this.fetchMedias();
+  }
+
   render() {
     const { title } = this.props;
     const { medias } = this.state;
     return (
-      <VisibilitySensor onChange={this.fetchMedias}>
         <Container>
           <MediaListTitle>{title}</MediaListTitle>
           <div>
@@ -99,7 +102,6 @@ class MediaList extends React.PureComponent {
             </List>
           </div>
         </Container>
-      </VisibilitySensor>
     );
   }
 }
