@@ -30,8 +30,7 @@ const Landing = () => (
   </>
 );
 
-class App extends React.Component {
-  render() {
+const App = () => {
     return (
       <Content>
         <LoadingProvider style={fullWidth}>
@@ -50,7 +49,6 @@ class App extends React.Component {
         </LoadingProvider>
       </Content>
     );
-  }
 }
 
 export default App;

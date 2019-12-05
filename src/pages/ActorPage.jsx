@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Button } from "../components/Button";
@@ -31,27 +31,32 @@ const Buttons = styled.div`
   padding-top: ${props => props.theme.fonts.xLarge};
 `;
 
-export default class ActorPage extends React.PureComponent {
-  state = {
+const ActorPage = (props) => {
+
+  const [state, setState] = useState({
     media: []
-  };
+  });
 
-  async componentDidMount() {
-    const param = this.props.location.pathname;
-    const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}`;
-    const response = await axios.get(getMediaDetail);
-    this.setState({ media: response.data });
-    console.log(this.state);
-  }
+  useEffect(() => {
+    async function fetchData() {
+      const param = props.location.pathname;
+      const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}`;
+      const response = await axios.get(getMediaDetail);
+      setState({ media: response.data });
+      console.log(state);
+    }
+    fetchData();
+  }, [])
 
-  // Little debugger function here for help...!
-  print = () => {
-    console.log(this.state);
-    console.log(this.props.match.url);
-  };
+  // async componentDidMount() {
+  //   const param = props.location.pathname;
+  //   const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}`;
+  //   const response = await axios.get(getMediaDetail);
+  //   setState({ media: response.data });
+  //   console.log(state);
+  // }
 
-  render() {
-    const { media } = this.state;
+    const { media } = state;
     const imagePath = "https://image.tmdb.org/t/p/original";
     return (
       <MediaPageContainer>
@@ -86,4 +91,6 @@ export default class ActorPage extends React.PureComponent {
       </MediaPageContainer>
     );
   }
-}
+;
+
+export default ActorPage;
