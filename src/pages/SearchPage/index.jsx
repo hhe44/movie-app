@@ -76,8 +76,6 @@ export class SearchPage extends React.Component {
       const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
       let response = await axios.get(link);
       if(parseInt(response.data.total_pages) < parseInt(query.page)){
-        console.log(parseInt(response.data.total_pages));
-        console.log(parseInt(query.page));
         return this.props.history.push(`/search?page=${response.data.total_pages}&searchMedia=${query.searchMedia}&searchTerm=${query.searchTerm}`);
       }
       this.setState({
@@ -146,7 +144,7 @@ export class SearchPage extends React.Component {
             </MediaSelection>
           )}
           <ButtonRowOne>
-            {!(this.state.currentPage === 1) && !hasResults && (
+            {(this.state.currentPage > 1)  && (
               <Button
                 onClick={() => this.handlePageChange(false)}
                 label={"BACK"}
@@ -184,7 +182,7 @@ export class SearchPage extends React.Component {
           </ResultWrap>
         ))}
         <ButtonRowTwo>
-          {!(this.state.currentPage === 1) && (
+          {(this.state.currentPage > 1) && (
             <Button
               onClick={() => this.handlePageChange(false)}
               label={"BACK"}
