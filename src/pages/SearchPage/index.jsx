@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
 import { rem } from "polished";
@@ -72,12 +71,11 @@ export class SearchPage extends React.Component {
 
   getResults = async () => {
     try {
-       this.props.setLoading(true);
+      this.props.setLoading(true);
       const query = queryString.parse(this.props.location.search);
       const link = `https://api.themoviedb.org/3/search/${query.searchMedia}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${query.page}&include_adult=false&query=${query.searchTerm}`;
       let response = await axios.get(link);
       if(parseInt(response.data.total_pages) < parseInt(query.page)){
-        console.log('heere mate')
         return this.props.history.push(`/search?page=${response.data.total_pages}&searchMedia=${query.searchMedia}&searchTerm=${query.searchTerm}`);
       }
       this.setState({
@@ -138,15 +136,25 @@ export class SearchPage extends React.Component {
         <SearchParams>
           {hasResults && (
             <MediaSelection value={this.state.searchMedia} onChange={this.handleSelection}>
-             {options.map(option =>  <option defaultValue={option.defaultValue} key={option.value} value={option.value}>{option.label}</option>)}
+              {options.map(option => (
+                <option defaultValue={option.defaultValue} key={option.value} value={option.value}>
+                  {option.label}
+                </option> 
+              ))}
             </MediaSelection>
           )}
           <ButtonRowOne>
-            {!(this.state.currentPage === 1) && (
-              <Button onClick={() => this.handlePageChange(false)} label={"BACK"} />
+            {(this.state.currentPage > 1)  && (
+              <Button
+                onClick={() => this.handlePageChange(false)}
+                label={"BACK"}
+              />
             )}
             {showForwardBtn && (
-              <Button onClick={() => this.handlePageChange(true)} label={"FORWARD"}/>
+              <Button
+                onClick={() => this.handlePageChange(true)}
+                label={"FORWARD"}
+              />
             )}
           </ButtonRowOne>
         </SearchParams>
@@ -158,28 +166,38 @@ export class SearchPage extends React.Component {
                 {result.title || result.name}
               </SearchResultTitle>
               <MediaDetail>
-                {
-                  result.release_date ? "Release Date: " + result.release_date 
-                  : result.last_air_date ? "Last Aired: " + result.last_air_date
-                  : ""
-                }
+                {result.release_date
+                  ? "Release Date: " + result.release_date
+                  : result.last_air_date
+                  ? "Last Aired: " + result.last_air_date
+                  : ""}
               </MediaDetail>
               <MediaDetail>
-                {result.vote_average ? `Rating: ${result.vote_average} / 10` : ""}
+                {result.vote_average
+                  ? `Rating: ${result.vote_average} / 10`
+                  : ""}
               </MediaDetail>
               <Overview>{result.overview}</Overview>
             </SearchPageBlurb>
           </ResultWrap>
         ))}
         <ButtonRowTwo>
-          {!(this.state.currentPage === 1) && (
-            <Button onClick={() => this.handlePageChange(false)} label={"BACK"} />
+          {(this.state.currentPage > 1) && (
+            <Button
+              onClick={() => this.handlePageChange(false)}
+              label={"BACK"}
+            />
           )}
           {showForwardBtn && (
-            <Button onClick={() => this.handlePageChange(true)} label={"FORWARD"}/>
+            <Button
+              onClick={() => this.handlePageChange(true)}
+              label={"FORWARD"}
+            />
           )}
         </ButtonRowTwo>
-        {!this.props.loading && !hasResults && (<SearchResultTitle>NO RESULTS FOUND!</SearchResultTitle>)}
+        {!this.props.loading && !hasResults && (
+          <SearchResultTitle>NO RESULTS FOUND!</SearchResultTitle>
+        )}
       </SearchPageContainer>
     );
   }
