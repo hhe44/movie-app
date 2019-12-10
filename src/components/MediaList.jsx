@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import VisibilitySensor from "react-visibility-sensor";
 import { Container } from "../components/Container";
 import { MediaListTitle, Caption } from "../components/Typography";
 import { LoadingConsumer } from "../loadingContext";

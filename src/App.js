@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoadingProvider from "./loadingContext";
 import Navbar from "./components/Navbar";
 import MediaList from "./components/MediaList";

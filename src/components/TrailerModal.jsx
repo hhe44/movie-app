@@ -95,6 +95,4 @@ export default class TrailerModal extends React.Component {
   }
 }
 
-const props = {};
-
 // ReactDOM.render(<TrailerModal {...props} />, document.getElementById('root'))
