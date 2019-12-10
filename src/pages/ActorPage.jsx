@@ -43,18 +43,9 @@ const ActorPage = (props) => {
       const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}`;
       const response = await axios.get(getMediaDetail);
       setState({ media: response.data });
-      console.log(state);
     }
     fetchData();
-  }, [])
-
-  // async componentDidMount() {
-  //   const param = props.location.pathname;
-  //   const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}`;
-  //   const response = await axios.get(getMediaDetail);
-  //   setState({ media: response.data });
-  //   console.log(state);
-  // }
+  })
 
     const { media } = state;
     const imagePath = "https://image.tmdb.org/t/p/original";
