@@ -57,18 +57,20 @@ const MediaList = (props) => {
   });
 
   useEffect(() => {
-    async function fetchMedias () {
-      // props.setLoading(true);
+    const fetchMedias = async() => {
+      props.setLoading(true);
+      console.log(props);
       const { genreId } = props;
       const getMediaList = `${baseURL}/${props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc&include_adult=false&language=en-US&page=1${genreId ? "&with_genres="+genreId : ""}`;
       const response = await axios.get(getMediaList);
       setState({
         medias: response.data.results,
       });
-      // props.setLoading(false);
+      props.setLoading(false);
     };
     fetchMedias();
-  })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { title } = props;
   const { medias } = state;
