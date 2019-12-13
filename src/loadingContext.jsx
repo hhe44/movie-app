@@ -18,9 +18,7 @@ const LoadingProvider = (props) => {
   return (
     <div style={props.style}>
       <Loading show={state.loading} color="red" showSpinner={true} />
-      <LoadingContext.Provider
-        value={{ setLoading: setLoading, loading: state.loading }}
-      >
+      <LoadingContext.Provider value={{ setLoading: setLoading, loading: state.loading }}>
         {props.children}
       </LoadingContext.Provider>
       {state.loading && (

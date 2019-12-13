@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import logo from "../images/logo_7.png";
@@ -132,57 +132,53 @@ const StyledLink = styled(Link)`
   background-color: rgba(0,0,0,0);
 `;
 
-class Navigation extends React.Component {
-  state = {
-    searchTerm: "",
-    searchToggle: false
-  };
-  inputRef = React.createRef();
+const Navigation = (props) => {
 
-  handleChange = e => {
-    this.setState({ searchTerm: e.target.value });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchToggle, setSearchToggle] = useState(false);
+
+  const inputRef = React.createRef();
+
+  const handleChange = (e) => {
+    setSearchTerm( e.target.value );
   };
 
-  handleSearchToggle = e => {
-    this.setState(({ searchToggle }) => ({ searchToggle: !searchToggle}));
-    this.inputRef.current.focus();
+  const handleSearchToggle = (e) => {
+    setSearchToggle(!searchToggle);
+    inputRef.current.focus();
   }
 
-  handleSubmit = e => {
+  const handleSubmit = (e) => {
     // preventDefault to avoid reloading entire page, which would be its default behavior
     e.preventDefault();
-    if(this.state.searchToggle) return;
-    if(!this.state.searchTerm.trim()) return;
-    this.props.history.push(`/search?page=1&searchMedia=multi&searchTerm=${this.state.searchTerm}`);
+    if(searchTerm === '') return;
+    if(!searchTerm.trim()) return;
+    props.history.push(`/search?page=1&searchMedia=multi&searchTerm=${searchTerm}`);
   };
 
-  render() {
-    const { searchToggle } = this.state;
-    
-    return (
-      <Navbar className="navbar">
-        <NavItems>
-          <StyledLink to="/">
-            <NavLogo src={logo}></NavLogo>
-          </StyledLink>
-          <NavSearch>
-            <SearchBar onSubmit={this.handleSubmit}>
-              <SearchButton type="submit" onClick={this.handleSearchToggle}><i className="fa fa-search"></i></SearchButton>
-              <SearchText ref={this.inputRef} value={this.state.searchTerm} onChange={this.handleChange} isShown={searchToggle}/>
-            </SearchBar>
-          </NavSearch>
-          <StyledLink to="/browse">
-            <NavBrowse>BROWSE</NavBrowse>
-          </StyledLink>
-          <NavProfile>
-            <UserProfile>
-              <i className="fa fa-user"></i>
-            </UserProfile>
-          </NavProfile>
-        </NavItems>
-      </Navbar>
-    );
-  }
+  return (
+    <Navbar className="navbar">
+      <NavItems>
+        <StyledLink to="/">
+          <NavLogo src={logo}></NavLogo>
+        </StyledLink>
+        <NavSearch>
+          <SearchBar onSubmit={handleSubmit}>
+            <SearchButton type="submit" onClick={handleSearchToggle}><i className="fa fa-search"></i></SearchButton>
+            <SearchText ref={inputRef} value={searchTerm} onChange={handleChange} isShown={searchToggle}/>
+          </SearchBar>
+        </NavSearch>
+        <StyledLink to="/browse">
+          <NavBrowse>BROWSE</NavBrowse>
+        </StyledLink>
+        <NavProfile>
+          <UserProfile>
+            <i className="fa fa-user"></i>
+          </UserProfile>
+        </NavProfile>
+      </NavItems>
+    </Navbar>
+  );
 }
 
 // withRouter gives us access to the history
