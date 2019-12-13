@@ -11,7 +11,8 @@ const Navbar = styled.div`
   width: 100vw;
   top: 0;
   left: 0;
-  padding: 0 ${props => props.theme.sizes.xLarge} 0 ${props => props.theme.sizes.xLarge};
+  padding: 0 ${props => props.theme.sizes.xLarge} 0
+    ${props => props.theme.sizes.xLarge};
   box-sizing: border-box;
   background: linear-gradient(rgba(20, 20, 20, 1) 60%, rgba(20, 20, 20, 0.8));
   box-shadow: 0px 4px 24px rgba(253, 0, 29, 0.1);
@@ -66,7 +67,7 @@ const SearchBar = styled.form`
   @media (max-width: 600px) {
     width: 12rem;
   }
-`
+`;
 
 const SearchButton = styled.button`
   border: none;
@@ -78,9 +79,9 @@ const SearchButton = styled.button`
   cursor: pointer;
   @media (max-width: 600px) {
     width: 12rem;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
   }
-`
+`;
 
 const SearchText = styled.input`
   border: none;
@@ -91,12 +92,13 @@ const SearchText = styled.input`
   transition: 0.3s ease-in-out;
   text-indent: ${props => props.theme.sizes.small};
   border-radius: ${props => props.theme.sizes.small};
-  width: ${props => props.isShown ? "12rem" : "0rem"};
-  background-color: ${props => props.isShown ? props.theme.colors.white : props.theme.colors.mainBG };
+  width: ${props => (props.isShown ? "12rem" : "0rem")};
+  background-color: ${props =>
+    props.isShown ? props.theme.colors.white : props.theme.colors.mainBG};
   @media (max-width: 600px) {
-    width: ${props => props.isShown ? "9rem" : "0rem"};
+    width: ${props => (props.isShown ? "9rem" : "0rem")};
   }
-`
+`;
 
 const NavBrowse = styled.div`
   font-family: Open Sans;
@@ -129,31 +131,32 @@ const UserProfile = styled.div`
 const StyledLink = styled(Link)`
   color: ${props => props.theme.colors.grey};
   text-decoration: none;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
 `;
 
-const Navigation = (props) => {
-
+const Navigation = props => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchToggle, setSearchToggle] = useState(false);
 
   const inputRef = React.createRef();
 
-  const handleChange = (e) => {
-    setSearchTerm( e.target.value );
+  const handleChange = e => {
+    setSearchTerm(e.target.value);
   };
 
-  const handleSearchToggle = (e) => {
+  const handleSearchToggle = e => {
     setSearchToggle(!searchToggle);
     inputRef.current.focus();
-  }
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     // preventDefault to avoid reloading entire page, which would be its default behavior
     e.preventDefault();
-    if(searchTerm === '') return;
-    if(!searchTerm.trim()) return;
-    props.history.push(`/search?page=1&searchMedia=multi&searchTerm=${searchTerm}`);
+    if (searchTerm === "") return;
+    if (!searchTerm.trim()) return;
+    props.history.push(
+      `/search?page=1&searchMedia=multi&searchTerm=${searchTerm}`
+    );
   };
 
   return (
@@ -164,8 +167,15 @@ const Navigation = (props) => {
         </StyledLink>
         <NavSearch>
           <SearchBar onSubmit={handleSubmit}>
-            <SearchButton type="submit" onClick={handleSearchToggle}><i className="fa fa-search"></i></SearchButton>
-            <SearchText ref={inputRef} value={searchTerm} onChange={handleChange} isShown={searchToggle}/>
+            <SearchButton type="submit" onClick={handleSearchToggle}>
+              <i className="fa fa-search"></i>
+            </SearchButton>
+            <SearchText
+              ref={inputRef}
+              value={searchTerm}
+              onChange={handleChange}
+              isShown={searchToggle}
+            />
           </SearchBar>
         </NavSearch>
         <StyledLink to="/browse">
@@ -179,7 +189,7 @@ const Navigation = (props) => {
       </NavItems>
     </Navbar>
   );
-}
+};
 
 // withRouter gives us access to the history
 export default withRouter(Navigation);

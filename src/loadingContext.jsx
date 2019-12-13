@@ -5,20 +5,21 @@ import "react-loading-bar/dist/index.css";
 const LoadingContext = React.createContext();
 export const LoadingConsumer = LoadingContext.Consumer;
 
-const LoadingProvider = (props) => {
-
+const LoadingProvider = props => {
   const [state, setState] = useState({
     loading: false
   });
 
-  const setLoading = (loading) => {
+  const setLoading = loading => {
     setState({ loading });
   };
 
   return (
     <div style={props.style}>
       <Loading show={state.loading} color="red" showSpinner={true} />
-      <LoadingContext.Provider value={{ setLoading: setLoading, loading: state.loading }}>
+      <LoadingContext.Provider
+        value={{ setLoading: setLoading, loading: state.loading }}
+      >
         {props.children}
       </LoadingContext.Provider>
       {state.loading && (
@@ -38,6 +39,6 @@ const LoadingProvider = (props) => {
       )}
     </div>
   );
-}
+};
 
 export default LoadingProvider;

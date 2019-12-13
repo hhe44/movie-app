@@ -7,8 +7,8 @@ import MediaList from "./components/MediaList";
 import MediaPage from "./pages/MediaPage";
 import SearchPage from "./pages/SearchPage";
 import BrowsePage from "./pages/BrowsePage";
-import ActorPage from "./pages/ActorPage"
-import './App.css'
+import ActorPage from "./pages/ActorPage";
+import "./App.css";
 
 const Content = styled.div`
   background: ${props => props.theme.colors.mainBG};
@@ -19,8 +19,8 @@ const Content = styled.div`
 `;
 
 const fullWidth = {
-  width: '100%'
-}
+  width: "100%"
+};
 
 const Landing = () => (
   <>
@@ -31,24 +31,24 @@ const Landing = () => (
 );
 
 const App = () => {
-    return (
-      <Content>
-        <LoadingProvider style={fullWidth}>
-          <Router>
-            <Navbar />
-            <div style={fullWidth} >
-              <Route path="/" exact component={Landing} />
-              <Route path="/browse" exact component={BrowsePage} />
-              <Route path="/movie/:id" exact component={MediaPage} />
-              <Route path="/tv/:id" exact component={MediaPage} />
-              <Route path="/person/:id" exact component={ActorPage} />
-              <Route path="/search" component={SearchPage} />
-              <Route path="/mediahomepage" />
-            </div>
-          </Router>
-        </LoadingProvider>
-      </Content>
-    );
-}
+  return (
+    <Content>
+      <LoadingProvider style={fullWidth}>
+        <Router>
+          <Navbar />
+          <div style={fullWidth}>
+            <Route path="/" exact component={Landing} />
+            <Route path="/browse" exact component={BrowsePage} />
+            <Route path="/movie/:id" exact component={MediaPage} />
+            <Route path="/tv/:id" exact component={MediaPage} />
+            <Route path="/person/:id" exact component={ActorPage} />
+            <Route path="/search" component={SearchPage} />
+            <Route path="/mediahomepage" />
+          </div>
+        </Router>
+      </LoadingProvider>
+    </Content>
+  );
+};
 
 export default App;

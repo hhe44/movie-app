@@ -50,21 +50,24 @@ const MediaWrap = styled.div`
 const imagePath = "https://image.tmdb.org/t/p/w780/";
 const baseURL = "https://api.themoviedb.org/3";
 
-const MediaList = (props) => {
-
+const MediaList = props => {
   const [state, setState] = useState({
     medias: []
   });
 
   useEffect(() => {
-    const fetchMedias = async() => {
+    const fetchMedias = async () => {
       props.setLoading(true);
       console.log(props);
       const { genreId } = props;
-      const getMediaList = `${baseURL}/${props.mediaType}?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc&include_adult=false&language=en-US&page=1${genreId ? "&with_genres="+genreId : ""}`;
+      const getMediaList = `${baseURL}/${props.mediaType}?api_key=${
+        process.env.REACT_APP_API_KEY
+      }&sort_by=popularity.desc&include_adult=false&language=en-US&page=1${
+        genreId ? "&with_genres=" + genreId : ""
+      }`;
       const response = await axios.get(getMediaList);
       setState({
-        medias: response.data.results,
+        medias: response.data.results
       });
       props.setLoading(false);
     };
@@ -75,36 +78,41 @@ const MediaList = (props) => {
   const { title } = props;
   const { medias } = state;
   return (
-      <Container>
-        <MediaListTitle>{title}</MediaListTitle>
-        <div>
-          <List key="list1">
-            {medias.map(media => [
-              <MediaWrap key={media.id}>
-                <Link to={`/${media.title !== undefined ? "movie" : "tv"}/${media.id}`}>
-                  <Image
-                    key={media.id + "image"}
-                    src={
-                      media.backdrop_path !== null
-                      ? imagePath + media.backdrop_path 
-                      : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${media.title || media.name}`
-                    }
-                    alt={`${media.title || media.name} backdrop`}
-                  />
-                </Link>
-                <Caption key={media.id + "cap"}>
-                  {media.title || media.name}
-                </Caption>
-              </MediaWrap>
-            ])}
-          </List>
-        </div>
-      </Container>
+    <Container>
+      <MediaListTitle>{title}</MediaListTitle>
+      <div>
+        <List key="list1">
+          {medias.map(media => [
+            <MediaWrap key={media.id}>
+              <Link
+                to={`/${media.title !== undefined ? "movie" : "tv"}/${
+                  media.id
+                }`}
+              >
+                <Image
+                  key={media.id + "image"}
+                  src={
+                    media.backdrop_path !== null
+                      ? imagePath + media.backdrop_path
+                      : `https://via.placeholder.com/500x281/212025/FFFFFF?text=${media.title ||
+                          media.name}`
+                  }
+                  alt={`${media.title || media.name} backdrop`}
+                />
+              </Link>
+              <Caption key={media.id + "cap"}>
+                {media.title || media.name}
+              </Caption>
+            </MediaWrap>
+          ])}
+        </List>
+      </div>
+    </Container>
   );
-}
+};
 
-export default (props) => (
+export default props => (
   <LoadingConsumer>
-    {(loading) => <MediaList {...loading} {...props} />}
+    {loading => <MediaList {...loading} {...props} />}
   </LoadingConsumer>
 );

@@ -31,58 +31,67 @@ const Buttons = styled.div`
   padding-top: ${props => props.theme.fonts.xLarge};
 `;
 
-const ActorPage = (props) => {
-
+const ActorPage = props => {
   const [state, setState] = useState({
     media: []
   });
 
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       const param = props.location.pathname;
       const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}`;
       const response = await axios.get(getMediaDetail);
       setState({ media: response.data });
-    }
+    };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-    const { media } = state;
-    const imagePath = "https://image.tmdb.org/t/p/original";
-    return (
-      <MediaPageContainer>
-        <ColumnOne>
-          <Poster src={imagePath + media.profile_path}></Poster>
-        </ColumnOne>
-        <ColumnTwo>
-          <Blurb>
-            <Title>{media.title || media.name}</Title>
-            <Tagline>{media.tagline}</Tagline>
-            <MediaDetail>
-              {
-                media.release_date ? "Release Date: " + media.release_date
-                : media.last_air_date ? "Last Aired: " + media.last_air_date
-                : media.birthday ? "Birthdate: " + media.birthday
-                : ""
+  const { media } = state;
+  const imagePath = "https://image.tmdb.org/t/p/original";
+  return (
+    <MediaPageContainer>
+      <ColumnOne>
+        <Poster src={imagePath + media.profile_path}></Poster>
+      </ColumnOne>
+      <ColumnTwo>
+        <Blurb>
+          <Title>{media.title || media.name}</Title>
+          <Tagline>{media.tagline}</Tagline>
+          <MediaDetail>
+            {media.release_date
+              ? "Release Date: " + media.release_date
+              : media.last_air_date
+              ? "Last Aired: " + media.last_air_date
+              : media.birthday
+              ? "Birthdate: " + media.birthday
+              : ""}
+          </MediaDetail>
+          <MediaDetail>
+            {media.vote_average
+              ? "Rating " + media.vote_average + " / 10"
+              : "Popularity: " + media.popularity + " / 10"}
+          </MediaDetail>
+          <Overview>{media.overview || media.biography}</Overview>
+          <Buttons>
+            <Button
+              label={
+                media.release_date || media.last_air_date
+                  ? "WATCH NOW"
+                  : "VISIT PROFILE"
               }
-            </MediaDetail>
-            <MediaDetail>
-              {
-                media.vote_average ? "Rating " + media.vote_average + " / 10"
-                : "Popularity: " + media.popularity + " / 10"
+            ></Button>
+            <Button
+              label={
+                media.release_date || media.last_air_date
+                  ? "VISIT HOMEPAGE"
+                  : "MORE DETAILS"
               }
-            </MediaDetail>
-            <Overview>{media.overview || media.biography}</Overview>
-            <Buttons>
-              <Button label={media.release_date || media.last_air_date ? "WATCH NOW" : "VISIT PROFILE"}></Button>
-              <Button label={media.release_date || media.last_air_date ? "VISIT HOMEPAGE" : "MORE DETAILS"}></Button>
-            </Buttons>
-          </Blurb>
-        </ColumnTwo>
-      </MediaPageContainer>
-    );
-  }
-;
-
+            ></Button>
+          </Buttons>
+        </Blurb>
+      </ColumnTwo>
+    </MediaPageContainer>
+  );
+};
 export default ActorPage;
