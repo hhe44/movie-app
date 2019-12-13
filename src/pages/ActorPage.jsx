@@ -32,9 +32,8 @@ const Buttons = styled.div`
 `;
 
 const ActorPage = props => {
-  const [state, setState] = useState({
-    media: []
-  });
+
+  const [state, setState] = useState({ media: [] });
 
   useEffect(() => {
     const fetchData = async () => {

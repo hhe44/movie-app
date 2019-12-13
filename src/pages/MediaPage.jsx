@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
@@ -57,7 +57,7 @@ const MediaDetails = styled.div`
   font-family: Open Sans;
   position: relative;
   top: ${props => props.theme.sizes.xxLarge};
-`
+`;
 
 const Tagline = styled.h3`
   font-size: ${props => props.theme.fonts.medium};
@@ -92,7 +92,7 @@ const Buttons = styled.div`
 
 const StyledHyperlink = styled.a`
   text-decoration: none;
-`
+`;
 
 const OverviewDiv = styled.div`
   background: rgba(20, 20, 20);
@@ -101,58 +101,59 @@ const OverviewDiv = styled.div`
   padding-left: 15%;
   padding-right: 15%;
   box-sizing: border-box;
-`
+`;
 
 const Overview = styled.h3`
   font-family: Open Sans;
   font-size: ${props => props.theme.fonts.medium};
   color: ${props => props.theme.colors.white};
-`
+`;
 
-class MediaPage extends React.PureComponent {
-  state = {
-    media: {},
-  };
+const MediaPage = props => {
+  const [state, setState] = useState({ media: [] });
 
-  async componentDidMount() {
-    const param = this.props.location.pathname;
-    const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
-    const response = await axios.get(getMediaDetail);
-    this.setState({ media: response.data });
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const param = props.location.pathname;
+      const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
+      const response = await axios.get(getMediaDetail);
+      setState({ media: response.data });
+    };
+    fetchData();
+  }, []);
 
-  render() {
-    const { media } = this.state;
-    if(!media.videos) return <div>...loading</div>;
-    const trailerKey = media.videos.results
-    const imagePath = "https://image.tmdb.org/t/p/original";
+  const { media } = state;
+  if (!media.videos) return <div>...loading</div>;
+  const trailerKey = media.videos.results;
+  const imagePath = "https://image.tmdb.org/t/p/original";
 
-    return (
-      <MediaPageContainer>
-        <Image src={imagePath + media.backdrop_path} />
-        <FilterEffect>
-          <MediaDetails>
-            <Tagline>{media.tagline}</Tagline>
-            <StyledTitle>{media.title}</StyledTitle>
-            <Buttons>
-              { trailerKey.length > 0 && (
-                <TrailerModal title={media.title} trailerKey={trailerKey[0].key}></TrailerModal>
-              )}
-              {media.homepage && (
-                <StyledHyperlink href={media.homepage} target="_blank">
-                  <MediaPageButton alt="true">{"HOMEPAGE"}</MediaPageButton>
-                </StyledHyperlink>
-              )}
-            </Buttons>
-          </MediaDetails>
-        </FilterEffect>
-        <OverviewDiv>
-          <Overview>{media.overview}</Overview>
-        </OverviewDiv>
-        
-      </MediaPageContainer>
-    );
-  }
-}
+  return (
+    <MediaPageContainer>
+      <Image src={imagePath + media.backdrop_path} />
+      <FilterEffect>
+        <MediaDetails>
+          <Tagline>{media.tagline}</Tagline>
+          <StyledTitle>{media.title}</StyledTitle>
+          <Buttons>
+            {trailerKey.length > 0 && (
+              <TrailerModal
+                title={media.title}
+                trailerKey={trailerKey[0].key}
+              ></TrailerModal>
+            )}
+            {media.homepage && (
+              <StyledHyperlink href={media.homepage} target="_blank">
+                <MediaPageButton alt="true">{"HOMEPAGE"}</MediaPageButton>
+              </StyledHyperlink>
+            )}
+          </Buttons>
+        </MediaDetails>
+      </FilterEffect>
+      <OverviewDiv>
+        <Overview>{media.overview}</Overview>
+      </OverviewDiv>
+    </MediaPageContainer>
+  );
+};
 
 export default withRouter(MediaPage);
