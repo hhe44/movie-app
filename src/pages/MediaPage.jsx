@@ -109,7 +109,7 @@ const Overview = styled.h3`
   color: ${props => props.theme.colors.white};
 `;
 
-const MediaPage = props => {
+const MediaPage = (props) => {
   const [state, setState] = useState({ media: [] });
 
   useEffect(() => {
@@ -120,6 +120,7 @@ const MediaPage = props => {
       setState({ media: response.data });
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { media } = state;

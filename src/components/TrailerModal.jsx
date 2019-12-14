@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import styled, { css } from "styled-components";
 import { rgba, rem } from "polished";
@@ -59,40 +59,33 @@ const ModalCloseButton = styled.button`
   background: rgba(0, 0, 255, 0);
 `;
 
-export default class TrailerModal extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showModal: false
-    };
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
+const TrailerModal = props => {
+
+  const [state, setState] = useState({showModal: false});
+
+  const handleOpenModal = () => {
+    setState({ showModal: true });
   }
 
-  handleOpenModal() {
-    this.setState({ showModal: true });
+  const handleCloseModal = () => {
+    setState({ showModal: false });
   }
 
-  handleCloseModal() {
-    this.setState({ showModal: false });
-  }
-
-  render() {
-    console.log(this.props);
+    console.log(props);
     return (
       <div>
-        <MediaPageButton onClick={this.handleOpenModal}>
+        <MediaPageButton onClick={handleOpenModal}>
           TRAILER
         </MediaPageButton>
-        <ReactModal isOpen={this.state.showModal} style={customStyles}>
-          <ModalCloseButton onClick={this.handleCloseModal}>
+        <ReactModal isOpen={state.showModal} style={customStyles}>
+          <ModalCloseButton onClick={handleCloseModal}>
             EXIT
           </ModalCloseButton>
           <iframe
-            title={this.props.title}
+            title={props.title}
             width="100%"
             height="100%"
-            src={"https://www.youtube.com/embed/" + this.props.trailerKey}
+            src={"https://www.youtube.com/embed/" + props.trailerKey}
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; 
             gyroscope; picture-in-picture"
@@ -102,4 +95,5 @@ export default class TrailerModal extends React.Component {
       </div>
     );
   }
-}
+
+  export default TrailerModal;
