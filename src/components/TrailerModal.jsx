@@ -59,41 +59,38 @@ const ModalCloseButton = styled.button`
   background: rgba(0, 0, 255, 0);
 `;
 
+// ReactModal.setAppElement('.content')
 const TrailerModal = props => {
-
-  const [state, setState] = useState({showModal: false});
+  const [state, setState] = useState({ showModal: false });
 
   const handleOpenModal = () => {
     setState({ showModal: true });
-  }
+  };
 
   const handleCloseModal = () => {
     setState({ showModal: false });
-  }
+  };
 
-    console.log(props);
-    return (
-      <div>
-        <MediaPageButton onClick={handleOpenModal}>
-          TRAILER
-        </MediaPageButton>
-        <ReactModal isOpen={state.showModal} style={customStyles}>
-          <ModalCloseButton onClick={handleCloseModal}>
-            EXIT
-          </ModalCloseButton>
-          <iframe
-            title={props.title}
-            width="100%"
-            height="100%"
-            src={"https://www.youtube.com/embed/" + props.trailerKey}
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; 
+  console.log(props);
+  return (
+    <div>
+      {ReactModal.setAppElement('.content')}
+      <MediaPageButton onClick={handleOpenModal}>TRAILER</MediaPageButton>
+      <ReactModal isOpen={state.showModal} style={customStyles}>
+        <ModalCloseButton onClick={handleCloseModal}>EXIT</ModalCloseButton>
+        <iframe
+          title={props.title}
+          width="100%"
+          height="100%"
+          src={"https://www.youtube.com/embed/" + props.trailerKey}
+          frameBorder="0"
+          allow="accelerometer; autoplay; encrypted-media; 
             gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </ReactModal>
-      </div>
-    );
-  }
+          allowFullScreen
+        />
+      </ReactModal>
+    </div>
+  );
+};
 
-  export default TrailerModal;
+export default TrailerModal;

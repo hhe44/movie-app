@@ -32,7 +32,7 @@ const Landing = () => (
 
 const App = () => {
   return (
-    <Content>
+    <Content className="content">
       <LoadingProvider style={fullWidth}>
         <Router>
           <Navbar />
