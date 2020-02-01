@@ -5,13 +5,14 @@ import axios from "axios";
 import { rgba } from "polished";
 import { MediaPageButton } from "../components/Button";
 import TrailerModal from "../components/TrailerModal";
+import CastList from "../components/CastList";
 
 const MediaPageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: calc(100vh - ${props => props.theme.sizes.xxLarge});
+  height: calc(100vh - ${(props) => props.theme.sizes.xxLarge});
   @media (max-width: 600px) {
-    height: calc(100vh - ${props => props.theme.sizes.navHeightMobile});
+    height: calc(100vh - ${(props) => props.theme.sizes.navHeightMobile});
   }
 `;
 
@@ -19,20 +20,20 @@ const Image = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(${props => props.src}) no-repeat center center;
+  background: url(${(props) => props.src}) no-repeat center center;
   background-size: cover;
   top: 0;
   left: 0;
   @media (max-width: 600px) {
     top: 1rem;
-    height: calc(100vh - ${props => props.theme.sizes.navHeightMobile});
+    height: calc(100vh - ${(props) => props.theme.sizes.navHeightMobile});
   }
 `;
 
 const FilterEffect = styled.div`
   position: relative;
   width: 100%;
-  height: calc(100vh - ${props => props.theme.sizes.xxLarge});
+  height: calc(100vh - ${(props) => props.theme.sizes.xxLarge});
   top: 0;
   left: 0;
   background: linear-gradient(
@@ -49,34 +50,34 @@ const FilterEffect = styled.div`
   box-sizing: border-box;
   @media (max-width: 600px) {
     top: 1rem;
-    height: calc(100vh - ${props => props.theme.sizes.navHeightMobile});
+    height: calc(100vh - ${(props) => props.theme.sizes.navHeightMobile});
   }
 `;
 
 const MediaDetails = styled.div`
   font-family: Open Sans;
   position: relative;
-  top: ${props => props.theme.sizes.xxLarge};
+  top: ${(props) => props.theme.sizes.xxLarge};
 `;
 
 const Tagline = styled.h3`
-  font-size: ${props => props.theme.fonts.medium};
+  font-size: ${(props) => props.theme.fonts.medium};
   font-weight: 300;
-  margin-top: ${props => props.theme.sizes.xLarge};
-  margin-bottom: ${props => props.theme.sizes.small};
-  color: ${props => rgba(props.theme.colors.white, 0.8)};
+  margin-top: ${(props) => props.theme.sizes.xLarge};
+  margin-bottom: ${(props) => props.theme.sizes.small};
+  color: ${(props) => rgba(props.theme.colors.white, 0.8)};
   text-align: center;
 `;
 
 const StyledTitle = styled.h1`
-  font-size: ${props => props.theme.fonts.xxLarge};
+  font-size: ${(props) => props.theme.fonts.xxLarge};
   font-weight: 400;
-  color: ${props => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   text-align: center;
   margin-top: 0;
-  margin-bottom: ${props => props.theme.sizes.large};
+  margin-bottom: ${(props) => props.theme.sizes.large};
   @media (max-width: 900px) {
-    font-size: ${props => props.theme.fonts.xLarge};
+    font-size: ${(props) => props.theme.fonts.xLarge};
   }
 `;
 
@@ -96,8 +97,8 @@ const StyledHyperlink = styled.a`
 
 const OverviewDiv = styled.div`
   background: rgba(20, 20, 20);
-  padding-top: ${props => props.theme.sizes.xLarge};
-  padding-bottom: ${props => props.theme.sizes.xLarge};
+  padding-top: ${(props) => props.theme.sizes.xLarge};
+  padding-bottom: ${(props) => props.theme.sizes.xLarge};
   padding-left: 15%;
   padding-right: 15%;
   box-sizing: border-box;
@@ -105,8 +106,18 @@ const OverviewDiv = styled.div`
 
 const Overview = styled.h3`
   font-family: Open Sans;
-  font-size: ${props => props.theme.fonts.medium};
-  color: ${props => props.theme.colors.white};
+  font-size: ${(props) => props.theme.fonts.medium};
+  color: ${(props) => props.theme.colors.white};
+`;
+
+const ActorsDiv = styled.div`
+  display: flex;
+  background: rgba(20, 20, 20);
+  padding-top: ${(props) => props.theme.sizes.tiny};
+  padding-bottom: ${(props) => props.theme.sizes.medium};
+  padding-left: 15%;
+  padding-right: 15%;
+  box-sizing: border-box;
 `;
 
 const MediaPage = (props) => {
@@ -115,7 +126,7 @@ const MediaPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const param = props.location.pathname;
-      const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
+      const getMediaDetail = `https://api.themoviedb.org/3${param}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos,credits`;
       const response = await axios.get(getMediaDetail);
       setState({ media: response.data });
     };
@@ -153,6 +164,9 @@ const MediaPage = (props) => {
       <OverviewDiv>
         <Overview>{media.overview}</Overview>
       </OverviewDiv>
+      <ActorsDiv>
+        <CastList actorInfo={media.credits} />
+      </ActorsDiv>
     </MediaPageContainer>
   );
 };
