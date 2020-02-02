@@ -9,11 +9,14 @@ const ActorContainer = styled.div`
   }
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: space-between;
+  /* background-color: green; */
 `;
 
 const ActorContainerTitle = styled.h2`
   font-family: Open Sans;
-  font-size: ${(props) => props.theme.fonts.medium};
+  font-size: ${(props) => props.theme.fonts.xLarge};
   color: ${(props) => props.theme.colors.white};
   padding-top: ${(props) => props.theme.sizes.medium};
   padding-bottom: ${(props) => props.theme.sizes.medium};
