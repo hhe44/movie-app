@@ -8,12 +8,7 @@ const CastMemberContainer = styled.div`
   flex: 1 0 calc(25% - 24px);
   margin: 40px 12px;
   padding: 0;
-  /* background-color: red; */
   text-align: center;
-  /* align-items: center; */
-  /* &:nth-child(3n + 3) {
-    padding-right: 10px;
-  } */
 `;
 
 const ImageContainer = styled.div`

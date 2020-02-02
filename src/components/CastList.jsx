@@ -11,7 +11,6 @@ const ActorContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: space-between;
-  /* background-color: green; */
 `;
 
 const ActorContainerTitle = styled.h2`
