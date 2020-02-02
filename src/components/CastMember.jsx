@@ -3,10 +3,12 @@ import styled from "styled-components";
 import imagePlaceholder from "../images/actorPlaceholderImage.jpg";
 
 const CastMemberContainer = styled.div`
-  padding-top: ${(props) => props.theme.sizes.medium};
-  padding-bottom: ${(props) => props.theme.sizes.xLarge};
-  flex: 1 0 21%;
-  margin: 0 auto;
+  padding-top: ${(props) => props.theme.sizes.large};
+  padding-bottom: ${(props) => props.theme.sizes.large};
+  flex: 1 0 calc(25% - 24px);
+  margin: 40px 12px;
+  padding: 0;
+  text-align: center;
 `;
 
 const ImageContainer = styled.div`
@@ -14,9 +16,6 @@ const ImageContainer = styled.div`
   height: 100%;
   background: url(${(props) => props.src}) no-repeat center;
   background-size: cover;
-  display: block;
-  margin: 0 auto;
-  align-items: center;
 `;
 
 const Img = styled.img`
@@ -30,7 +29,10 @@ const ActorLabel = styled.div`
   font-size: ${(props) => props.theme.fonts.small};
   color: ${(props) => props.theme.colors.white};
   font-weight: bold;
-  margin: 0 auto;
+  text-align: center;
+  @media (max-width: 600px) {
+    color: red;
+  }
 `;
 
 const CharacterLabel = styled.div`
@@ -38,7 +40,10 @@ const CharacterLabel = styled.div`
   padding-top: ${(props) => props.theme.sizes.tiny};
   font-size: ${(props) => props.theme.fonts.small};
   color: ${(props) => props.theme.colors.white};
-  margin: 0 auto;
+  text-align: center;
+  @media (max-width: 600px) {
+    color: red;
+  }
 `;
 
 const CastMember = (props) => {
